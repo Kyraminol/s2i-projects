@@ -1,5 +1,8 @@
 /* CSS per la pagina index.html */
 
+.pinned {
+    position: fixed !important;
+}
 
 .pin-top {
     position: relative;
@@ -10,8 +13,11 @@
 }
 
 html, body, .block {
-    height: 100%;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
 }
+
 nav ul li a:hover, nav ul li a.active {
     background-color: rgba(0,0,0,.1);
 }

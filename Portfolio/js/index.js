@@ -7,4 +7,8 @@ $(document).ready(function(){
       bottom: $target.offset().top + $target.outerHeight() - $this.height()
     });
   });
+
+  var elems = document.querySelectorAll('.parallax');
+  var instances = M.Parallax.init(elems, {});
+
 });
