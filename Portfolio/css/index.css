@@ -2,6 +2,7 @@
 
 .pinned {
     position: fixed !important;
+    z-index: 100;
 }
 
 .pin-top {
@@ -16,6 +17,10 @@ html, body, .block {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+}
+
+.parallax-container {
+    z-index: 50;
 }
 
 nav ul li a:hover, nav ul li a.active {
