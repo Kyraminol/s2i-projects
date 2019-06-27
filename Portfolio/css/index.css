@@ -29,3 +29,15 @@ nav ul li a:hover, nav ul li a.active {
 footer {
     padding-left: 0;
 }
+
+.aboutme-div {
+    font-size: 1.2rem;
+}
+
+.aboutme-div i {
+    font-size: 6.5rem;
+}
+
+.aboutme-div p:first-of-type {
+    font-size: 1.7rem;
+}
