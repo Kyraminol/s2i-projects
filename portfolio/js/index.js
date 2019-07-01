@@ -10,5 +10,6 @@ $(document).ready(function(){
 
   M.Parallax.init(document.querySelectorAll('.parallax'));
   M.Dropdown.init(document.querySelectorAll('.dropdown-trigger'), {hover: true});
+  M.Carousel.init(document.querySelectorAll('.carousel'), {fullWidth: true, indicators: true});
 
 });
