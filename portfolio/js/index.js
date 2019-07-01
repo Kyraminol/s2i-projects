@@ -8,7 +8,7 @@ $(document).ready(function(){
     });
   });
 
-  var elems = document.querySelectorAll('.parallax');
-  var instances = M.Parallax.init(elems, {});
+  M.Parallax.init(document.querySelectorAll('.parallax'));
+  M.Dropdown.init(document.querySelectorAll('.dropdown-trigger'), {hover: true});
 
 });
