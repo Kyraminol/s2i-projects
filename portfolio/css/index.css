@@ -2,15 +2,17 @@
 
 .pinned {
     position: fixed !important;
-    z-index: 100;
+    z-index: 99;
 }
 
 .pin-top {
     position: relative;
+    z-index: 100;
 }
 
 .pin-bottom {
     position: relative;
+    z-index: 100;
 }
 
 html, body, .block {

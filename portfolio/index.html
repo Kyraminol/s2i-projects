@@ -7,6 +7,7 @@
     <title>Gianmarco Randazzo</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.3.0/css/flag-icon.min.css" rel="stylesheet">
     <link href="css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="css/index.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   </head>
@@ -20,19 +21,37 @@
         <li><a href="https://t.me/Kyraminol" class="white-text"><i class="fab fa-telegram-plane"></i><span class="hide-on-small-and-down">Telegram</span></a></li>
         <li><a href="mailto:gianmarco.randazzo.404@gmail.com" class="white-text"><i class="fas fa-at"></i><span class="">E-Mail</span></a></li>
       </ul>
+      <ul id="nav-lang-dropdown" class="dropdown-content blue darken-1 center-align">
+        <li><a href="#" class="white-text"><i class="flag-icon flag-icon-it"></i></a></li>
+        <li><a href="#" class="white-text"><i class="flag-icon flag-icon-gb"></i></a></li>
+      </ul>
       <nav data-target="blue">
         <div class="nav-wrapper blue">
           <div class="container">
 
             <a href="#" class="brand-logo left">About Me</a>
             <ul class="right">
-              <li><a href="#"><i class="fa fa-palette left"></i>Theme</a></li>
-              <li><a class="dropdown-trigger" href="#" data-target="nav-social-dropdown">
-                <i class="fas fa-user-friends left hide-on-small-and-down"></i>
-                <i class="fas fa-user-friends hide-on-med-and-up"></i>
-                <span class="hide-on-small-and-down">Social</span>
-                <i class="material-icons right">arrow_drop_down</i>
-              </a></li>
+              <li>
+                <a href="#">
+                  <i class="fa fa-palette left hide-on-small-and-down"></i>
+                  <i class="fa fa-palette hide-on-med-and-up"></i>
+                  <span class="hide-on-small-and-down">Theme</span>
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-trigger" href="#" data-target="nav-social-dropdown">
+                  <i class="fas fa-user-friends left hide-on-small-and-down"></i>
+                  <i class="fas fa-user-friends hide-on-med-and-up"></i>
+                  <span class="hide-on-small-and-down">Social</span>
+                  <i class="material-icons right">arrow_drop_down</i>
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-trigger" href="#" data-target="nav-lang-dropdown">
+                  <i class="fa fa-language"></i>
+                  <i class="material-icons right">arrow_drop_down</i>
+                </a>
+              </li>
             </ul>
             <div class="nav-content">
             </div>
@@ -72,28 +91,28 @@
         <div class="row"><h2 class="center-align">My Skills</h2></div>
 
         <div class="row aboutme-div">
-          <div class="col s2">
+          <div class="col s4 m2">
             <div class="center">
               <img class="responsive-img" src="images/python.png" alt="Python">
               <p>Python</p>
               <p class="light">Placeholder</p>
             </div>
           </div>
-          <div class="col s2 offset-s1">
+          <div class="col s4 offset-s4 m2 offset-m1">
             <div class="center">
               <img class="responsive-img" src="images/nodejs.png" alt="Node.js">
               <p>Node.js</p>
               <p class="light">Placeholder</p>
             </div>
           </div>
-          <div class="col s3 offset-s1">
+          <div class="col s5 m3 offset-m1">
             <div class="center">
               <img class="responsive-img" src="images/css-html.png" alt="HTML5 / CSS3">
               <p>HTML5 / CSS3</p>
               <p class="light">Placeholder</p>
             </div>
           </div>
-          <div class="col s2 offset-s1">
+          <div class="col s4 offset-s3 m2 offset-m1">
             <div class="center">
               <img class="responsive-img" src="images/cpp.png" alt="C / C++">
               <p>C / C++</p>
@@ -112,8 +131,20 @@
           <div class="container">
             <a href="#" class="brand-logo left">My Projects</a>
             <ul class="right">
-              <li><a href="#"><i class="fab fa-github left"></i> GitHub</a></li>
-              <li><a href="#"><i class="fab fa-gitlab left"></i> GitLab</a></li>
+              <li>
+                <a href="#">
+                  <i class="fab fa-github left hide-on-small-and-down"></i>
+                  <i class="fab fa-github hide-on-med-and-up"></i>
+                  <span class="hide-on-small-and-down">Github</span>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <i class="fab fa-gitlab left hide-on-small-and-down"></i>
+                  <i class="fab fa-gitlab hide-on-med-and-up"></i>
+                  <span class="hide-on-small-and-down">Gitlab</span>
+                </a>
+              </li>
             </ul>
             <div class="nav-content">
             </div>
@@ -130,7 +161,8 @@
             <div class="card sticky-action blue darken-3">
               <div class="card-image waves-effect waves-block waves-light">
                 <img class="activator" src="images/ma.png" alt="MuseigennAnime">
-                <span class="card-title black-text" style="text-shadow: 1px 1px 0 #ffffff;">MuseigennAnime</span>
+                <span class="card-title black-text hide-on-small-and-down" style="text-shadow: 1px 1px 0 #ffffff;">MuseigennAnime</span>
+                <span class="card-title black-text hide-on-med-and-up" style="text-shadow: 1px 1px 0 #ffffff;font-size:1.2rem">Museigenn Anime</span>
               </div>
               <div class="card-content blue darken-4">
                 <span class="card-title activator white-text">Click for more info<i class="material-icons right">add</i></span>
