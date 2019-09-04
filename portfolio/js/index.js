@@ -15,7 +15,7 @@ $(document).ready(function(){
 
   initNav();
   M.Parallax.init(document.querySelectorAll('.parallax'));
-  M.Dropdown.init(document.querySelectorAll('.dropdown-trigger'), {hover: true});
+  M.Dropdown.init(document.querySelectorAll('.dropdown-trigger'), {hover: false, constrainWidth: false, coverTrigger: false});
   M.Carousel.init(document.querySelectorAll('.carousel'), {fullWidth: true, indicators: true});
 
 
