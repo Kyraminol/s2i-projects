@@ -1,5 +1,9 @@
 $(document).ready(function(){
   var initNav = function(){
+    $('div.block').each(function(){
+        $(this).height($(this).height() + 30);
+    });
+
     $('nav').each(function(){
       var $this = $(this);
       var $target = $('#' + $(this).attr('data-target'));
