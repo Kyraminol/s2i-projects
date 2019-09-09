@@ -6,7 +6,7 @@
 }
 
 .pin-top {
-    z-index: 1000;
+    z-index: 999;
 }
 
 .pin-bottom {
