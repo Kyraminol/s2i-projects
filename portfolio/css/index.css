@@ -20,6 +20,8 @@ html, body, .block {
 
 .parallax-container {
     z-index: 50;
+    height: 500px;
+    flex: none;
 }
 
 nav ul li a:hover, nav ul li a.active {

@@ -1,7 +1,12 @@
 $(document).ready(function(){
   var initNav = function(){
     $('div.block').each(function(){
-        $(this).height($(this).height() + 30);
+      var $this = $(this);
+      var height = 30;
+      $this.children().each(function(index, el){
+        height += $(el).outerHeight();
+      });
+      $this.outerHeight(height);
     });
 
     $('nav').each(function(){
