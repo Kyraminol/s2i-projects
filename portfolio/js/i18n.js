@@ -8,6 +8,10 @@ $(document).ready(function(){
             'skills': 'Mie Competenze',
             'theme': 'Tema',
             'language': 'Lingua',
+            'languages': 'Lingue',
+            'italian': 'Italiano',
+            'english': 'Inglese',
+            'japanese': 'Giapponese',
             // My Projects block
             'projects': 'Miei Progetti',
             'projects-more': 'Click per altre info',
@@ -19,8 +23,11 @@ $(document).ready(function(){
             'contact': 'Contattami',
             // Footer
             'thanks': 'Ringraziamenti Speciali',
+            'thanks-content-1': 'Un ringraziamento enorme a ',
+            'thanks-content-2': ' per questa opportunità di imparare e migliorarmi, al team di ',
+            'thanks-content-3': ', e alla mia amata per il costante supporto ♥',
             'links': 'Miei Link',
-            'source': 'Sorgente',
+            'source': 'Codice Sorgente',
         },
         'en': {
             // About Me block
@@ -30,6 +37,10 @@ $(document).ready(function(){
             'skills': 'My Skills',
             'theme': 'Theme',
             'language': 'Language',
+            'languages': 'Languages',
+            'italian': 'Italian',
+            'english': 'English',
+            'japanese': 'Japanese',
             // My Projects block
             'projects': 'My Projects',
             'projects-more': 'Click for more info',
@@ -40,6 +51,9 @@ $(document).ready(function(){
             'future': 'My Future',
             'contact': 'Contact me',
             // Footer
+            'thanks-content-1': 'Huge thanks to ',
+            'thanks-content-2': ' for this opportunity to learn and improve myself, to ',
+            'thanks-content-3': ' team, and to my dear love for supporting me ♥',
             'thanks': 'Special Thanks',
             'links': 'My Links',
             'source': 'Source',

@@ -42,3 +42,11 @@ footer {
 .aboutme-div p:first-of-type {
     font-size: 1.7rem;
 }
+
+.underline {
+    text-decoration: underline;
+}
+
+.fixed-action-btn {
+    z-index: 1050;
+}

@@ -12,7 +12,7 @@
     <link href="css/index.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   </head>
   <body>
-    <div id="pushpin-blue" class="block">
+    <div id="pushpin-aboutme" class="block">
       <ul id="nav-social-dropdown" class="dropdown-content blue darken-1">
         <li><a href="https://www.linkedin.com/in/gianmarco-randazzo-723520119/" class="white-text" target="_blank"><i class="fab fa-linkedin"></i><span>LinkedIn</span></a></li>
         <li><a href="https://www.facebook.com/404Undead" class="white-text" target="_blank"><i class="fab fa-facebook"></i><span>Facebook</span></a></li>
@@ -25,7 +25,7 @@
         <li><a href="#" class="white-text translate-btn" data-lang="it"><i class="flag-icon flag-icon-it"></i><span>Italiano</span></a></li>
         <li><a href="#" class="white-text translate-btn" data-lang="en"><i class="flag-icon flag-icon-gb"></i><span>English</span></a></li>
       </ul>
-      <nav data-target="pushpin-blue">
+      <nav data-target="pushpin-aboutme" data-fab="blue">
         <div class="nav-wrapper blue">
           <div class="container">
 
@@ -55,8 +55,6 @@
                 </a>
               </li>
             </ul>
-            <div class="nav-content">
-            </div>
           </div>
         </div>
       </nav>
@@ -90,7 +88,10 @@
           </div>
         </div>
 
-        <div class="row"><h2 class="center-align i18n-skills">My Skills</h2></div>
+        <div class="row">
+          <h2 class="center-align i18n-skills">My Skills</h2>
+          <h4 class="center-align i18n-programming">Programming</h4>
+        </div>
 
         <div class="row aboutme-div">
           <div class="col s4 m2">
@@ -123,11 +124,38 @@
           </div>
         </div>
 
+        <div class="row">
+          <h4 class="center-align i18n-languages">Languages</h4>
+        </div>
+        <div class="row">
+          <div class="col s4">
+            <div class="center">
+              <i class="flag-icon flag-icon-it z-depth-1" style="font-size: 4rem;"></i>
+              <p class="i18n-italian">Italian</p>
+              <p class="light i18n-italian-content">Placeholder</p>
+            </div>
+          </div>
+          <div class="col s4">
+            <div class="center">
+              <i class="flag-icon flag-icon-gb z-depth-1" style="font-size: 4rem;"></i>
+              <p class="i18n-english">English</p>
+              <p class="light i18n-english-content">Placeholder</p>
+            </div>
+          </div>
+          <div class="col s4">
+            <div class="center">
+              <i class="flag-icon flag-icon-jp z-depth-1" style="font-size: 4rem;"></i>
+              <p class="i18n-japanese">Japanese</p>
+              <p class="light i18n-japanese-content">Placeholder</p>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
 
-    <div id="pushpin-red" class="block lighten-2">
-      <nav data-target="pushpin-red">
+    <div id="pushpin-projects" class="block lighten-2">
+      <nav data-target="pushpin-projects" data-fab="red">
         <div class="nav-wrapper red">
           <div class="container">
             <a href="#" class="brand-logo left i18n-projects">My Projects</a>
@@ -147,8 +175,6 @@
                 </a>
               </li>
             </ul>
-            <div class="nav-content">
-            </div>
           </div>
         </div>
       </nav>
@@ -239,16 +265,14 @@
       </div>
     </div>
 
-    <div id="pushpin-green" class="block lighten-2">
-      <nav data-target="pushpin-green">
+    <div id="pushpin-future" class="block lighten-2">
+      <nav data-target="pushpin-future" data-fab="green">
         <div class="nav-wrapper green">
           <div class="container">
             <a href="#" class="brand-logo left i18n-future">My Future</a>
             <ul class="right">
               <li><a href="#"><i class="material-icons left"></i></a></li>
             </ul>
-            <div class="nav-content">
-            </div>
           </div>
         </div>
       </nav>
@@ -289,12 +313,18 @@
       </div>
     </div>
 
+    <div class="fixed-action-btn">
+      <a class="btn-floating btn-large blue" id="fab" href="#">
+        <i class="large material-icons">keyboard_arrow_up</i>
+      </a>
+    </div>
+
     <footer class="page-footer blue">
       <div class="container">
         <div class="row">
           <div class="col l6 s12">
             <h5 class="white-text i18n-thanks">Special Thanks</h5>
-            <p class="white-text i18n-thanks-content">Huge thanks to <a class="grey-text text-lighten-3" href="https://www.start2impact.it/">start2impact</a> for this opportunity to learn and improve myself, to <a class="grey-text text-lighten-3" href="https://materializecss.com/">materializecss</a> team, and to my dear love for supporting me ♥</p>
+            <p class="white-text"><span class="i18n-thanks-content-1">Huge thanks to </span><a class="grey-text text-lighten-3 underline" href="https://www.start2impact.it/">start2impact</a><span class="i18n-thanks-content-2"> for this opportunity to learn and improve myself, to </span><a class="grey-text text-lighten-3 underline" href="https://materializecss.com/">materializecss</a><span class="i18n-thanks-content-3"> team, and to my dear love for supporting me ♥</span></p>
           </div>
           <div class="col l3 offset-l3 s12">
             <h5 class="white-text i18n-links">My Links</h5>
@@ -315,7 +345,7 @@
       <div class="footer-copyright">
         <div class="container">
           © 2019 Gianmarco Randazzo
-          <a class="grey-text text-lighten-4 right i18n-source" href="https://github.com/Kyraminol/s2i-projects/tree/master/portfolio" target="_blank"><i class="fab fa-github"></i> Source Code</a>
+          <a class="grey-text text-lighten-4 right" href="https://github.com/Kyraminol/s2i-projects/tree/master/portfolio" target="_blank"><i class="fab fa-github"></i> <span class="i18n-source">Source Code</span></a>
         </div>
       </div>
     </footer>

@@ -25,13 +25,15 @@ $(document).ready(function(){
   var carousels = M.Carousel.init(document.querySelectorAll('.carousel'), {fullWidth: true, indicators: true});
 
   var onPushpinChange = function(){
-    var el = $(this.el);
-    if(el.hasClass('pin-top') || el.hasClass('pin-bottom')){
+    var $el = $(this.el);
+    if($el.hasClass('pin-top') || $el.hasClass('pin-bottom')){
       dropdowns.forEach(function(dropdown){
         if(dropdown.id.startsWith('nav-')){
           dropdown.close();
         }
       });
+    } else if($el.hasClass('pinned')){
+      $('#fab').attr('class', 'btn-floating btn-large ' + $el.data('fab'));
     }
   };
 
