@@ -32,24 +32,24 @@
             <a href="#" class="brand-logo left i18n-about-me">About Me</a>
             <ul class="right">
               <li>
-                <a href="#" style="padding-left: 20px; padding-right: 20px">
-                  <i class="fa fa-palette left hide-on-small-and-down" style="height: auto;"></i>
-                  <i class="fa fa-palette hide-on-med-and-up" style="height: auto;"></i>
+                <a href="#" class="modal-trigger" style="padding-left: 20px; padding-right: 20px;" data-target="theme-modal">
+                  <i class="fa fa-palette left hide-on-small-and-down"></i>
+                  <i class="fa fa-palette hide-on-med-and-up"></i>
                   <span class="hide-on-small-and-down i18n-theme">Theme</span>
                 </a>
               </li>
               <li>
-                <a class="dropdown-trigger" href="#" data-target="nav-social-dropdown" style="padding-left: 5px; padding-right: 0">
-                  <i class="fas fa-user-friends left hide-on-small-and-down" style="height: auto;"></i>
-                  <i class="fas fa-user-friends hide-on-med-and-up" style="height: auto;"></i>
+                <a class="dropdown-trigger" href="#" data-target="nav-social-dropdown">
+                  <i class="fas fa-user-friends left hide-on-small-and-down"></i>
+                  <i class="fas fa-user-friends hide-on-med-and-up"></i>
                   <span class="hide-on-small-and-down i18n-social">Social</span>
                   <i class="material-icons right" style="margin-left: 0;">arrow_drop_down</i>
                 </a>
               </li>
               <li>
-                <a class="dropdown-trigger" href="#" data-target="nav-lang-dropdown" style="padding-left: 5px; padding-right: 0;">
-                  <i class="fa fa-language left hide-on-small-and-down" style="height: auto;"></i>
-                  <i class="fa fa-language hide-on-med-and-up" style="height: auto;"></i>
+                <a class="dropdown-trigger valign-wrapper" href="#" data-target="nav-lang-dropdown">
+                  <i class="fa fa-language left hide-on-small-and-down"></i>
+                  <i class="fa fa-language hide-on-med-and-up"></i>
                   <span class="hide-on-small-and-down i18n-language">Language</span>
                   <i class="material-icons right" style="margin-left: 0;">arrow_drop_down</i>
                 </a>
@@ -349,6 +349,22 @@
         </div>
       </div>
     </footer>
+    <div id="theme-modal" class="modal modal-fixed-footer">
+      <ul class="tabs tabs-fixed-width blue">
+        <li class="tab"><a href="#theme-about" class="i18n-about-me white-text waves-effect waves-light">About Me</a></li>
+        <li class="tab"><a href="#theme-projects" class="i18n-projects white-text waves-effect waves-light">My Projects</a></li>
+        <li class="tab"><a href="#theme-future" class="i18n-future white-text waves-effect waves-light">My Future</a></li>
+      </ul>
+      <div class="modal-content">
+        <div id="theme-about" class="col s12">Placeholder 1</div>
+        <div id="theme-projects" class="col s12">Placeholder 2</div>
+        <div id="theme-future" class="col s12">Placeholder 3</div>
+      </div>
+      <div class="modal-footer blue">
+        <a href="#" class="modal-close waves-effect btn-flat white-text" id="theme-modal-save">Save</a>
+        <a href="#" class="modal-close waves-effect btn-flat white-text">Cancel</a>
+      </div>
+    </div>
   </body>
 
   <script src="js/materialize.min.js"></script>

@@ -20,9 +20,19 @@ $(document).ready(function(){
     });
   };
 
+  var modalsOpenEnd = function(){
+    tabs.forEach(function(tab){
+      tab.updateTabIndicator();
+    });
+  };
+
+
   var parallaxes = M.Parallax.init(document.querySelectorAll('.parallax'));
   var dropdowns = M.Dropdown.init(document.querySelectorAll('.dropdown-trigger'), {hover: false, constrainWidth: false, coverTrigger: false});
   var carousels = M.Carousel.init(document.querySelectorAll('.carousel'), {fullWidth: true, indicators: true});
+  var modals = M.Modal.init(document.querySelectorAll('.modal'), {onOpenEnd: modalsOpenEnd});
+  var tabs = M.Tabs.init(document.querySelectorAll('.tabs'));
+
 
   var onPushpinChange = function(){
     var $el = $(this.el);

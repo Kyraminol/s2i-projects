@@ -27,6 +27,16 @@ html, body, .block {
 nav ul li a:hover, nav ul li a.active {
     background-color: rgba(0,0,0,.1);
 }
+
+nav ul li a i {
+    height: auto;
+}
+
+nav ul li a.dropdown-trigger {
+    padding-left: 5px;
+    padding-right: 0;
+}
+
 footer {
     padding-left: 0;
 }
@@ -48,5 +58,5 @@ footer {
 }
 
 .fixed-action-btn {
-    z-index: 1050;
+    z-index: 1001;
 }
