@@ -1,8 +1,8 @@
-$(document).ready(function(){
-  var initNav = function(){
+$(function(){
+  const initNav = function(){
     $('div.block').each(function(){
-      var $this = $(this);
-      var height = 30;
+      let $this = $(this);
+      let height = 30;
       $this.children().each(function(index, el){
         height += $(el).outerHeight();
       });
@@ -10,8 +10,8 @@ $(document).ready(function(){
     });
 
     $('nav').each(function(){
-      var $this = $(this);
-      var $target = $('#' + $(this).attr('data-target'));
+      let $this = $(this);
+      let $target = $('#' + $(this).attr('data-target'));
       M.Pushpin.init($this.get(0), {
         top: $target.offset().top,
         bottom: $target.offset().top + $target.outerHeight() - $this.height(),
@@ -20,22 +20,22 @@ $(document).ready(function(){
     });
   };
 
-  var modalsOpenEnd = function(){
+  const modalsOpenEnd = function(){
     tabs.forEach(function(tab){
       tab.updateTabIndicator();
     });
   };
 
 
-  var parallaxes = M.Parallax.init(document.querySelectorAll('.parallax'));
-  var dropdowns = M.Dropdown.init(document.querySelectorAll('.dropdown-trigger'), {hover: false, constrainWidth: false, coverTrigger: false});
-  var carousels = M.Carousel.init(document.querySelectorAll('.carousel'), {fullWidth: true, indicators: true});
-  var modals = M.Modal.init(document.querySelectorAll('.modal'), {onOpenEnd: modalsOpenEnd});
-  var tabs = M.Tabs.init(document.querySelectorAll('.tabs'));
+  let parallaxes = M.Parallax.init(document.querySelectorAll('.parallax'));
+  let dropdowns = M.Dropdown.init(document.querySelectorAll('.dropdown-trigger'), {hover: false, constrainWidth: false, coverTrigger: false});
+  let carousels = M.Carousel.init(document.querySelectorAll('.carousel'), {fullWidth: true, indicators: true});
+  let modals = M.Modal.init(document.querySelectorAll('.modal'), {onOpenEnd: modalsOpenEnd});
+  let tabs = M.Tabs.init(document.querySelectorAll('.tabs'));
 
 
-  var onPushpinChange = function(){
-    var $el = $(this.el);
+  const onPushpinChange = function(){
+    let $el = $(this.el);
     if($el.hasClass('pin-top') || $el.hasClass('pin-bottom')){
       dropdowns.forEach(function(dropdown){
         if(dropdown.id.startsWith('nav-')){
@@ -47,7 +47,7 @@ $(document).ready(function(){
     }
   };
 
-  $(window).resize(function(){
+  $(window).on('resize', function(){
     initNav();
   });
   initNav();

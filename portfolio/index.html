@@ -10,6 +10,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.3.0/css/flag-icon.min.css" rel="stylesheet">
     <link href="css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="css/index.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="css/theme.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   </head>
   <body>
     <div id="pushpin-aboutme" class="block">
@@ -26,7 +27,7 @@
         <li><a href="#" class="white-text translate-btn" data-lang="en"><i class="flag-icon flag-icon-gb"></i><span>English</span></a></li>
       </ul>
       <nav data-target="pushpin-aboutme" data-fab="blue">
-        <div class="nav-wrapper blue">
+        <div class="nav-wrapper blue theme-aboutme-main">
           <div class="container">
 
             <a href="#" class="brand-logo left i18n-about-me">About Me</a>
@@ -349,6 +350,7 @@
         </div>
       </div>
     </footer>
+
     <div id="theme-modal" class="modal modal-fixed-footer">
       <ul class="tabs tabs-fixed-width blue">
         <li class="tab"><a href="#theme-about" class="i18n-about-me white-text waves-effect waves-light">About Me</a></li>
@@ -356,13 +358,15 @@
         <li class="tab"><a href="#theme-future" class="i18n-future white-text waves-effect waves-light">My Future</a></li>
       </ul>
       <div class="modal-content">
-        <div id="theme-about" class="col s12">Placeholder 1</div>
+        <div id="theme-about">
+          <div class="theme-picker"></div>
+        </div>
         <div id="theme-projects" class="col s12">Placeholder 2</div>
         <div id="theme-future" class="col s12">Placeholder 3</div>
       </div>
       <div class="modal-footer blue">
-        <a href="#" class="modal-close waves-effect btn-flat white-text" id="theme-modal-save">Save</a>
-        <a href="#" class="modal-close waves-effect btn-flat white-text">Cancel</a>
+        <a href="#" class="modal-close waves-effect btn-flat white-text i18n-cancel">Cancel</a>
+        <a href="#" class="modal-close waves-effect btn-flat white-text i18n-save" id="theme-modal-save">Save</a>
       </div>
     </div>
   </body>
@@ -371,4 +375,5 @@
   <script src="js/jquery-3.4.1.min.js"></script>
   <script src="js/index.js"></script>
   <script src="js/i18n.js"></script>
+  <script src="js/theme.js"></script>
 </html>
