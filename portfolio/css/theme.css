@@ -6,12 +6,25 @@
   padding-bottom: 80px;
 }
 
+.theme-picker > div:first-of-type {
+  padding-bottom: 0;
+}
+
+.theme-picker > h5 {
+  margin-top: 0;
+}
+
 .circle-color {
   display: inline-block;
   height: 55px;
   width: 55px;
   padding: 3px;
   border-radius: 50%;
+}
+
+.circle-color.small {
+  height: 40px;
+  width: 40px;
 }
 
 .circle-color.selected {
