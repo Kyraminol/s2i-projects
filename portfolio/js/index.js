@@ -43,7 +43,7 @@ $(function(){
         }
       });
     } else if($el.hasClass('pinned')){
-      $('#fab').attr('class', 'btn-floating btn-large ' + $el.data('fab'));
+      $('#fab').attr('class', 'btn-floating btn-large ' + $el.data('fab') + ' ' + $el.data('fab-text'));
     }
   };
 

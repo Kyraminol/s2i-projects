@@ -57,6 +57,22 @@ footer {
   text-decoration: underline;
 }
 
+.card-title {
+  text-shadow: 1px 1px 0 #ffffff;
+}
+
+.card-title .hide-on-med-and-up {
+  font-size: 1.2rem
+}
+
+.card-title .hide-on-small-and-down {
+  font-size: 1.4rem
+}
+
 .fixed-action-btn {
   z-index: 1001;
+}
+
+#fab i {
+  color: inherit !important;
 }

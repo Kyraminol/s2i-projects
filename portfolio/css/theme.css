@@ -1,13 +1,9 @@
-.theme-picker > div {
-  padding-bottom: 30px;
-}
-
 .theme-picker > div:last-of-type {
   padding-bottom: 80px;
 }
 
-.theme-picker > div:first-of-type {
-  padding-bottom: 0;
+.theme-picker > h4:last-of-type{
+  padding-top: 30px;
 }
 
 .theme-picker > h5 {
@@ -32,9 +28,21 @@
   border-radius: 50%;
 }
 
+.modal-content.black .circle-color.selected {
+  border: 2px solid #ffffff;
+}
+
 .circle-color div {
   border: 1px solid rgba(0,0,0,.6);
   border-radius: 50%;
   height: 100%;
   width: 100%;
+}
+
+.modal-content.black .circle-color div {
+  border: 1px solid rgba(255,255,255,.6);
+}
+
+.theme-highlight i, .theme-highlight span {
+  text-shadow: 0 0 5px #000000, 0 0 5px #ffffff, 0 0 5px #000000, 0 0 5px #ffffff, 0 0 5px #000000, 0 0 5px #ffffff;
 }
