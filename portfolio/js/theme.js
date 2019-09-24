@@ -162,6 +162,7 @@ $(function(){
     theme = copyTheme(temp_theme);
     localStorage.setItem('theme', JSON.stringify(theme));
     applyTheme(theme);
+    M.toast({html: 'Theme saved and applied!'});
   });
 
   $('#theme-modal-reset').on('click', function(e){
@@ -169,6 +170,7 @@ $(function(){
     temp_theme = copyTheme(default_theme);
     applyTheme(temp_theme, '.theme-picker-');
     refreshCircles(temp_theme);
+    M.toast({html: 'Theme reset to default!'});
   });
 
   $('#theme-modal-cancel').on('click', function(e){
@@ -176,6 +178,11 @@ $(function(){
     temp_theme = copyTheme(theme);
     applyTheme(temp_theme, '.theme-picker-');
     refreshCircles(temp_theme);
+    M.toast({html: 'Undone theme edits!'});
+  });
+
+  $('#theme-modal-close').on('click', function(e){
+    e.preventDefault();
   });
 
 });

@@ -28,7 +28,7 @@
   border-radius: 50%;
 }
 
-.modal-content.black .circle-color.selected {
+.modal-content.black .circle-color.selected, .modal-content.grey .circle-color.selected, .modal-content.blue-grey .circle-color.selected {
   border: 2px solid #ffffff;
 }
 
