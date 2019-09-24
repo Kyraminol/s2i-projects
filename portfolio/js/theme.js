@@ -70,6 +70,7 @@ $(function(){
           $el = $(selector + '-main');
           $el.removeClass(main_colors.join(' '));
         } else if(key === 'nuance'){
+          $('nav' + selector).data('fab-nuance', new_class);
           $el = $(selector + '-main');
           $el.removeClass(nuances.join(' '));
         } else if(key === 'text'){
@@ -88,7 +89,7 @@ $(function(){
     });
 
     let $nav = $('nav.pinned');
-    $('#fab').attr('class', 'btn-floating btn-large ' + $nav.data('fab') + ' ' + $nav.data('fab-text'));
+    $('#fab').attr('class', 'btn-floating btn-large ' + $nav.data('fab') + ' ' + $nav.data('fab-nuance') + ' ' + $nav.data('fab-text'));
   };
 
   let copyTheme = function(source){

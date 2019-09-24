@@ -45,7 +45,7 @@ footer {
   font-size: 1.2rem;
 }
 
-.aboutme-div i {
+.aboutme-div div.center > i {
   font-size: 6.5rem;
 }
 
@@ -57,7 +57,7 @@ footer {
   text-decoration: underline;
 }
 
-.card-title {
+.card-image .card-title {
   text-shadow: 1px 1px 0 #ffffff;
 }
 
@@ -75,4 +75,30 @@ footer {
 
 #fab i {
   color: inherit !important;
+}
+
+#pushpin-aboutme ul.collapsible {
+  border: 0 none;
+}
+
+#pushpin-aboutme ul.collapsible > li > div.collapsible-header {
+  padding-top: 10px !important;
+  padding-bottom: 5px !important;
+  border: 0 none;
+  align-items: center;
+  justify-content: center;
+}
+
+#pushpin-aboutme ul.collapsible > li > div.collapsible-header > span {
+  padding-left: 5%;
+}
+
+#pushpin-aboutme ul.collapsible > li > div.collapsible-header > i.material-icons {
+  margin: 0;
+}
+
+#pushpin-aboutme ul.collapsible > li > div.collapsible-body {
+  border: 0 none;
+  padding: 5px !important;
+  background-color: rgba(255,255,255,.1)
 }
