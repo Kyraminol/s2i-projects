@@ -40,6 +40,7 @@ $(function(){
   let modals = M.Modal.init(document.querySelectorAll('.modal'), {onOpenEnd: modalsOpenEnd});
   let tabs = M.Tabs.init(document.querySelectorAll('.tabs'));
   let collapsibles = M.Collapsible.init(document.querySelectorAll('.collapsible'), {onOpenStart: collapsiblesOpenStart, onOpenEnd: initNav, onCloseStart: collapsiblesCloseStart, onCloseEnd: initNav});
+  let scrollspies = M.ScrollSpy.init(document.querySelectorAll('.scrollspy'), {scrollOffset: 0});
 
 
   const onPushpinChange = function(){
@@ -59,5 +60,12 @@ $(function(){
     initNav();
   });
   initNav();
+
+
+  $('#fab').on('click', function(e){
+    e.preventDefault();
+    let $el = $(this).parent();
+    $el.hasClass('active') ? $el.removeClass('active') : $el.addClass('active');
+  });
 
 });

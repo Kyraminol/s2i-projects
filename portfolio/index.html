@@ -13,7 +13,7 @@
     <link href="css/theme.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   </head>
   <body>
-    <div id="pushpin-aboutme" class="block theme-aboutme-background">
+    <div id="pushpin-aboutme" class="block theme-aboutme-background scrollspy">
       <ul id="nav-social-dropdown" class="dropdown-content blue theme-aboutme-main">
         <li><a href="https://www.linkedin.com/in/gianmarco-randazzo-723520119/" class="white-text theme-aboutme-text" target="_blank"><i class="fab fa-linkedin"></i><span>LinkedIn</span></a></li>
         <li><a href="https://www.facebook.com/404Undead" class="white-text theme-aboutme-text" target="_blank"><i class="fab fa-facebook"></i><span>Facebook</span></a></li>
@@ -193,7 +193,7 @@
 
       </div>
     </div>
-    <div id="pushpin-projects" class="block theme-projects-background">
+    <div id="pushpin-projects" class="block theme-projects-background scrollspy">
       <nav data-target="pushpin-projects" data-fab="red" data-fab-nuance="default-nuance" data-fab-text="white-text" class="theme-projects">
         <div class="nav-wrapper red theme-projects-main">
           <div class="container">
@@ -294,7 +294,7 @@
         </div>
       </div>
     </div>
-    <div id="pushpin-future" class="block theme-future-background">
+    <div id="pushpin-future" class="block theme-future-background scrollspy">
       <nav data-target="pushpin-future" data-fab="green" data-fab-nuance="default-nuance" data-fab-text="white-text" class="theme-future">
         <div class="nav-wrapper green theme-future-main">
           <div class="container">
@@ -341,10 +341,16 @@
 
       </div>
     </div>
-    <div class="fixed-action-btn">
-      <a class="btn-floating btn-large blue" id="fab" href="#">
-        <i class="large material-icons">keyboard_arrow_up</i>
+    <div class="fixed-action-btn active" id="fab-div">
+      <a class="btn-floating btn-large blue" id="fab">
+        <i class="large material-icons close">close</i>
+        <i class="large material-icons menu">menu</i>
       </a>
+      <ul class="table-of-contents right-align" id="scrollspy-table">
+        <li><a href="#pushpin-aboutme" class="z-depth-2 blue white-text theme-aboutme-main theme-aboutme-text i18n-about-me">About Me</a></li>
+        <li><a href="#pushpin-projects" class="z-depth-2 red white-text theme-projects-main theme-projects-text i18n-projects">My Projects</a></li>
+        <li><a href="#pushpin-future" class="z-depth-2 green white-text theme-future-main theme-future-text i18n-future">My Future</a></li>
+      </ul>
     </div>
     <footer class="page-footer blue">
       <div class="container">
