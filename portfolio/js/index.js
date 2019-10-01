@@ -26,20 +26,12 @@ $(function(){
     });
   };
 
-  const collapsiblesOpenStart = function(li){
-    $(li).find('i.material-icons').text('keyboard_arrow_up');
-  };
-
-  const collapsiblesCloseStart = function(li){
-    $(li).find('i.material-icons').text('keyboard_arrow_down');
-  };
-
   let parallaxes = M.Parallax.init(document.querySelectorAll('.parallax'));
   let dropdowns = M.Dropdown.init(document.querySelectorAll('.dropdown-trigger'), {hover: false, constrainWidth: false, coverTrigger: false});
   let carousels = M.Carousel.init(document.querySelectorAll('.carousel'), {fullWidth: true, indicators: true});
   let modals = M.Modal.init(document.querySelectorAll('.modal'), {onOpenEnd: modalsOpenEnd});
   let tabs = M.Tabs.init(document.querySelectorAll('.tabs'));
-  let collapsibles = M.Collapsible.init(document.querySelectorAll('.collapsible'), {onOpenStart: collapsiblesOpenStart, onOpenEnd: initNav, onCloseStart: collapsiblesCloseStart, onCloseEnd: initNav});
+  let collapsibles = M.Collapsible.init(document.querySelectorAll('.collapsible'), {onOpenEnd: initNav, onCloseEnd: initNav});
   let scrollspies = M.ScrollSpy.init(document.querySelectorAll('.scrollspy'), {scrollOffset: 0});
 
 

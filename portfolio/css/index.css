@@ -53,6 +53,20 @@ footer {
   font-size: 1.7rem;
 }
 
+.aboutme-div ul.collapsible li.active i {
+  visibility: hidden;
+  position: relative;
+}
+
+.aboutme-div ul.collapsible li.active i:after {
+  visibility: visible;
+  content: 'keyboard_arrow_up';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
 .underline {
   text-decoration: underline;
 }
