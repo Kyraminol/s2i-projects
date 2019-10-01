@@ -72,15 +72,29 @@ footer {
 }
 
 .card-image .card-title {
-  text-shadow: 1px 1px 0 #ffffff;
+  text-shadow: 3px 3px 3px black, 3px 3px 3px black;
+  word-break: break-word;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: unset !important;
+  padding: 5px 0 !important;
+  text-align: center;
+  font-weight: 500;
 }
 
-.card-title .hide-on-med-and-up {
+.card-image .card-title.hide-on-med-and-up {
   font-size: 1.2rem
 }
 
-.card-title .hide-on-small-and-down {
-  font-size: 1.4rem
+.card-image .card-title.hide-on-small-and-down {
+  font-size: 1.4rem;
+}
+
+.card-reveal .card-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  padding-bottom: 10px;
 }
 
 .fixed-action-btn {

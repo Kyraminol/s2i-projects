@@ -2,7 +2,7 @@ $(function(){
   const i18n = {
     'it': {
       // About Me block
-      'about-me': 'Me',
+      'about-me': 'Chi Sono',
       'beginning': 'L\'inizio',
       'ideology': 'Ideologia',
       'skills': 'Mie Competenze',
@@ -67,7 +67,9 @@ $(function(){
   const translate = function(lang){
     let translation = i18n[lang];
     Object.entries(translation).forEach(function(entry){
-      $('.i18n-' + entry[0]).text(entry[1].toString());
+      document.querySelectorAll('.i18n-' + entry[0]).forEach(function(el){
+        el.firstChild.textContent = entry[1].toString();
+      });
     });
   };
 
