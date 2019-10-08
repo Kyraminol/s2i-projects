@@ -32,7 +32,7 @@ $(function(){
   let modals = M.Modal.init(document.querySelectorAll('.modal'), {onOpenEnd: modalsOpenEnd});
   let tabs = M.Tabs.init(document.querySelectorAll('.tabs'));
   let collapsibles = M.Collapsible.init(document.querySelectorAll('.collapsible'), {onOpenEnd: initNav, onCloseEnd: initNav});
-  let scrollspies = M.ScrollSpy.init(document.querySelectorAll('.scrollspy'), {scrollOffset: 0});
+  let scrollspies = M.ScrollSpy.init(document.querySelectorAll('.scrollspy'), {scrollOffset: -5});
 
 
   const onPushpinChange = function(){

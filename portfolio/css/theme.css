@@ -46,3 +46,7 @@
 .theme-highlight i, .theme-highlight span {
   text-shadow: 0 0 5px #000000, 0 0 5px #ffffff, 0 0 5px #000000, 0 0 5px #ffffff, 0 0 5px #000000, 0 0 5px #ffffff;
 }
+
+#theme-modal-close {
+  border-left: 1px solid white;
+}

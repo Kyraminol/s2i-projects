@@ -1,17 +1,7 @@
-/* CSS per la pagina index.html */
+/* Main CSS for index.html */
 
-.pinned {
-  position: fixed !important;
-  z-index: 1000;
-}
 
-.pin-top {
-  z-index: 999;
-}
-
-.pin-bottom {
-  z-index: 1000;
-}
+/* General */
 
 html, body, .block {
   display: flex;
@@ -20,8 +10,30 @@ html, body, .block {
 
 .parallax-container {
   z-index: 50;
-  height: 500px;
+  height: 300px;
   flex: none;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+footer {
+  padding-left: 0;
+}
+
+/* Nav pushpin */
+
+nav.pinned ~ * {
+  position: relative;
+  top: 55px;
+}
+
+@media only screen and (min-width: 601px) {
+  nav.pinned ~ * {
+    position: relative;
+    top: 64px;
+  }
 }
 
 nav ul li a:hover, nav ul li a.active {
@@ -37,84 +49,53 @@ nav ul li a.dropdown-trigger {
   padding-right: 0;
 }
 
-footer {
-  padding-left: 0;
+.pinned {
+  position: fixed !important;
+  z-index: 1000;
 }
 
-.aboutme-div {
+.pin-top {
+  z-index: 999;
+}
+
+.pin-bottom {
+  z-index: 1000;
+}
+
+/* About Me section */
+
+#pushpin-aboutme nav ul.right li a.dropdown-trigger i:last-of-type {
+  margin-left: 0;
+}
+
+#pushpin-aboutme > div.parallax-container {
+  height: 500px;
+}
+
+#pushpin-aboutme .aboutme-div div.center {
   font-size: 1.2rem;
 }
 
-.aboutme-div div.center > i {
+#pushpin-aboutme .aboutme-div div.center > i {
   font-size: 6.5rem;
 }
 
-.aboutme-div p:first-of-type {
+#pushpin-aboutme .aboutme-div div.center p:first-of-type {
   font-size: 1.7rem;
 }
 
-.aboutme-div ul.collapsible li.active i {
+#pushpin-aboutme .aboutme-div div.center ul.collapsible li.active i {
   visibility: hidden;
   position: relative;
 }
 
-.aboutme-div ul.collapsible li.active i:after {
+#pushpin-aboutme .aboutme-div div.center ul.collapsible li.active i:after {
   visibility: visible;
   content: 'keyboard_arrow_up';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-}
-
-.underline {
-  text-decoration: underline;
-}
-
-.card-image .card-title {
-  text-shadow: 3px 3px 3px black, 3px 3px 3px black;
-  word-break: break-word;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: unset !important;
-  padding: 5px 0 !important;
-  text-align: center;
-  font-weight: 500;
-}
-
-.card-image .card-title.hide-on-med-and-up {
-  font-size: 1.2rem
-}
-
-.card-image .card-title.hide-on-small-and-down {
-  font-size: 1.4rem;
-}
-
-.card-reveal .card-title {
-  font-size: 1.3rem;
-  font-weight: 700;
-  padding: 0 24px 5px 5px;
-  word-break: break-word;
-}
-
-.card-reveal {
-  padding: 10px !important;
-}
-
-.card-reveal .card-title i {
-  position: absolute;
-  right: 10px;
-  top: 15px;
-  text-shadow: 3px 3px 3px black;
-}
-
-.fixed-action-btn {
-  z-index: 1001;
-}
-
-#fab i {
-  color: inherit !important;
 }
 
 #pushpin-aboutme ul.collapsible {
@@ -143,6 +124,70 @@ footer {
   background-color: rgba(255,255,255,.1);
 }
 
+#pushpin-aboutme .aboutme-skills img {
+  max-width: 70%;
+}
+
+#pushpin-aboutme .aboutme-languages div.center > i {
+  font-size: 4rem;
+}
+
+/* My Projects section */
+
+#pushpin-projects .card-image .card-title {
+  text-shadow: 3px 3px 3px black, 3px 3px 3px black;
+  word-break: break-word;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: unset !important;
+  padding: 5px 0 !important;
+  text-align: center;
+  font-weight: 500;
+}
+
+#pushpin-projects .card-image .card-title {
+  font-size: 1.2rem
+}
+
+@media only screen and (min-width: 601px) {
+  #pushpin-projects .card-image .card-title {
+    font-size: 1.4rem;
+  }
+}
+
+#pushpin-projects .card.sticky-action .card-content {
+  padding: 10px;
+}
+
+#pushpin-projects .card-reveal .card-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  padding: 0 24px 5px 5px;
+  word-break: break-word;
+}
+
+#pushpin-projects .card-reveal {
+  padding: 10px !important;
+}
+
+#pushpin-projects .card-reveal .card-title i {
+  position: absolute;
+  right: 10px;
+  top: 15px;
+  text-shadow: 3px 3px 3px black;
+}
+
+/* FAB - Floating Action Button */
+
+#fab-div.fixed-action-btn {
+  z-index: 1001;
+}
+
+#fab i {
+  color: inherit !important;
+}
+
 #fab-div {
   padding-top: 5px;
 }
@@ -166,6 +211,8 @@ footer {
   transform: scale(1);
   transition: transform 300ms, opacity 300ms;
 }
+
+/* FAB Scrollspy */
 
 #scrollspy-table li {
   margin-bottom: 5px;
