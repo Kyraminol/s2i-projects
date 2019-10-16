@@ -25,6 +25,10 @@ html, body, .block {
   }
 }
 
+.fa, .fab, .fal, .far, .fas {
+  padding-right: 5px;
+}
+
 footer {
   padding-left: 0;
 }
@@ -79,7 +83,7 @@ nav ul li a.dropdown-trigger {
   height: 500px;
 }
 
-#pushpin-aboutme .aboutme-div div.center {
+#pushpin-aboutme .aboutme-div div.center .collapsible-header {
   font-size: 1.2rem;
 }
 
@@ -164,7 +168,21 @@ nav ul li a.dropdown-trigger {
 }
 
 #pushpin-projects .card.sticky-action .card-content {
+  padding: 10px 20px 10px 10px;
+}
+
+#pushpin-projects .card.sticky-action .card-content i {
+  position: absolute;
+  right: 10px;
+}
+
+#pushpin-projects .card.sticky-action .card-action {
   padding: 10px;
+  font-size: 0.9rem;
+}
+
+#pushpin-projects .card.sticky-action .card-action a {
+  text-transform: none;
 }
 
 #pushpin-projects .card-reveal .card-title {
