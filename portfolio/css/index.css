@@ -168,7 +168,7 @@ nav ul li a.dropdown-trigger {
 }
 
 #pushpin-projects .card.sticky-action .card-content {
-  padding: 10px 20px 10px 10px;
+  padding: 10px 34px 10px 10px;
 }
 
 #pushpin-projects .card.sticky-action .card-content i {
@@ -196,12 +196,33 @@ nav ul li a.dropdown-trigger {
   padding: 10px !important;
 }
 
+#pushpin-projects .card-reveal *:last-child {
+  padding-bottom: 50px !important;
+}
+
 #pushpin-projects .card-reveal .card-title i {
   position: absolute;
   right: 10px;
   top: 15px;
   text-shadow: 3px 3px 3px black;
 }
+
+/* My Future section */
+
+#pushpin-future .tab-div h3 {
+  margin: 0;
+}
+
+#pushpin-future .tab-div p {
+  padding: 0;
+  margin: 10px 0;
+  font-size: 1.1rem;
+}
+
+#pushpin-future .tab-div {
+  padding: 30px 10% 40px;
+}
+
 
 /* FAB - Floating Action Button */
 
@@ -244,10 +265,11 @@ nav ul li a.dropdown-trigger {
 }
 
 #scrollspy-table li a {
+  font-size: 1rem;
   position: relative;
   font-weight: 500;
-  width: 95px;
-  left: -30px;
+  width: 105px;
+  left: -40px;
   right: 0;
   border-radius: 4px;
   padding: 0;

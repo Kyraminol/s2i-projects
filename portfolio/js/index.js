@@ -2,7 +2,7 @@ $(function(){
   const initNav = function(){
     $('div.block').each(function(){
       let $this = $(this);
-      let height = 30;
+      let height = 100;
       $this.children().each(function(index, el){
         height += $(el).outerHeight();
       });
@@ -26,11 +26,16 @@ $(function(){
     });
   };
 
+  const futureTabsShow = function(){
+    setTimeout(initNav, 25);
+  };
+
   let parallaxes = M.Parallax.init(document.querySelectorAll('.parallax'));
   let dropdowns = M.Dropdown.init(document.querySelectorAll('.dropdown-trigger'), {hover: false, constrainWidth: false, coverTrigger: false});
   let carousels = M.Carousel.init(document.querySelectorAll('.carousel'), {fullWidth: true, indicators: true});
   let modals = M.Modal.init(document.querySelectorAll('.modal'), {onOpenEnd: modalsOpenEnd});
-  let tabs = M.Tabs.init(document.querySelectorAll('.tabs'));
+  let tabs = M.Tabs.init(document.querySelectorAll('.tabs:not(#future-tabs)'));
+  let future_tabs = M.Tabs.init(document.querySelectorAll('#future-tabs'), {onShow: futureTabsShow});
   let collapsibles = M.Collapsible.init(document.querySelectorAll('.collapsible'), {onOpenEnd: initNav, onCloseEnd: initNav});
   let scrollspies = M.ScrollSpy.init(document.querySelectorAll('.scrollspy'), {scrollOffset: -5});
 
@@ -52,6 +57,7 @@ $(function(){
     initNav();
   });
   initNav();
+  setTimeout(initNav, 300);
 
 
   $('#fab').on('click', function(e){

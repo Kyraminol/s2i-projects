@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.3.0/css/flag-icon.min.css" rel="stylesheet">
-    <link href="css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="libs/materializecss/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="css/index.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="css/theme.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   </head>
@@ -29,7 +29,7 @@
       <nav data-target="pushpin-aboutme" data-fab="blue" data-fab-nuance="default-nuance" data-fab-text="white-text" class="theme-aboutme">
         <div class="nav-wrapper blue theme-aboutme-main">
           <div class="container">
-            <a href="#" class="brand-logo left i18n-about-me theme-aboutme-text">About Me</a>
+            <a href="#pushpin-aboutme" class="brand-logo left i18n-about-me theme-aboutme-text">About Me</a>
             <ul class="right">
               <li>
                 <a href="#" class="modal-trigger theme-highlight" data-target="theme-modal">
@@ -64,33 +64,33 @@
         <div class="row aboutme-div">
           <div class="col s12 m4">
             <div class="center">
-              <i class="fas fa-user theme-aboutme-background-text"></i>
+              <i class="fas fa-user theme-aboutme-background-text black-text"></i>
               <ul class="collapsible z-depth-0">
                 <li>
                   <div class="collapsible-header theme-aboutme-background-text theme-aboutme-background"><span class="">Me</span><i class="material-icons">keyboard_arrow_down</i></div>
-                  <div class="collapsible-body z-depth-1 hoverable theme-aboutme-background-text"><span class="light i18n-me-content">Placeholder</span></div>
+                  <div class="collapsible-body z-depth-1 hoverable theme-aboutme-background-text"><span class="light i18n-me-content">Born in 1997, I began gaining interest in computers by watching my father working on it. I wrote my first program when I was around 11 years old, it was a simple password manager that was able to store many passwords and print them using a master one, like Keepass or Lastpass which obviously I didn't know of. From there I learned and got proficient in many languages by myself, mostly learning by doing, so today I have many projects to show.</span></div>
                 </li>
               </ul>
             </div>
           </div>
           <div class="col s12 m4">
             <div class="center">
-              <i class="fa fa-book-reader theme-aboutme-background-text"></i>
+              <i class="fa fa-book-reader theme-aboutme-background-text black-text"></i>
               <ul class="collapsible z-depth-0">
                 <li>
                   <div class="collapsible-header theme-aboutme-background-text theme-aboutme-background"><span class="i18n-open-mindedness">Open-mindedness</span><i class="material-icons">keyboard_arrow_down</i></div>
-                  <div class="collapsible-body z-depth-1 hoverable theme-aboutme-background-text"><span class="light i18n-open-mindedness-content">Placeholder</span></div>
+                  <div class="collapsible-body z-depth-1 hoverable theme-aboutme-background-text"><span class="light i18n-open-mindedness-content">Life is always moving and changing. The very moment someone closes his mind to new ideas and new opinions, he stops learning and he gets stuck while everything is still moving. Keeping and open-mindedness is the key to improve everyday. Not even experts about something know everything about that matter, but even in the assumption in which they do happen to know everything, their knowledge may become outdated in any moment. Always keep learning, always keep an open mind.</span></div>
                 </li>
               </ul>
             </div>
           </div>
           <div class="col s12 m4">
             <div class="center">
-              <i class="fa fa-search theme-aboutme-background-text"></i>
+              <i class="fa fa-search theme-aboutme-background-text black-text"></i>
               <ul class="collapsible z-depth-0">
                 <li>
                   <div class="collapsible-header theme-aboutme-background-text theme-aboutme-background"><span class="i18n-details">Details do matter</span><i class="material-icons">keyboard_arrow_down</i></div>
-                  <div class="collapsible-body z-depth-1 hoverable theme-aboutme-background-text"><span class="light i18n-details-content">Placeholder</span></div>
+                  <div class="collapsible-body z-depth-1 hoverable theme-aboutme-background-text"><span class="light i18n-details-content">Details, in my opinion, are what make something really shine amongs other similar things. Often an high level of details can be achieved only by thinking out of the box and by seeing things with a different perspective. It is possible to find care and meticulousness in everything I do, thanks to thorough researches and refinements.</span></div>
                 </li>
               </ul>
             </div>
@@ -99,9 +99,8 @@
 
         <div class="row">
           <h2 class="center-align i18n-skills theme-aboutme-background-text">My Skills</h2>
-          <h4 class="center-align i18n-programming theme-aboutme-background-text">Coding</h4>
+          <h4 class="center-align i18n-coding theme-aboutme-background-text">Coding</h4>
         </div>
-
         <div class="row aboutme-div aboutme-skills">
           <div class="col s6 m4 l2">
             <div class="center">
@@ -109,7 +108,11 @@
               <ul class="collapsible z-depth-0">
                 <li>
                   <div class="collapsible-header theme-aboutme-background-text theme-aboutme-background"><span class="i18n-python">Python</span><i class="material-icons">keyboard_arrow_down</i></div>
-                  <div class="collapsible-body z-depth-1 hoverable theme-aboutme-background-text"><span class="light i18n-python-content">Placeholder</span></div>
+                  <div class="collapsible-body z-depth-1 hoverable theme-aboutme-background-text">
+                    <span class="light i18n-python-content">Python is the language I'm most proficient with. I love its "coding-style", well defined in the PEP8 document, giving a very high readability and maintainability grade to code.</span>
+                    <br><em class="i18n-python-content-zen">"There should be one, and preferably only one, obvious way to do it."</em>
+                    <strong> — PEP20, The Zen of Python</strong>
+                  </div>
                 </li>
               </ul>
             </div>
@@ -120,7 +123,7 @@
               <ul class="collapsible z-depth-0">
                 <li>
                   <div class="collapsible-header theme-aboutme-background-text theme-aboutme-background"><span class="i18n-javascript">Javascript</span><i class="material-icons">keyboard_arrow_down</i></div>
-                  <div class="collapsible-body z-depth-1 hoverable theme-aboutme-background-text"><span class="i18n-javascript-content light">Placeholder</span></div>
+                  <div class="collapsible-body z-depth-1 hoverable theme-aboutme-background-text"><span class="i18n-javascript-content light">When I began using Javascript in my main project, I was a little concerned by its inconsistency between browsers. Luckily jQuery and ECMAScript 6 have filled many gaps and improved considerably the language, allowing me to learn it smoothly. Now it's one of my favorites.</span></div>
                 </li>
               </ul>
             </div>
@@ -131,7 +134,7 @@
               <ul class="collapsible z-depth-0">
                 <li>
                   <div class="collapsible-header theme-aboutme-background-text theme-aboutme-background"><span class="">C/C++</span><i class="material-icons">keyboard_arrow_down</i></div>
-                  <div class="collapsible-body z-depth-1 hoverable theme-aboutme-background-text"><span class="light i18n-cpp-content">Placeholder</span></div>
+                  <div class="collapsible-body z-depth-1 hoverable theme-aboutme-background-text"><span class="light i18n-cpp-content">I studied C in the last three years of high school, but it wasn't much in depth so I had to learn by myself later on when I decided to work on some projects. Then I got interest in objective oriented programming so I started practicing C++. I'd say I have a good mid-level understanding of it.</span></div>
                 </li>
               </ul>
             </div>
@@ -142,18 +145,18 @@
               <ul class="collapsible z-depth-0">
                 <li>
                   <div class="collapsible-header theme-aboutme-background-text theme-aboutme-background"><span class="">SQL</span><i class="material-icons">keyboard_arrow_down</i></div>
-                  <div class="collapsible-body z-depth-1 hoverable theme-aboutme-background-text"><span class="light i18n-sql-content">Placeholder</span></div>
+                  <div class="collapsible-body z-depth-1 hoverable theme-aboutme-background-text"><span class="light i18n-sql-content">As for C, I studied database theory in the last three years of computer science high school, with the difference that I already had experience with SQL thanks to some of my Python projects, precisely SQLite and SQLAlchemy ORM. I learned other dialects and DBMS like MySQL/MariaDB and PostgreSQL; I scratched the surface of NoSQL databases like MongoDB and Redis as well, out of curiosity.</span></div>
                 </li>
               </ul>
             </div>
           </div>
           <div class="col s6 m4 l2">
             <div class="center">
-              <img class="responsive-img" src="images/css-html.png" alt="HTML5 / CSS3">
+              <img class="responsive-img" src="images/css-html.png" alt="HTML5/CSS3">
               <ul class="collapsible z-depth-0">
                 <li>
                   <div class="collapsible-header theme-aboutme-background-text theme-aboutme-background"><span class="">HTML5/CSS3</span><i class="material-icons">keyboard_arrow_down</i></div>
-                  <div class="collapsible-body z-depth-1 hoverable theme-aboutme-background-text"><span class="light i18n-htmlcss-content">Placeholder</span></div>
+                  <div class="collapsible-body z-depth-1 hoverable theme-aboutme-background-text"><span class="light i18n-htmlcss-content">When I was around 12 years old I did, along with some friends, administrate a small forum and I was the one in charge to manage the HTML and CSS parts. Back then for the most I did copy and paste code blocks from around the internet because I didn't understand much, but as time passed I began to learn and now I can fully write my own code in both languages.</span></div>
                 </li>
               </ul>
             </div>
@@ -164,7 +167,7 @@
               <ul class="collapsible z-depth-0">
                 <li>
                   <div class="collapsible-header theme-aboutme-background-text theme-aboutme-background"><span class="">Kotlin</span><i class="material-icons">keyboard_arrow_down</i></div>
-                  <div class="collapsible-body z-depth-1 hoverable theme-aboutme-background-text"><span class="light i18n-kotlin-content">Placeholder</span></div>
+                  <div class="collapsible-body z-depth-1 hoverable theme-aboutme-background-text"><span class="light i18n-kotlin-content">Kotlin is what I'm learning right now, I'm doing an Android and iOS app for my Arduino project, so it's the best way to learn by doing!</span></div>
                 </li>
               </ul>
             </div>
@@ -172,12 +175,12 @@
           <div class="col s12">
             <div class="card blue theme-aboutme-main">
               <div class="card-content white-text theme-aboutme-text">
-                <p class="i18n-programming-other">Placeholder</p>
+                <span class="card-title">Git</span>
+                <p class="i18n-programming-other-content">I love versioning and I can make the most out of Git, I can work on "Git-flow" or "Github-flow", make descriptive commit messages and use tools like submodules, rebase and cherrypick. I learned much by reading the book "Learn Git in a Month of Lunches" by Rick Umali. Check out my published works in My Projects section!</p>
               </div>
             </div>
           </div>
         </div>
-
         <div class="row">
           <h4 class="center-align i18n-languages theme-aboutme-background-text">Languages</h4>
         </div>
@@ -188,7 +191,7 @@
               <ul class="collapsible z-depth-0">
                 <li>
                   <div class="collapsible-header theme-aboutme-background-text theme-aboutme-background"><span class="i18n-italian">Italian</span><i class="material-icons">keyboard_arrow_down</i></div>
-                  <div class="collapsible-body z-depth-1 hoverable theme-aboutme-background-text"><span class="light i18n-italian-content">Placeholder</span></div>
+                  <div class="collapsible-body z-depth-1 hoverable theme-aboutme-background-text"><span class="light i18n-italian-content">Born and raised in Sicily, Italian is my native language. I always had high grades in school, particularly in essays, distinguishing myself for my great knowledge of words. It is thanks to the fact that I have been and am even today a great book reader.</span></div>
                 </li>
               </ul>
             </div>
@@ -199,7 +202,7 @@
               <ul class="collapsible z-depth-0">
                 <li>
                   <div class="collapsible-header theme-aboutme-background-text theme-aboutme-background"><span class="i18n-english">English</span><i class="material-icons">keyboard_arrow_down</i></div>
-                  <div class="collapsible-body z-depth-1 hoverable theme-aboutme-background-text"><span class="i18n-english-content light">Placeholder</span></div>
+                  <div class="collapsible-body z-depth-1 hoverable theme-aboutme-background-text"><span class="i18n-english-content light">Starting from middle school to the end of high school I had 5 different English teachers and every each of them was always astonished by my knowledge of the language that was beyond what school teaches, giving me always high grades. In fact, I started learning by myself English when I was around 10, because I needed to know the stories of my favorite videogames. Since then I never stopped, now by reading a lot of english books. Currently I can write, read and listen english as it was my native language, I only lack a bit of speaking.</span></div>
                 </li>
               </ul>
             </div>
@@ -210,7 +213,7 @@
               <ul class="collapsible z-depth-0">
                 <li>
                   <div class="collapsible-header theme-aboutme-background-text theme-aboutme-background"><span class="i18n-japanese">Japanese</span><i class="material-icons">keyboard_arrow_down</i></div>
-                  <div class="collapsible-body z-depth-1 hoverable theme-aboutme-background-text"><span class="i18n-japanese-content light">Placeholder</span></div>
+                  <div class="collapsible-body z-depth-1 hoverable theme-aboutme-background-text"><span class="i18n-japanese-content light">At first I read about Japanese language out of curiosity, but ended up wanting to learn it as my third language. I'm currently studying it as an hobby, but once I get some mastery I plan to do a trip to Japan to reinforce my skill and get a "on field" experience. At the moment, I know the two basic syllabaries, some Kanjis and basic phrase structures and particles. It is a bit hard coming from a romance language, but I'm going to work hard on it and do my best to learn it.</span></div>
                 </li>
               </ul>
             </div>
@@ -223,7 +226,7 @@
       <nav data-target="pushpin-projects" data-fab="red" data-fab-nuance="default-nuance" data-fab-text="white-text" class="theme-projects">
         <div class="nav-wrapper red theme-projects-main">
           <div class="container">
-            <a href="#" class="brand-logo left i18n-projects theme-projects-text">My Projects</a>
+            <a href="#pushpin-projects" class="brand-logo left i18n-projects theme-projects-text">My Projects</a>
             <ul class="right">
               <li><a href="https://github.com/Kyraminol" target="_blank">
                 <i class="fab fa-github left-on-med-and-up theme-projects-text"></i>
@@ -253,11 +256,11 @@
                 <span class="card-title activator white-text i18n-projects-more">Click for more info<i class="material-icons right">add</i></span>
               </div>
               <div class="card-action blue darken-4">
-                <a href="https://github.com/Kyraminol/MuseigennAnime" class="white-text"><i class="fab fa-github"></i>Github</a>
+                <a href="https://github.com/Kyraminol/MuseigennAnime" class="white-text" target="_blank"><i class="fab fa-github"></i>Github</a>
               </div>
               <div class="card-reveal blue darken-4 white-text">
                 <span class="card-title i18n-museigennanime">MuseigennAnime<i class="material-icons right">close</i></span>
-                <p class="i18n-museigennanime-content">Placeholder</p>
+                <p class="i18n-museigennanime-content">My biggest project to date, I've been working on this since the end of 2017. It's a customizable web application for watching anime, it is written in a modular manner, expandable by writing simple modules that loads videos from various sources. I already wrote two modules for italian sources, but I'm planning to add an english source soon. Its back end is written in Python with Flask as web server, it uses Requests and BeautifulSoup4 libraries to parse content from the modules' sources. Its front end mostly uses materializecss and jQuery, like this portfolio. Optionally, the already implemented integration with youtube-dl can be used to download each and every video you can see on the program.</p>
               </div>
             </div>
           </div>
@@ -271,11 +274,15 @@
                 <span class="card-title activator white-text i18n-projects-more">Click for more info<i class="material-icons right">add</i></span>
               </div>
               <div class="card-action yellow darken-4">
-                <a href="https://github.com/Kyraminol/s2i-projects" class="white-text"><i class="fab fa-github"></i>Github</a>
+                <a href="https://github.com/Kyraminol/s2i-projects" class="white-text" target="_blank"><i class="fab fa-github"></i>Github</a>
               </div>
               <div class="card-reveal yellow darken-4 white-text">
                 <span class="card-title i18n-s2i-projects">Start2impact Projects<i class="material-icons right">close</i></span>
-                <p class="i18n-s2i-projects-content">Placeholder</p>
+                <p class="i18n-s2i-projects-content">All projects I've made for start2impact are found within this repository, including this portfolio. Here is a list with links and main languages for each project:</p>
+                <ul>
+                  <li>• <a href="https://github.com/Kyraminol/s2i-projects/tree/master/portfolio" class="white-text underline" target="_blank">Portfolio</a> (HTML/CSS)</li>
+                  <li>• <a href="https://github.com/Kyraminol/s2i-projects/tree/master/weather-forecast" class="white-text underline" target="_blank">Weather-forecast</a> (Javascript)</li>
+                </ul>
               </div>
             </div>
           </div>
@@ -289,12 +296,12 @@
                 <span class="card-title activator white-text i18n-projects-more">Click for more info<i class="material-icons right">add</i></span>
               </div>
               <div class="card-action red darken-4">
-                <a href="https://github.com/Kyraminol?&tab=repositories&language=c%2B%2B" class="white-text"><i class="fab fa-github"></i>C++</a>
-                <a href="https://github.com/Kyraminol?&tab=repositories&language=c" class="white-text"><i class="fab fa-github"></i>C</a>
+                <a href="https://github.com/Kyraminol?&tab=repositories&language=c%2B%2B" class="white-text" target="_blank"><i class="fab fa-github"></i>C++</a>
+                <a href="https://github.com/Kyraminol?&tab=repositories&language=c" class="white-text" target="_blank"><i class="fab fa-github"></i>C</a>
               </div>
               <div class="card-reveal red darken-4 white-text">
                 <span class="card-title i18n-cpp-projects">C/C++ Projects<i class="material-icons right">close</i></span>
-                <p class="i18n-cpp-projects-content">Placeholder</p>
+                <p class="i18n-cpp-projects-content">While learning and excercising C and C++ I've done some little projects, mostly homebrew (unofficial software) for the Nintendo 3DS. Lately I've been working on a C++ client library for a Subsonic server. I plan making a Foobar2000 plugin with that library. More recently I began working on an Arduino project for the Heltec ESP32 board.</p>
               </div>
             </div>
           </div>
@@ -308,18 +315,22 @@
                 <span class="card-title activator white-text i18n-projects-more">Click for more info<i class="material-icons right">add</i></span>
               </div>
               <div class="card-action green darken-2">
-                <a href="https://github.com/Kyraminol?&tab=repositories&language=python" class="white-text"><i class="fab fa-github"></i>Github</a>
+                <a href="https://github.com/Kyraminol?&tab=repositories&language=python" class="white-text" target="_blank"><i class="fab fa-github"></i>Github</a>
               </div>
               <div class="card-reveal green darken-2 white-text">
                 <span class="card-title i18n-python-projects">Python Projects<i class="material-icons right">close</i></span>
-                <p class="i18n-python-projects-content">Placeholder</p>
+                <p class="i18n-python-projects-content">While learning and excercising Python I've done some projects, one of them was a group administration bot for Telegram, mostly focused on getting notification to users (in a time where Telegram group notification weren't well managed) and with shortcuts and commands for various administration purposes. Another project was a precursor of my bigger MuseigennAnime project, an unofficial API class for an anime website.</p>
               </div>
             </div>
           </div>
           <div class="col s12">
             <div class="card red theme-projects-main">
               <div class="card-content white-text theme-projects-text">
-                <p class="i18n-projects-other">Placeholder</p>
+                <span class="card-title i18n-projects-other">Hobby projects</span>
+                <p class="i18n-projects-other-content">Some hobby projects of mine, that are in a way related, are about 3D modelling and printing. I own an almost entirely self-built 3D printer, thanks to which I've learned basics of Blender, Autodesk Fusion360 and 3D printing related stuff. My published models can be found here in my Thingiverse profile linked below.</p>
+              </div>
+              <div class="card-action">
+                <a href="https://www.thingiverse.com/Kyraminol/designs" class="btn-flat waves-effect white-text theme-projects-text" target="_blank"><i class="material-icons left">link</i>Thingiverse</a>
               </div>
             </div>
           </div>
@@ -330,7 +341,7 @@
       <nav data-target="pushpin-future" data-fab="green" data-fab-nuance="default-nuance" data-fab-text="white-text" class="theme-future">
         <div class="nav-wrapper green theme-future-main">
           <div class="container">
-            <a href="#" class="brand-logo left i18n-future theme-future-text">My Future</a>
+            <a href="#pushpin-future" class="brand-logo left i18n-future theme-future-text">My Future</a>
             <ul class="right">
               <li><a href="#"><i class="material-icons left"></i></a></li>
             </ul>
@@ -343,32 +354,43 @@
       <div class="container">
         <div class="row">
           <div class="col s12">
-            <div class="card green theme-future-main">
-              <div class="card-content white-text theme-future-text">
-                <span class="card-title">Title</span>
-                <p>Placeholder</p>
-              </div>
+            <div class="card-panel green theme-future-main">
+              <p class="i18n-future-other white-text theme-future-text">Did I mention my eye to details? These next tabs colors are based on chosen colors theme for each section! Theming implementation of this portfolio is written entirely by me. If you didn't give it a shot, in the top navigation bar in the About Me section you can find a Theme button. Maybe you don't want to scroll all the way there, so you can always try the floating links in the bottom right corner...</p>
             </div>
           </div>
         </div>
           <div class="row">
-            <div class="col s12 carousel carousel-slider center z-depth-1-half">
-              <div class="carousel-item blue white-text theme-aboutme-main theme-aboutme-text">
-                <h2>First</h2>
-                <p class="white-text theme-aboutme-text">Placeholder</p>
+            <div class="col s12">
+              <ul class="tabs tabs-fixed-width" id="future-tabs">
+                <li class="tab blue theme-aboutme-main"><a href="#future-myself" class="white-text theme-aboutme-text i18n-future-myself">Myself</a></li>
+                <li class="tab red theme-projects-main"><a href="#future-projects" class="white-text theme-projects-text i18n-future-projects">Projects</a></li>
+                <li class="tab green theme-future-main"><a href="#future-objectives" class="white-text theme-future-text i18n-future-objectives">Objectives</a></li>
+              </ul>
+            </div>
+            <div id="future-myself" class="col s12 center-align">
+              <div class="center-align z-depth-2 tab-div white black-text theme-aboutme-background theme-aboutme-background-text">
+                <h3 class="i18n-future-myself-title">Personal Improvement</h3>
+                <p class="black-text theme-aboutme-background-text i18n-future-myself-content">Personal improvement is a fundamental part of each and every day of my life. I like to imagine it as building a never ending skyscraper: even if you put a single brick every day may seem to be insignificant progress, but it in the end it adds up to a big result. Constance, determination and diligence is what makes a difference.</p>
               </div>
-              <div class="carousel-item red white-text  theme-projects-main theme-projects-text">
-                <h2>Second</h2>
-                <p class="white-text theme-projects-text">Placeholder</p>
+            </div>
+            <div id="future-projects" class="col s12">
+              <div class="center-align z-depth-2 tab-div white black-text theme-projects-background theme-projects-background-text">
+                <h3 class="i18n-future-projects-title">Future Projects</h3>
+                <p class="black-text theme-projects-background-text i18n-future-projects-content-p1">Practicing in programming is just as important as studying, so projects are a fundamental part of it. For this reason it's important to have a clear prospectus of the time to be dedicated to each project.</p>
+                <p class="black-text theme-projects-background-text i18n-future-projects-content-p2">As my top priority, I plan continuing start2impact projects on a daily basis. Then the projects I want to carry on with much dedication are my Subsonic C++ library and MuseigennAnime, of which I'm already working on a huge rework!</p>
+                <p class="black-text theme-projects-background-text i18n-future-projects-content-p3">Next I'll continue the Arduino project for the Heltec ESP32 board that is a great learning tool both software and hardware, along with relative Android and iOS app in Kotlin.</p>
+                <p class="black-text theme-projects-background-text i18n-future-projects-content-p4">Further on, when the Subsonic library will reach a good compatibility state, the Foobar2000 plugin will begin its development stage.</p>
               </div>
-              <div class="carousel-item green white-text theme-future-main theme-future-text">
-                <h2>Third</h2>
-                <p class="white-text theme-future-text">Placeholder</p>
+            </div>
+            <div id="future-objectives" class="col s12">
+              <div class="center-align z-depth-2 tab-div white black-text theme-future-background theme-future-background-text">
+                <h3 class="i18n-future-objectives-title">Future Objectives</h3>
+                <p class="black-text theme-future-background-text i18n-future-objectives-content-p1">Future is always uncertain, but having solid objectives helps maintaining focus on what's better to do.</p>
+                <p class="black-text theme-future-background-text i18n-future-objectives-content-p2">My long term aim is beginning to work in a startup team. Team working is often incentivizing, motivating and I'm sure that, having someone to confront my ideas with, I'll learn new things and improve everyday!</p>
+                <p class="black-text theme-future-background-text i18n-future-objectives-content-p3">To achieve my main aim, start2impact is giving me a big chance to gain experience and demonstrate what I'm capable of, so my first step towards the goal is to complete my Full Stack Course with my full commitment.</p>
               </div>
             </div>
           </div>
-
-
       </div>
     </div>
     <div class="fixed-action-btn active" id="fab-div">
@@ -387,20 +409,20 @@
         <div class="row">
           <div class="col l6 s12">
             <h5 class="white-text i18n-thanks">Special Thanks</h5>
-            <p class="white-text"><span class="i18n-thanks-content-1">Huge thanks to </span><a class="grey-text text-lighten-3 underline" href="https://www.start2impact.it/">start2impact</a><span class="i18n-thanks-content-2"> for this opportunity to learn and improve myself, to </span><a class="grey-text text-lighten-3 underline" href="https://materializecss.com/">materializecss</a><span class="i18n-thanks-content-3"> team, and to my dear love for supporting me ♥</span></p>
+            <p class="white-text"><span class="i18n-thanks-content-1">Huge thanks to </span><a class="grey-text text-lighten-3 underline" href="https://www.start2impact.it/" target="_blank">start2impact</a><span class="i18n-thanks-content-2"> for this opportunity to learn and improve myself, to </span><a class="grey-text text-lighten-3 underline" href="https://materializecss.com/" target="_blank">materializecss</a><span class="i18n-thanks-content-3"> team, but especially to my dear love for supporting me ♥</span></p>
           </div>
           <div class="col l3 offset-l3 s12">
             <h5 class="white-text i18n-links">My Links</h5>
             <ul>
-              <li><a class="grey-text text-lighten-3" href="https://www.linkedin.com/in/gianmarco-randazzo-723520119/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
-              <li><a class="grey-text text-lighten-3" href="https://www.facebook.com/404Undead" target="_blank"><i class="fab fa-facebook"></i> Facebook</a></li>
-              <li><a class="grey-text text-lighten-3" href="https://www.instagram.com/vereor_nox_xvi/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
+              <li><a class="grey-text text-lighten-3" href="https://www.linkedin.com/in/gianmarco-randazzo-723520119/" target="_blank"><i class="fab fa-linkedin"></i>LinkedIn</a></li>
+              <li><a class="grey-text text-lighten-3" href="https://www.facebook.com/404Undead" target="_blank"><i class="fab fa-facebook"></i>Facebook</a></li>
+              <li><a class="grey-text text-lighten-3" href="https://www.instagram.com/vereor_nox_xvi/" target="_blank"><i class="fab fa-instagram"></i>Instagram</a></li>
               <li class="divider"></li>
-              <li><a class="grey-text text-lighten-3" href="https://github.com/Kyraminol" target="_blank"><i class="fab fa-github"></i> Github</a></li>
-              <li><a class="grey-text text-lighten-3" href="https://gitlab.com/Kyraminol" target="_blank"><i class="fab fa-gitlab"></i> Gitlab</a></li>
+              <li><a class="grey-text text-lighten-3" href="https://github.com/Kyraminol" target="_blank"><i class="fab fa-github"></i>Github</a></li>
+              <li><a class="grey-text text-lighten-3" href="https://gitlab.com/Kyraminol" target="_blank"><i class="fab fa-gitlab"></i>Gitlab</a></li>
               <li class="divider"></li>
-              <li><a class="grey-text text-lighten-3" href="https://t.me/Kyraminol" target="_blank"><i class="fab fa-telegram-plane"></i> Telegram</a></li>
-              <li><a class="grey-text text-lighten-3" href="mailto:gianmarco.randazzo.404@gmail.com"><i class="fas fa-at"></i> E-Mail</a></li>
+              <li><a class="grey-text text-lighten-3" href="https://t.me/Kyraminol" target="_blank"><i class="fab fa-telegram-plane"></i>Telegram</a></li>
+              <li><a class="grey-text text-lighten-3" href="mailto:gianmarco.randazzo.404@gmail.com"><i class="fas fa-at"></i>E-Mail</a></li>
             </ul>
           </div>
         </div>
@@ -413,7 +435,7 @@
       </div>
     </footer>
     <div id="theme-modal" class="modal modal-fixed-footer">
-      <ul class="tabs tabs-fixed-width blue">
+      <ul class="tabs tabs-fixed-width blue" id="theme-tabs">
         <li class="tab theme-picker-aboutme-main blue"><a href="#theme-about" class="i18n-about-me white-text waves-effect waves-light theme-picker-aboutme-text">About Me</a></li>
         <li class="tab theme-picker-projects-main red"><a href="#theme-projects" class="i18n-projects white-text waves-effect waves-light theme-picker-projects-text">My Projects</a></li>
         <li class="tab theme-picker-future-main green"><a href="#theme-future" class="i18n-future white-text waves-effect waves-light theme-picker-future-text">My Future</a></li>
@@ -427,17 +449,20 @@
       <div class="modal-content theme-picker-future-background" id="theme-future">
         <div class="theme-picker" data-theme-target="future"></div>
       </div>
+      <span class="hide i18n-theme-toast-reset" id="theme-modal-toast-reset">Theme reset to default</span>
+      <span class="hide i18n-theme-toast-apply" id="theme-modal-toast-apply">Theme saved and applied</span>
+      <span class="hide i18n-theme-toast-undo" id="theme-modal-toast-undo">Undone theme edits</span>
       <div class="modal-footer deep-purple darken-4">
-        <a href="#" class="waves-effect btn-flat white-text" id="theme-modal-reset"><i class="material-icons left hide-on-small-and-down">format_color_reset</i><span class="i18n-theme-reset">Reset</span><span class="i18n-theme-todefault hide-on-med-and-down"> to default</span></a>
-        <a href="#" class="waves-effect btn-flat white-text" id="theme-modal-cancel"><i class="material-icons left hide-on-small-and-down">undo</i><span class="i18n-theme-undo">Undo</span><span class="i18n-theme-edits hide-on-med-and-down"> edits</span></a>
-        <a href="#" class="waves-effect btn-flat white-text" id="theme-modal-save"><i class="material-icons left hide-on-small-and-down">save</i><span class="i18n-theme-saveand hide-on-med-and-down">Save and </span><span class="i18n-theme-apply">Apply</span></a>
+        <a href="#" class="waves-effect btn-flat white-text" id="theme-modal-reset"><i class="material-icons left hide-on-small-and-down">format_color_reset</i><span class="i18n-theme-reset">Reset</span></a>
+        <a href="#" class="waves-effect btn-flat white-text" id="theme-modal-cancel"><i class="material-icons left hide-on-small-and-down">undo</i><span class="i18n-theme-undo">Undo</span></a>
+        <a href="#" class="waves-effect btn-flat white-text" id="theme-modal-save"><i class="material-icons left hide-on-small-and-down">save</i><span class="i18n-theme-apply">Apply</span></a>
         <a href="#" class="modal-close waves-effect btn-flat white-text" id="theme-modal-close"><span class="i18n-theme-close">Close</span></a>
       </div>
     </div>
   </body>
-  <script src="js/materialize.min.js"></script>
-  <script src="js/jquery-3.4.1.min.js"></script>
-  <script src="js/i18n.js"></script>
+  <script src="libs/materializecss/materialize.min.js"></script>
+  <script src="libs/jquery/jquery-3.4.1.min.js"></script>
   <script src="js/theme.js"></script>
+  <script src="js/i18n.js"></script>
   <script src="js/index.js"></script>
 </html>
