@@ -6,7 +6,7 @@ function Weatherize(apiKey){
   this._apiKey = apiKey;
 
   // Define getWeather function
-  this.getWeather = function(city){
+  this.getWeather = function(city, callback){
     // Check if city is passed as an argument and it is a string
     if(city === undefined || typeof city !== 'string'){
       return null;
@@ -21,6 +21,17 @@ function Weatherize(apiKey){
     }).then(r => {
       // Parse the response
       console.log(r);
+      let result = {};
+      r.list.forEach(function(weather){
+        let date = new Date(weather['dt'] * 1000);
+        let datestring = date.getDate() + '/' + date.getMonth() +  '/' + date.getFullYear();
+        result[datestring] = weather;
+      });
+
+      // Check if callback is passed as a function, then call it
+      if(typeof callback === 'function'){
+        callback(result);
+      }
     });
   }
 }
