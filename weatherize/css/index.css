@@ -7,3 +7,22 @@ body {
 main {
     flex: 1 0 auto;
 }
+
+#day-picker > a {
+    display: inline-block;
+    padding: 10px;
+    border-radius: 4px;
+    margin-right: 5px;
+    border: 1px solid rgba(0,0,0,.6);
+    color: white;
+}
+
+#day-picker > a.selected {
+    border: 2px solid #000000;
+    border-radius: 4px;
+}
+
+#day-picker > a > p {
+    text-align: center;
+    margin: 0;
+}
