@@ -1,9 +1,24 @@
 $(function(){
 
+  const $apiKeyAccept = $('#api-key-accept');
+  const $apiKey = $('#api-key');
+  const $searchAutocomplete = $('#autocomplete-search');
+
   // callback function to do additional stuff
-  let callback = function(data){
+  const callback = function(data){
     $('#day-picker-row').removeClass('hide');
     console.log(data);
+  };
+
+  const validateKeyCallback = function(isValid){
+    if(isValid){
+      $searchAutocomplete.prop('disabled', false);
+      $apiKey.prop('disabled', true);
+      $apiKeyAccept.find('span').text('Edit key');
+      $apiKeyAccept.find('i').text('edit');
+    } else {
+
+    }
   };
 
   M.Dropdown.init(document.querySelectorAll('.dropdown-trigger'), {hover: false, constrainWidth: false, coverTrigger: false, closeOnClick: false});
@@ -22,9 +37,20 @@ $(function(){
 
   });
 
-  $('#api-key-accept').on('click', function(e){
+  $apiKeyAccept.on('click', function(e){
     e.preventDefault();
-    weatherize = new Weatherize($('#api-key').val());
+    if($apiKey.prop('disabled')){
+      $searchAutocomplete.prop('disabled', true);
+      $apiKey.prop('disabled', false);
+      $apiKeyAccept.find('span').text('accept key');
+      $apiKeyAccept.find('i').text('done');
+    } else {
+      weatherize = new Weatherize($apiKey.val());
+      weatherize.testKey(validateKeyCallback);
+    }
   });
 
+  $searchAutocomplete.on('keyup', function(){
+    console.log($searchAutocomplete.val());
+  })
 });

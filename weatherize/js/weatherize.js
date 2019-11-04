@@ -44,12 +44,14 @@ function Weatherize(apiKey){
         let weather = result[resultKeys[i]];
         let date = new Date(resultKeys[i]);
         let $d = $('.weather-d' + (i + 1));
+        let n = Math.round(weather.length / 2) - 1;
         $d.filter('.weather-week-day').text(date.toLocaleDateString('it-IT', {weekday: 'short'}));
         $d.filter('.weather-date').text(date.toLocaleDateString('it-IT', {day: '2-digit', month: '2-digit'}));
-        $d.filter('.weather-icon').attr('src', 'http://openweathermap.org/img/wn/' + weather[0]['weather'][0]['icon'] + '.png');
-        $d.filter('.weather-temp').text(round(weather[0]['main']['temp'], 1) + '°C');
-        $d.filter('.weather-temp-max').text(round(weather[0]['main']['temp_max'], 1) + '°C');
-        $d.filter('.weather-temp-min').text(round(weather[0]['main']['temp_min'], 1) + '°C');
+        $d.filter('.weather-icon').attr('src', 'http://openweathermap.org/img/wn/' + weather[n]['weather'][0]['icon'] + '.png');
+        $d.filter('.weather-temp').text(round(weather[n]['main']['temp'], 1) + '°C');
+        $d.filter('.weather-temp-max').text(round(weather[n]['main']['temp_max'], 1) + '°C');
+        $d.filter('.weather-temp-min').text(round(weather[n]['main']['temp_min'], 1) + '°C');
+
       }
 
 
@@ -59,5 +61,21 @@ function Weatherize(apiKey){
         callback(result);
       }
     });
-  }
+  };
+
+  this.testKey = function(callback){
+    if(callback === undefined || typeof callback !== 'function'){
+      return null;
+    }
+    $.ajax({
+      url: 'https://api.openweathermap.org/data/2.5/forecast',
+      data: {
+        q: 'London',
+        appid: apiKey,
+      },
+    }).then(r => {
+      callback(r['cod'] === '200');
+    });
+  };
+
 }
