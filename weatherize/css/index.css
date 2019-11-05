@@ -84,3 +84,19 @@ ul.stepper .step .step-title:hover {background-color: unset}
 .weather-temp-min {
     text-shadow: 1px 1px 1px blue;
 }
+
+ul.stepper .step .step-title::after {
+    color: red;
+    border-radius: 4px;
+    text-shadow: 2px 2px 2px black;
+}
+
+.input-field .helper-text {
+    color: rgba(255,255,255,0.5);
+}
+
+.input-field .invalid ~ .helper-text::after {
+    color: red;
+    text-shadow: 2px 2px 2px black;
+    font-size: 14px;
+}

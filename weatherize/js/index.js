@@ -1,28 +1,37 @@
 $(function(){
 
-  const $apiKeyAccept = $('#api-key-accept');
   const $apiKey = $('#api-key');
-  const $searchAutocomplete = $('#autocomplete-search');
+  const $search = $('#search');
+  const $pickerRow = $('#day-picker-row');
+  const $stepApikeyTitle = $('#step-apikey-title');
+  const $apiKeyButton = $('#apiKeyButton');
 
   // callback function to do additional stuff
-  const callback = function(data){
-    $('#day-picker-row').removeClass('hide');
+  const callbackSearch = function(data){
+    if(data === null){
+      $pickerRow.addClass('hide');
+      $search.addClass('invalid');
+      return;
+    }
+    $search.removeClass('invalid').addClass('valid');
+    $pickerRow.removeClass('hide');
     console.log(data);
   };
 
-  const validateKeyCallback = function(isValid){
+  const testKeyCallback = function(isValid, destroyFeedback){
     if(isValid){
-      $searchAutocomplete.prop('disabled', false);
-      $apiKey.prop('disabled', true);
-      $apiKeyAccept.find('span').text('Edit key');
-      $apiKeyAccept.find('i').text('edit');
+      destroyFeedback(true);
+      $search.val('');
+      localStorage.setItem('apiKey', $apiKey.val().toString());
+      $stepApikeyTitle.attr('data-step-label', '');
     } else {
-
+      destroyFeedback(false);
+      stepper.wrongStep();
+      $stepApikeyTitle.attr('data-step-label', 'Wrong API Key!');
     }
   };
 
-  let stepper = document.querySelector('.stepper');
-  let stepperInstace = new MStepper(stepper, {
+  let stepper = new MStepper(document.querySelector('.stepper'), {
     firstActive: 0,
     autoFormCreation: false,
     stepTitleNavigation: false,
@@ -44,20 +53,30 @@ $(function(){
 
   });
 
-  $apiKeyAccept.on('click', function(e){
-    e.preventDefault();
-    if($apiKey.prop('disabled')){
-      $searchAutocomplete.prop('disabled', true);
-      $apiKey.prop('disabled', false);
-      $apiKeyAccept.find('span').text('accept key');
-      $apiKeyAccept.find('i').text('done');
-    } else {
-      weatherize = new Weatherize($apiKey.val());
-      weatherize.testKey(validateKeyCallback);
+  window.keyTest = function(destroyFeedback){
+    weatherize = new Weatherize($apiKey.val());
+    weatherize.keyTest(testKeyCallback, destroyFeedback);
+  };
+
+  let timer = null;
+
+  $search.on('keyup', function(){
+    if(timer !== null){
+      clearTimeout(timer);
+      timer = null;
     }
+    timer = setTimeout(function(){
+      weatherize.getWeather($search.val(), callbackSearch);
+    }, 1000);
   });
 
-  $searchAutocomplete.on('keyup', function(){
-    console.log($searchAutocomplete.val());
-  })
+  (function(){
+    let apiKey = localStorage.getItem('apiKey');
+    if(apiKey !== null && typeof apiKey === 'string'){
+      $apiKey.val(apiKey);
+      $apiKeyButton.trigger('click');
+    }
+  })();
+
+
 });
