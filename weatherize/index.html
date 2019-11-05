@@ -13,17 +13,13 @@
     <link href="css/index.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   </head>
 
-  <body>
-    <ul id="settings-dropdown" class="dropdown-content green darken-1">
-      <li><a href="#"><div class="switch white-text"><label>°C<input type="checkbox"><span class="lever"></span>°F</label></div></a></li>
-      <li><a href="#"><div class="switch white-text"><label>Themed<input type="checkbox"><span class="lever"></span></label></div></a></li>
-    </ul>
-    <ul id="language-dropdown" class="dropdown-content green darken-1">
+  <body class="blue-grey darken-4">
+    <ul id="language-dropdown" class="dropdown-content blue darken-4">
       <li><a href="#" class="white-text translate-btn" data-lang="it"><i class="flag-icon flag-icon-it"></i><span>Italiano</span></a></li>
       <li><a href="#" class="white-text translate-btn" data-lang="en"><i class="flag-icon flag-icon-gb"></i><span>English</span></a></li>
     </ul>
     <nav>
-      <div class="nav-wrapper green">
+      <div class="nav-wrapper blue darken-3">
         <a href="#" class="brand-logo left">Weatherize</a>
         <ul class="right">
           <li>
@@ -33,24 +29,17 @@
               <i class="material-icons right theme-aboutme-text">arrow_drop_down</i>
             </a>
           </li>
-          <li>
-            <a class="dropdown-trigger valign-wrapper" href="#" data-target="settings-dropdown">
-              <i class="fas fa-cog left-on-med-and-up theme-aboutme-text"></i>
-              <span class="hide-on-small-and-down i18n-social theme-aboutme-text">Settings</span>
-              <i class="material-icons right theme-aboutme-text">arrow_drop_down</i>
-            </a>
-          </li>
         </ul>
       </div>
     </nav>
     <main>
       <div class="container">
         <div class="row">
-          <div class="card-panel green">
+          <div class="card-panel blue darken-2">
             <div class="row" style="padding-bottom: 50px">
               <ul class="stepper linear">
                 <li class="step active">
-                  <div class="step-title waves-effect">API Key</div>
+                  <div class="step-title white-text">API Key</div>
                   <div class="step-content">
                     <div class="input-field">
                       <i class="material-icons prefix white-text">vpn_key</i>
@@ -58,21 +47,24 @@
                       <label for="api-key" class="white-text">API Key</label>
                     </div>
                     <div class="step-actions">
-                      <button class="waves-effect waves-dark btn next-step">CONFIRM</button>
+                      <button class="waves-effect waves-dark btn next-step green darken-2" data-feedback="keyTest">CONFIRM</button>
                     </div>
                   </div>
                 </li>
                 <li class="step">
-                  <div class="step-title waves-effect">Search</div>
+                  <div class="step-title white-text">Search</div>
                   <div class="step-content">
-                    <div class="input-field">
-                      <i class="material-icons prefix white-text">location_city</i>
-                      <input type="text" value="Insert API Key first" id="autocomplete-search" class="autocomplete red-text invalid" disabled>
-                      <label for="autocomplete-search" class="white-text">City</label>
+                    <div class="row valign-wrapper">
+                      <div class="input-field col s10 m11">
+                        <i class="material-icons prefix white-text">location_city</i>
+                        <input type="text" id="search" class="white-text">
+                        <label for="search" class="white-text">City</label>
+                        <span class="helper-text" data-error="City not found" data-success="">Insert a city</span>
+                      </div>
+                      <button class="btn-flat waves-effect waves-light white-text col s2 m1"><i class="material-icons white-text">gps_fixed</i></button>
                     </div>
-                    <div class="step-actions">
-                      <button class="waves-effect waves-dark btn previous-step">EDIT API KEY</button>
-                      <button class="btn waves-effect waves-light white-text"><i class="material-icons white-text left">gps_fixed</i>Use GPS</button>
+                    <div class="step-actions" style="justify-content: right">
+                      <button class="waves-effect waves-dark btn-flat previous-step white-text"><i class="material-icons white-text left">edit</i>EDIT API KEY</button>
                     </div>
                   </div>
                 </li>
@@ -81,60 +73,61 @@
           </div>
         </div>
         <div class="row hide" id="day-picker-row">
-          <div class="col s12">
-            <div class="card-panel green">
-
+          <div class="card-panel blue darken-2">
+            <div class="row center-align">
               <div id="day-picker">
                 <a href="#">
                   <p class="weather-week-day weather-d1"></p>
                   <p class="weather-date weather-d1"></p>
                   <img class="weather-icon weather-d1" src="" alt="">
-                  <p class="weather-temp-max weather-d1" style="color: red"></p>
-                  <p class="weather-temp-min weather-d1" style="color: blue"></p>
+                  <p class="weather-temp-max weather-d1 red-text text-darken-4"></p>
+                  <p class="weather-temp-min weather-d1 blue-text text-darken-4"></p>
                 </a>
                 <a href="#">
                   <p class="weather-week-day weather-d2"></p>
                   <p class="weather-date weather-d2"></p>
                   <img class="weather-icon weather-d2" src="" alt="">
-                  <p class="weather-temp-max weather-d2" style="color: red"></p>
-                  <p class="weather-temp-min weather-d2" style="color: blue"></p>
+                  <p class="weather-temp-max weather-d2 red-text text-darken-4"></p>
+                  <p class="weather-temp-min weather-d2 blue-text text-darken-4"></p>
                 </a>
                 <a href="#">
                   <p class="weather-week-day weather-d3"></p>
                   <p class="weather-date weather-d3"></p>
                   <img class="weather-icon weather-d3" src="" alt="">
-                  <p class="weather-temp-max weather-d3" style="color: red"></p>
-                  <p class="weather-temp-min weather-d3" style="color: blue"></p>
+                  <p class="weather-temp-max weather-d3 red-text text-darken-4"></p>
+                  <p class="weather-temp-min weather-d3 blue-text text-darken-4"></p>
                 </a>
                 <a href="#">
                   <p class="weather-week-day weather-d4"></p>
                   <p class="weather-date weather-d4"></p>
                   <img class="weather-icon weather-d4" src="" alt="">
-                  <p class="weather-temp-max weather-d4" style="color: red"></p>
-                  <p class="weather-temp-min weather-d4" style="color: blue"></p>
+                  <p class="weather-temp-max weather-d4 red-text text-darken-4"></p>
+                  <p class="weather-temp-min weather-d4 blue-text text-darken-4"></p>
                 </a>
                 <a href="#">
                   <p class="weather-week-day weather-d5"></p>
                   <p class="weather-date weather-d5"></p>
                   <img class="weather-icon weather-d5" src="" alt="">
-                  <p class="weather-temp-max weather-d5" style="color: red"></p>
-                  <p class="weather-temp-min weather-d5" style="color: blue"></p>
+                  <p class="weather-temp-max weather-d5 red-text text-darken-4"></p>
+                  <p class="weather-temp-min weather-d5 blue-text text-darken-4"></p>
                 </a>
-                <a href="#">
+                <a href="#" class="weather-hide weather-d6 hide">
                   <p class="weather-week-day weather-d6"></p>
                   <p class="weather-date weather-d6"></p>
                   <img class="weather-icon weather-d6" src="" alt="">
-                  <p class="weather-temp-max weather-d6" style="color: red"></p>
-                  <p class="weather-temp-min weather-d6" style="color: blue"></p>
+                  <p class="weather-temp-max weather-d6 red-text text-darken-4"></p>
+                  <p class="weather-temp-min weather-d6 blue-text text-darken-4"></p>
                 </a>
               </div>
+            </div>
+            <div class="row">
 
             </div>
           </div>
         </div>
       </div>
     </main>
-    <footer class="page-footer green">
+    <footer class="page-footer blue darken-3">
       <div class="container">
         <div class="row">
           <div class="col l6 s12">
