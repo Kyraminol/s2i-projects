@@ -22,7 +22,7 @@ function Weatherize(apiKey){
       url: 'https://api.openweathermap.org/data/2.5/forecast',
       data: {
         q: city,
-        appid: apiKey,
+        appid: this._apiKey,
         units: 'metric',
       },
     }).then(r => {
@@ -52,6 +52,7 @@ function Weatherize(apiKey){
         $d.filter('.weather-temp-max').text(round(weather[n]['main']['temp_max'], 1) + '°C');
         $d.filter('.weather-temp-min').text(round(weather[n]['main']['temp_min'], 1) + '°C');
 
+        $d.filter('.weather-hide').removeClass('hide');
       }
 
 
@@ -60,10 +61,14 @@ function Weatherize(apiKey){
       if(typeof callback === 'function'){
         callback(result);
       }
+    }, r => {
+      if(typeof callback === 'function'){
+        callback(null);
+      }
     });
   };
 
-  this.testKey = function(callback){
+  this.keyTest = function(callback, ...callbackArguments){
     if(callback === undefined || typeof callback !== 'function'){
       return null;
     }
@@ -71,10 +76,12 @@ function Weatherize(apiKey){
       url: 'https://api.openweathermap.org/data/2.5/forecast',
       data: {
         q: 'London',
-        appid: apiKey,
+        appid: this._apiKey,
       },
     }).then(r => {
-      callback(r['cod'] === '200');
+      callback(r['cod'] === '200', ...callbackArguments);
+    }, r => {
+      callback(r['cod'] === '200', ...callbackArguments);
     });
   };
 
