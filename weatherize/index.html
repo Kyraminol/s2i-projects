@@ -9,6 +9,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.3.0/css/flag-icon.min.css" rel="stylesheet">
     <link href="libs/materializecss/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="libs/materialize-stepper/mstepper.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="css/index.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   </head>
 
@@ -47,20 +48,35 @@
         <div class="row">
           <div class="card-panel green">
             <div class="row" style="padding-bottom: 50px">
-              <div class="input-field">
-                <i class="material-icons prefix white-text">vpn_key</i>
-                <input type="text" class="white-text" id="api-key">
-                <label for="api-key" class="white-text">API Key</label>
-              </div>
-              <a class="btn-large waves-effect waves-light" style="margin-left: 50px" id="api-key-accept"><i class="material-icons left">done</i><span>Accept Key</span></a>
-            </div>
-            <div class="row">
-              <div class="input-field">
-                <i class="material-icons prefix white-text">location_city</i>
-                <input type="text" value="Insert API Key first" id="autocomplete-search" class="autocomplete red-text invalid" disabled>
-                <label for="autocomplete-search" class="white-text">City</label>
-              </div>
-              <a class="btn waves-effect waves-light right white-text disabled"><i class="material-icons white-text left">gps_fixed</i>Use GPS</a>
+              <ul class="stepper linear">
+                <li class="step active">
+                  <div class="step-title waves-effect">API Key</div>
+                  <div class="step-content">
+                    <div class="input-field">
+                      <i class="material-icons prefix white-text">vpn_key</i>
+                      <input type="text" class="white-text" id="api-key">
+                      <label for="api-key" class="white-text">API Key</label>
+                    </div>
+                    <div class="step-actions">
+                      <button class="waves-effect waves-dark btn next-step">CONFIRM</button>
+                    </div>
+                  </div>
+                </li>
+                <li class="step">
+                  <div class="step-title waves-effect">Search</div>
+                  <div class="step-content">
+                    <div class="input-field">
+                      <i class="material-icons prefix white-text">location_city</i>
+                      <input type="text" value="Insert API Key first" id="autocomplete-search" class="autocomplete red-text invalid" disabled>
+                      <label for="autocomplete-search" class="white-text">City</label>
+                    </div>
+                    <div class="step-actions">
+                      <button class="waves-effect waves-dark btn previous-step">EDIT API KEY</button>
+                      <button class="btn waves-effect waves-light white-text"><i class="material-icons white-text left">gps_fixed</i>Use GPS</button>
+                    </div>
+                  </div>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
@@ -152,6 +168,7 @@
 
   <script src="libs/jquery-3.4.1.min.js"></script>
   <script src="libs/materializecss/materialize.min.js"></script>
+  <script src="libs/materialize-stepper/mstepper.min.js"></script>
   <script src="js/weatherize.js"></script>
   <script src="js/index.js"></script>
 

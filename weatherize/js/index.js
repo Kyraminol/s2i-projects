@@ -21,6 +21,13 @@ $(function(){
     }
   };
 
+  let stepper = document.querySelector('.stepper');
+  let stepperInstace = new MStepper(stepper, {
+    firstActive: 0,
+    autoFormCreation: false,
+    stepTitleNavigation: false,
+  });
+
   M.Dropdown.init(document.querySelectorAll('.dropdown-trigger'), {hover: false, constrainWidth: false, coverTrigger: false, closeOnClick: false});
 
   // instantiate Weatherize object
