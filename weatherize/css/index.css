@@ -36,7 +36,8 @@ nav ul li a.dropdown-trigger {
 }
 
 #day-picker > a {
-    background-color: rgba(255,255,255,0.3);
+    background-color: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.5);
     align-content: center;
     text-align: center;
     display: inline-block;
@@ -44,7 +45,6 @@ nav ul li a.dropdown-trigger {
     border-radius: 5px;
     margin-right: 5px;
     margin-bottom: 10px;
-    border: 1px solid rgba(255,255,255,1);
     color: white;
     font-size: 1rem;
 }
@@ -54,11 +54,33 @@ nav ul li a.dropdown-trigger {
 }
 
 #day-picker > a.selected {
-    background-color: rgba(255,255,255,0.5);
-    text-shadow: 1px 1px 0 black;
+    background-color: rgba(255,255,255,0.3);
+    border: 1px solid rgba(255,255,255,1);
 }
 
 #day-picker > a > p {
     margin: 0;
     text-transform: capitalize;
+}
+
+ul.stepper .step .step-title { cursor: default}
+ul.stepper .step .step-title:hover {background-color: unset}
+
+@media only screen and (max-width: 601px) {
+    .step-content {
+        margin-left: 20px !important;
+        margin-right: 5px !important;
+    }
+
+    .card-panel {
+        padding: 10px;
+    }
+}
+
+.weather-temp-max {
+    text-shadow: 1px 1px 1px red;
+}
+
+.weather-temp-min {
+    text-shadow: 1px 1px 1px blue;
 }
