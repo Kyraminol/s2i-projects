@@ -2,26 +2,31 @@ $(function(){
 
   const $apiKey = $('#api-key');
   const $search = $('#search');
+  const $searchHelper = $('#search-helper');
   const $pickerRow = $('#day-picker-row');
   const $stepApikeyTitle = $('#step-apikey-title');
   const $apiKeyButton = $('#apiKeyButton');
 
   // callback function to do additional stuff
   const callbackSearch = function(data){
+    console.log(data);
     if(data === null){
       $pickerRow.addClass('hide');
+      $searchHelper.attr('data-error', 'City not found');
       $search.addClass('invalid');
       return;
     }
     $search.removeClass('invalid').addClass('valid');
+    $search.val(data.city.name + ', ' + data.city.country);
+    M.updateTextFields();
     $pickerRow.removeClass('hide');
-    console.log(data);
   };
 
   const testKeyCallback = function(isValid, destroyFeedback){
     if(isValid){
       destroyFeedback(true);
       $search.val('');
+      M.updateTextFields();
       localStorage.setItem('apiKey', $apiKey.val().toString());
       $stepApikeyTitle.attr('data-step-label', '');
     } else {
@@ -70,10 +75,42 @@ $(function(){
     }, 1000);
   });
 
+  $('#geolocation-btn').on('click', function(e){
+    e.preventDefault();
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position){
+        weatherize.getWeather([position.coords.latitude, position.coords.longitude], callbackSearch);
+      }, function(error){
+        switch(error.code) {
+          case error.PERMISSION_DENIED:
+            $search.addClass('invalid');
+            $searchHelper.attr('data-error', 'User denied the request for Geolocation');
+            break;
+          case error.POSITION_UNAVAILABLE:
+            $search.addClass('invalid');
+            $searchHelper.attr('data-error', 'Location information is unavailable');
+            break;
+          case error.TIMEOUT:
+            $search.addClass('invalid');
+            $searchHelper.attr('data-error', 'The request to get user location timed out');
+            break;
+          default:
+            $search.addClass('invalid');
+            $searchHelper.attr('data-error', 'An unknown error occurred');
+            break;
+        }
+      });
+    } else {
+      $search.addClass('invalid');
+      $searchHelper.attr('data-error', 'Geolocation is not supported by this browser');
+    }
+  });
+
   (function(){
     let apiKey = localStorage.getItem('apiKey');
     if(apiKey !== null && typeof apiKey === 'string'){
       $apiKey.val(apiKey);
+      M.updateTextFields();
       $apiKeyButton.trigger('click');
     }
   })();

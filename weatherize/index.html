@@ -34,7 +34,7 @@
     </nav>
     <main>
       <div class="container">
-        <div class="row">
+        <div class="row" style="padding-top: 50px">
           <div class="card-panel blue darken-2">
             <div class="row" style="padding-bottom: 50px">
               <ul class="stepper linear">
@@ -59,9 +59,9 @@
                         <i class="material-icons prefix white-text">location_city</i>
                         <input type="text" id="search" class="white-text">
                         <label for="search" class="white-text">City</label>
-                        <span class="helper-text" data-error="City not found" data-success="">Insert a city</span>
+                        <span class="helper-text" data-error="" data-success="City found" id="search-helper">Insert a city</span>
                       </div>
-                      <button class="btn-flat waves-effect waves-light white-text col s2 m1"><i class="material-icons white-text">gps_fixed</i></button>
+                      <button class="btn-flat waves-effect waves-light white-text col s2 m1" id="geolocation-btn"><i class="material-icons white-text">gps_fixed</i></button>
                     </div>
                     <div class="step-actions" style="justify-content: right">
                       <button class="waves-effect waves-dark btn-flat previous-step white-text"><i class="material-icons white-text left">edit</i>EDIT API KEY</button>
@@ -127,7 +127,7 @@
         </div>
       </div>
     </main>
-    <footer class="page-footer blue darken-3">
+    <footer class="page-footer blue darken-3" style="margin-top: 50px">
       <div class="container">
         <div class="row">
           <div class="col l6 s12">
