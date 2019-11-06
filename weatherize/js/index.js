@@ -20,7 +20,8 @@ $(function(){
       return;
     }
     $search.removeClass('invalid').addClass('valid');
-    $searchHelper.attr('data-error', $locationFound.text());
+    $searchHelper.attr('data-error', '');
+    $searchHelper.attr('data-success', $locationFound.text());
     $search.val(data.city.name + ', ' + data.city.country);
     M.updateTextFields();
     $pickerRow.removeClass('hide');
@@ -88,25 +89,25 @@ $(function(){
         switch(error.code) {
           case error.PERMISSION_DENIED:
             $search.addClass('invalid');
-            $searchHelper.attr('data-error', $().text());
+            $searchHelper.attr('data-error', $('.i18n-geo-denied').text());
             break;
           case error.POSITION_UNAVAILABLE:
             $search.addClass('invalid');
-            $searchHelper.attr('data-error', '');
+            $searchHelper.attr('data-error', $('.i18n-geo-unavailable').text());
             break;
           case error.TIMEOUT:
             $search.addClass('invalid');
-            $searchHelper.attr('data-error', '');
+            $searchHelper.attr('data-error', $('.i18n-geo-timeout').text());
             break;
           default:
             $search.addClass('invalid');
-            $searchHelper.attr('data-error', '');
+            $searchHelper.attr('data-error', $('.i18n-geo-unknown').text());
             break;
         }
       });
     } else {
       $search.addClass('invalid');
-      $searchHelper.attr('data-error', '');
+      $searchHelper.attr('data-error', $('.i18n-geo-unsupported').text());
     }
   });
 
