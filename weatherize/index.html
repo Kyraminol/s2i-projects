@@ -39,32 +39,32 @@
             <div class="row" style="padding-bottom: 50px">
               <ul class="stepper linear">
                 <li class="step active">
-                  <div class="step-title white-text" id="step-apikey-title">API Key</div>
+                  <div class="step-title white-text i18n-apikey" id="step-apikey-title">API Key</div>
                   <div class="step-content">
                     <div class="input-field">
                       <i class="material-icons prefix white-text">vpn_key</i>
                       <input type="text" class="white-text" id="api-key">
-                      <label for="api-key" class="white-text">API Key</label>
+                      <label for="api-key" class="white-text i18n-apikey">API Key</label>
                     </div>
                     <div class="step-actions">
-                      <button class="waves-effect waves-dark btn next-step green darken-2" data-feedback="keyTest" id="apiKeyButton">CONFIRM</button>
+                      <button class="waves-effect waves-dark btn next-step green darken-2 i18n-confirm" data-feedback="keyTest" id="apiKeyButton">Confirm</button>
                     </div>
                   </div>
                 </li>
                 <li class="step">
-                  <div class="step-title white-text">Search</div>
+                  <div class="step-title white-text i18n-search">Search</div>
                   <div class="step-content">
                     <div class="row valign-wrapper">
                       <div class="input-field col s10 m11">
                         <i class="material-icons prefix white-text">location_city</i>
                         <input type="text" id="search" class="white-text">
-                        <label for="search" class="white-text">City</label>
-                        <span class="helper-text" data-error="" data-success="City found" id="search-helper">Insert a city</span>
+                        <label for="search" class="white-text i18n-location">Location</label>
+                        <span class="helper-text i18n-insertalocation" data-error="" data-success="" id="search-helper">Insert a location</span>
                       </div>
                       <button class="btn-flat waves-effect waves-light white-text col s2 m1" id="geolocation-btn"><i class="material-icons white-text">gps_fixed</i></button>
                     </div>
                     <div class="step-actions" style="justify-content: right">
-                      <button class="waves-effect waves-dark btn-flat previous-step white-text"><i class="material-icons white-text left">edit</i>EDIT API KEY</button>
+                      <button class="waves-effect waves-dark btn-flat previous-step white-text i18n-editapikey">Edit API Key<i class="material-icons white-text left">edit</i></button>
                     </div>
                   </div>
                 </li>
@@ -127,6 +127,18 @@
         </div>
       </div>
     </main>
+    <div style="display: none !important;">
+      <span class="i18n-locationnotfound">Location not found</span>
+      <span class="i18n-locationfound">Location found</span>
+      <span class="i18n-wrongapikey">Wrong API Key!</span>
+      <span class="i18n-geo-denied">Request for geolocation denied</span>
+      <span class="i18n-geo-unavailable">Location information is unavailable</span>
+      <span class="i18n-geo-timeout">Request to get location timed out</span>
+      <span class="i18n-geo-unknown">An unknown error occurred</span>
+      <span class="i18n-geo-unsupported">Geolocation is not supported by this browser</span>
+
+      <span class="i18n-currentlang">en</span>
+    </div>
     <footer class="page-footer blue darken-3" style="margin-top: 50px">
       <div class="container">
         <div class="row">
@@ -162,6 +174,7 @@
   <script src="libs/jquery-3.4.1.min.js"></script>
   <script src="libs/materializecss/materialize.min.js"></script>
   <script src="libs/materialize-stepper/mstepper.min.js"></script>
+  <script src="js/i18n.js"></script>
   <script src="js/weatherize.js"></script>
   <script src="js/index.js"></script>
 

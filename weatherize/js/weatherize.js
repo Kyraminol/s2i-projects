@@ -21,7 +21,6 @@ function Weatherize(apiKey){
       appid: this._apiKey,
       units: 'metric'
     };
-    console.log(search);
     if(typeof search === 'string'){
       data['q'] = search;
     } else if(Array.isArray(search)){
@@ -55,7 +54,6 @@ function Weatherize(apiKey){
         let date = new Date(resultKeys[i]);
         let $d = $('.weather-d' + (i + 1));
         let n = Math.round(weather.length / 2) - 1;
-        console.log(n);
         $d.filter('.weather-week-day').text(date.toLocaleDateString('it-IT', {weekday: 'short'}));
         $d.filter('.weather-date').text(date.toLocaleDateString('it-IT', {day: '2-digit', month: '2-digit'}));
         $d.filter('.weather-icon').attr('src', 'http://openweathermap.org/img/wn/' + weather[n]['weather'][0]['icon'] + '.png');

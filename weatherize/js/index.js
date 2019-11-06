@@ -7,16 +7,20 @@ $(function(){
   const $stepApikeyTitle = $('#step-apikey-title');
   const $apiKeyButton = $('#apiKeyButton');
 
+  const $locationNotFound = $('.i18n-locationnotfound');
+  const $locationFound = $('.i18n-locationfound');
+
   // callback function to do additional stuff
   const callbackSearch = function(data){
     console.log(data);
     if(data === null){
       $pickerRow.addClass('hide');
-      $searchHelper.attr('data-error', 'City not found');
+      $searchHelper.attr('data-error', $locationNotFound.text());
       $search.addClass('invalid');
       return;
     }
     $search.removeClass('invalid').addClass('valid');
+    $searchHelper.attr('data-error', $locationFound.text());
     $search.val(data.city.name + ', ' + data.city.country);
     M.updateTextFields();
     $pickerRow.removeClass('hide');
@@ -32,7 +36,7 @@ $(function(){
     } else {
       destroyFeedback(false);
       stepper.wrongStep();
-      $stepApikeyTitle.attr('data-step-label', 'Wrong API Key!');
+      $stepApikeyTitle.attr('data-step-label', $('.i18n-wrongapikey').text());
     }
   };
 
@@ -84,25 +88,25 @@ $(function(){
         switch(error.code) {
           case error.PERMISSION_DENIED:
             $search.addClass('invalid');
-            $searchHelper.attr('data-error', 'User denied the request for Geolocation');
+            $searchHelper.attr('data-error', $().text());
             break;
           case error.POSITION_UNAVAILABLE:
             $search.addClass('invalid');
-            $searchHelper.attr('data-error', 'Location information is unavailable');
+            $searchHelper.attr('data-error', '');
             break;
           case error.TIMEOUT:
             $search.addClass('invalid');
-            $searchHelper.attr('data-error', 'The request to get user location timed out');
+            $searchHelper.attr('data-error', '');
             break;
           default:
             $search.addClass('invalid');
-            $searchHelper.attr('data-error', 'An unknown error occurred');
+            $searchHelper.attr('data-error', '');
             break;
         }
       });
     } else {
       $search.addClass('invalid');
-      $searchHelper.attr('data-error', 'Geolocation is not supported by this browser');
+      $searchHelper.attr('data-error', '');
     }
   });
 
