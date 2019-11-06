@@ -27,12 +27,16 @@ nav ul li a.dropdown-trigger {
     padding-right: 0;
 }
 
-#day-picker {
+#day-picker-row {
     display: block;
     width: auto;
     position: relative;
     overflow-x: auto;
     white-space: nowrap;
+}
+
+#day-picker-row .card-panel {
+    display: inline-block;
 }
 
 #day-picker > a {
@@ -44,9 +48,16 @@ nav ul li a.dropdown-trigger {
     padding: 7px;
     border-radius: 5px;
     margin-right: 5px;
-    margin-bottom: 10px;
     color: white;
     font-size: 1rem;
+}
+
+#day-picker-row .row {
+    margin-bottom: 0;
+}
+
+#day-picker > a:last-of-type:not(.hide){
+    margin-right: 0;
 }
 
 #day-picker img {
@@ -63,7 +74,7 @@ nav ul li a.dropdown-trigger {
     text-transform: capitalize;
 }
 
-ul.stepper .step .step-title { cursor: default}
+ul.stepper .step .step-title {cursor: default}
 ul.stepper .step .step-title:hover {background-color: unset}
 
 @media only screen and (max-width: 601px) {
