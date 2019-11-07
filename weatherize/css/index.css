@@ -119,6 +119,7 @@ ul.stepper .step .step-title::after {
 .day-detail .detail {
     border-radius: 5px;
     border: 1px solid white;
+    display: inline-block;
 }
 
 .day-detail .detail p {
