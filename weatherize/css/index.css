@@ -111,3 +111,16 @@ ul.stepper .step .step-title::after {
     text-shadow: 2px 2px 2px black;
     font-size: 14px;
 }
+
+.day-detail {
+    display: inline-block;
+}
+
+.day-detail .detail {
+    border-radius: 5px;
+    border: 1px solid white;
+}
+
+.day-detail .detail p {
+    margin: 0;
+}
