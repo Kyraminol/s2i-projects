@@ -53,14 +53,50 @@ function Weatherize(apiKey){
         let weather = result.weather[resultKeys[i]];
         let date = new Date(resultKeys[i]);
         let $d = $('.weather-d' + (i + 1));
-        let n = Math.round(weather.length / 2) - 1;
+
+        let temp_avg = 0;
+        let temp_max_avg = -Infinity;
+        let temp_min_avg = Infinity;
+        let icon_avg_obj = {};
+        weather.forEach(function(info){
+          let time = new Date(info['dt'] * 1000);
+
+          temp_avg += info['main']['temp'];
+          if(info['main']['temp_max'] > temp_max_avg){
+            temp_max_avg = info['main']['temp_max'];
+          }
+          if(info['main']['temp_min'] < temp_min_avg){
+            temp_min_avg = info['main']['temp_min']
+          }
+          if(!Object.keys(icon_avg_obj).includes(info['weather'][0]['icon'])){
+            icon_avg_obj[info['weather'][0]['icon']] = 0;
+          }
+          icon_avg_obj[info['weather'][0]['icon']]++;
+
+          $d.filter('.weather-icon.h' + time.getUTCHours()).attr('src', 'http://openweathermap.org/img/wn/' + info['weather'][0]['icon'] + '.png');
+          $d.filter('.weather-temp.h' + time.getUTCHours()).text(round(info['main']['temp'], 1) + '°C');
+          $d.filter('.weather-temp-max.h' + time.getUTCHours()).text(round(info['main']['temp_max'], 1) + '°C');
+          $d.filter('.weather-temp-min.h' + time.getUTCHours()).text(round(info['main']['temp_min'], 1) + '°C');
+        });
+        temp_avg /= weather.length;
+        temp_avg = round(temp_avg, 1);
+        temp_max_avg = round(temp_max_avg, 1);
+        temp_min_avg = round(temp_min_avg, 1);
+        let icon_avg = "";
+        let icon_max = -Infinity, x;
+        Object.entries(icon_avg_obj).forEach(function(entry){
+          if(entry[1] > icon_max){
+            icon_max = entry[1];
+            icon_avg = entry[0];
+          }
+        });
+
+        $d.filter('.weather-icon-avg').attr('src', 'http://openweathermap.org/img/wn/' + icon_avg + '.png');
+        $d.filter('.weather-temp-avg').text( temp_avg + '°C');
+        $d.filter('.weather-temp-max-avg').text( temp_max_avg + '°C');
+        $d.filter('.weather-temp-min-avg').text( temp_min_avg + '°C');
         $d.filter('.weather-week-day').text(date.toLocaleDateString('it-IT', {weekday: 'short'}));
         $d.filter('.weather-date').text(date.toLocaleDateString('it-IT', {day: '2-digit', month: '2-digit'}));
-        $d.filter('.weather-icon').attr('src', 'http://openweathermap.org/img/wn/' + weather[n]['weather'][0]['icon'] + '.png');
-        $d.filter('.weather-temp').text(round(weather[n]['main']['temp'], 1) + '°C');
-        $d.filter('.weather-temp-max').text(round(weather[n]['main']['temp_max'], 1) + '°C');
-        $d.filter('.weather-temp-min').text(round(weather[n]['main']['temp_min'], 1) + '°C');
-
         $d.filter('.weather-hide').removeClass('hide');
       }
 

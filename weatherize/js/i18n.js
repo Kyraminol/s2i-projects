@@ -48,7 +48,7 @@ $(function(){
   $('.translate-btn').on('click', function(e){
     e.preventDefault();
     let lang = $(this).data('lang');
-    localStorage.setItem("lang", lang);
+    localStorage.setItem('lang', lang);
     translate(lang);
   })
 

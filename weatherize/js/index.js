@@ -3,9 +3,11 @@ $(function(){
   const $apiKey = $('#api-key');
   const $search = $('#search');
   const $searchHelper = $('#search-helper');
+  const $picker = $('#day-picker');
   const $pickerRow = $('#day-picker-row');
   const $stepApikeyTitle = $('#step-apikey-title');
   const $apiKeyButton = $('#apiKeyButton');
+  const $weatherDetails = $('#weather-details');
 
   const $locationNotFound = $('.i18n-locationnotfound');
   const $locationFound = $('.i18n-locationfound');
@@ -13,6 +15,8 @@ $(function(){
   // callback function to do additional stuff
   const callbackSearch = function(data){
     console.log(data);
+    $weatherDetails.addClass('hide');
+    $picker.find('.selected').removeClass('selected');
     if(data === null){
       $pickerRow.addClass('hide');
       $searchHelper.attr('data-error', $locationNotFound.text());
@@ -58,9 +62,12 @@ $(function(){
     if($this.hasClass('selected')){
       return;
     }
-    $this.siblings('.selected').removeClass('selected');
+    let $prev = $this.siblings('.selected');
+    $($prev.attr('href')).addClass('hide');
+    $prev.removeClass('selected');
+    $($this.attr('href')).removeClass('hide');
     $this.addClass('selected');
-
+    $weatherDetails.removeClass('hide');
   });
 
   window.keyTest = function(destroyFeedback){
