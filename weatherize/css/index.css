@@ -113,15 +113,30 @@ ul.stepper .step .step-title::after {
 }
 
 .day-detail {
+    margin: 0 10px;
     display: inline-block;
 }
 
 .day-detail .detail {
+    min-width: 80px;
     border-radius: 5px;
     border: 1px solid white;
     display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 10px;
 }
 
+.day-detail .detail:last-of-type:not(.hide) {
+    margin-right: 0;
+}
+
+
 .day-detail .detail p {
-    margin: 0;
+    font-size: 1.2rem;
+    margin: 0 10px;
+}
+
+
+#weather-details h3 {
+    padding-bottom: 20px;
 }

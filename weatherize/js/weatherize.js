@@ -8,7 +8,7 @@ function Weatherize(apiKey){
   // Define getWeather function
   this.getWeather = function(search, callback){
 
-    let round = function round(value, precision) {
+    const round = function round(value, precision) {
       let multiplier = Math.pow(10, precision || 0);
       return Math.round(value * multiplier) / multiplier;
     };
@@ -17,9 +17,12 @@ function Weatherize(apiKey){
     if(search === undefined || (typeof search !== 'string' && !Array.isArray(search))){
       return null;
     }
+
+    let lang = $('.weather-lang').text() || 'en';
     let data = {
       appid: this._apiKey,
-      units: 'metric'
+      units: 'metric',
+      lang: lang,
     };
     if(typeof search === 'string'){
       data['q'] = search;
@@ -73,7 +76,7 @@ function Weatherize(apiKey){
           }
           icon_avg_obj[info['weather'][0]['icon']]++;
 
-          $d.filter('.weather-icon.weather-h' + time.getUTCHours()).attr('src', 'http://openweathermap.org/img/wn/' + info['weather'][0]['icon'] + '.png');
+          $d.filter('.weather-icon.weather-h' + time.getUTCHours()).attr('src', 'http://openweathermap.org/img/wn/' + info['weather'][0]['icon'] + '.png').parent().removeClass('hide');
           $d.filter('.weather-temp.weather-h' + time.getUTCHours()).text(round(info['main']['temp'], 1) + '°C');
           $d.filter('.weather-temp-max.weather-h' + time.getUTCHours()).text(round(info['main']['temp_max'], 1) + '°C');
           $d.filter('.weather-temp-min.weather-h' + time.getUTCHours()).text(round(info['main']['temp_min'], 1) + '°C');
@@ -95,10 +98,13 @@ function Weatherize(apiKey){
         $d.filter('.weather-temp-avg').text( temp_avg + '°C');
         $d.filter('.weather-temp-max-avg').text( temp_max_avg + '°C');
         $d.filter('.weather-temp-min-avg').text( temp_min_avg + '°C');
-        $d.filter('.weather-week-day').text(date.toLocaleDateString('it-IT', {weekday: 'short'}));
-        $d.filter('.weather-date').text(date.toLocaleDateString('it-IT', {day: '2-digit', month: '2-digit'}));
+        $d.filter('.weather-week-day').text(date.toLocaleDateString(lang, {weekday: 'short'}));
+        $d.filter('.weather-date').text(date.toLocaleDateString(lang, {day: '2-digit', month: '2-digit'}));
+        $d.filter('.weather-full-date').text(date.toLocaleDateString(lang, {day: '2-digit', month: 'long', year: 'numeric'}));
         $d.filter('.weather-hide').removeClass('hide');
       }
+
+      $('.weather-location').text(r.city.name + ', ' + r.city.country);
 
 
 

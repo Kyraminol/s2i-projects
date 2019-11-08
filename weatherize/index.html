@@ -10,6 +10,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.3.0/css/flag-icon.min.css" rel="stylesheet">
     <link href="libs/materializecss/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="libs/materialize-stepper/mstepper.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="libs/charts/Chart.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="css/index.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   </head>
 
@@ -74,6 +75,7 @@
         </div>
         <div class="row hide center-align" id="day-picker-row">
           <div class="card-panel blue darken-1">
+            <h2 class="weather-location center-align white-text" style="margin-top: 0; padding-bottom: 25px"></h2>
             <div class="row center-align">
               <div id="day-picker">
                 <a href="#d1">
@@ -125,56 +127,288 @@
         <div class="row hide" id="weather-details">
           <div class="card-panel col s12 blue darken-1" style="padding: 10px">
             <div id="d1" class="hide">
-
-              <div class="day-detail white-text" style="">
-                <div class="detail center-align" style="">
-                  <p>00:00</p>
-                  <img class="weather-icon weather-d1 weather-h0" src="" alt="">
-                  <p class="weather-temp weather-d1 weather-h0"></p>
-                </div>
-                <div class="detail center-align" style="">
-                  <p>03:00</p>
-                  <img class="weather-icon weather-d1 weather-h3" src="" alt="">
-                  <p class="weather-temp weather-d1 weather-h3"></p>
-                </div>
-                <div class="detail center-align" style="">
-                  <p>06:00</p>
-                  <img class="weather-icon weather-d1 weather-h6" src="" alt="">
-                  <p class="weather-temp weather-d1 weather-h6"></p>
-                </div>
-                <div class="detail center-align" style="">
-                  <p>09:00</p>
-                  <img class="weather-icon weather-d1 weather-h9" src="" alt="">
-                  <p class="weather-temp weather-d1 weather-h9"></p>
-                </div>
-                <div class="detail center-align" style="">
-                  <p>12:00</p>
-                  <img class="weather-icon weather-d1 weather-h12" src="" alt="">
-                  <p class="weather-temp weather-d1 weather-h12"></p>
-                </div>
-                <div class="detail center-align" style="">
-                  <p>15:00</p>
-                  <img class="weather-icon weather-d1 weather-h15" src="" alt="">
-                  <p class="weather-temp weather-d1 weather-h15"></p>
-                </div>
-                <div class="detail center-align" style="">
-                  <p>18:00</p>
-                  <img class="weather-icon weather-d1 weather-h18" src="" alt="">
-                  <p class="weather-temp weather-d1 weather-h18"></p>
-                </div>
-                <div class="detail center-align" style="">
-                  <p>21:00</p>
-                  <img class="weather-icon weather-d1 weather-h21" src="" alt="">
-                  <p class="weather-temp weather-d1 weather-h21"></p>
+              <h3 class="white-text center-align weather-full-date weather-d1"></h3>
+              <div class="row center-align">
+                <div class="day-detail white-text">
+                  <div class="detail center-align hide">
+                    <p>00:00</p>
+                    <img class="weather-icon weather-d1 weather-h0" src="" alt="">
+                    <p class="weather-temp weather-d1 weather-h0"></p>
+                  </div>
+                  <div class="detail center-align hide">
+                    <p>03:00</p>
+                    <img class="weather-icon weather-d1 weather-h3" src="" alt="">
+                    <p class="weather-temp weather-d1 weather-h3"></p>
+                  </div>
+                  <div class="detail center-align hide">
+                    <p>06:00</p>
+                    <img class="weather-icon weather-d1 weather-h6" src="" alt="">
+                    <p class="weather-temp weather-d1 weather-h6"></p>
+                  </div>
+                  <div class="detail center-align hide">
+                    <p>09:00</p>
+                    <img class="weather-icon weather-d1 weather-h9" src="" alt="">
+                    <p class="weather-temp weather-d1 weather-h9"></p>
+                  </div>
+                  <div class="detail center-align hide">
+                    <p>12:00</p>
+                    <img class="weather-icon weather-d1 weather-h12" src="" alt="">
+                    <p class="weather-temp weather-d1 weather-h12"></p>
+                  </div>
+                  <div class="detail center-align hide">
+                    <p>15:00</p>
+                    <img class="weather-icon weather-d1 weather-h15" src="" alt="">
+                    <p class="weather-temp weather-d1 weather-h15"></p>
+                  </div>
+                  <div class="detail center-align hide">
+                    <p>18:00</p>
+                    <img class="weather-icon weather-d1 weather-h18" src="" alt="">
+                    <p class="weather-temp weather-d1 weather-h18"></p>
+                  </div>
+                  <div class="detail center-align hide">
+                    <p>21:00</p>
+                    <img class="weather-icon weather-d1 weather-h21" src="" alt="">
+                    <p class="weather-temp weather-d1 weather-h21"></p>
+                  </div>
                 </div>
               </div>
 
             </div>
-            <div id="d2" class="hide">2</div>
-            <div id="d3" class="hide">3</div>
-            <div id="d4" class="hide">4</div>
-            <div id="d5" class="hide">5</div>
-            <div id="d6" class="hide">6</div>
+            <div id="d2" class="hide">
+              <h3 class="white-text center-align weather-full-date weather-d2"></h3>
+              <div class="row center-align">
+                <div class="day-detail white-text">
+                  <div class="detail center-align hide">
+                    <p>00:00</p>
+                    <img class="weather-icon weather-d2 weather-h0" src="" alt="">
+                    <p class="weather-temp weather-d2 weather-h0"></p>
+                  </div>
+                  <div class="detail center-align hide">
+                    <p>03:00</p>
+                    <img class="weather-icon weather-d2 weather-h3" src="" alt="">
+                    <p class="weather-temp weather-d2 weather-h3"></p>
+                  </div>
+                  <div class="detail center-align hide">
+                    <p>06:00</p>
+                    <img class="weather-icon weather-d2 weather-h6" src="" alt="">
+                    <p class="weather-temp weather-d2 weather-h6"></p>
+                  </div>
+                  <div class="detail center-align hide">
+                    <p>09:00</p>
+                    <img class="weather-icon weather-d2 weather-h9" src="" alt="">
+                    <p class="weather-temp weather-d2 weather-h9"></p>
+                  </div>
+                  <div class="detail center-align hide">
+                    <p>12:00</p>
+                    <img class="weather-icon weather-d2 weather-h12" src="" alt="">
+                    <p class="weather-temp weather-d2 weather-h12"></p>
+                  </div>
+                  <div class="detail center-align hide">
+                    <p>15:00</p>
+                    <img class="weather-icon weather-d2 weather-h15" src="" alt="">
+                    <p class="weather-temp weather-d2 weather-h15"></p>
+                  </div>
+                  <div class="detail center-align hide">
+                    <p>18:00</p>
+                    <img class="weather-icon weather-d2 weather-h18" src="" alt="">
+                    <p class="weather-temp weather-d2 weather-h18"></p>
+                  </div>
+                  <div class="detail center-align hide">
+                    <p>21:00</p>
+                    <img class="weather-icon weather-d2 weather-h21" src="" alt="">
+                    <p class="weather-temp weather-d2 weather-h21"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="d3" class="hide">
+              <h3 class="white-text center-align weather-full-date weather-d3"></h3>
+              <div class="row center-align">
+                <div class="day-detail white-text">
+                  <div class="detail center-align hide">
+                    <p>00:00</p>
+                    <img class="weather-icon weather-d3 weather-h0" src="" alt="">
+                    <p class="weather-temp weather-d3 weather-h0"></p>
+                  </div>
+                  <div class="detail center-align hide">
+                    <p>03:00</p>
+                    <img class="weather-icon weather-d3 weather-h3" src="" alt="">
+                    <p class="weather-temp weather-d3 weather-h3"></p>
+                  </div>
+                  <div class="detail center-align hide">
+                    <p>06:00</p>
+                    <img class="weather-icon weather-d3 weather-h6" src="" alt="">
+                    <p class="weather-temp weather-d3 weather-h6"></p>
+                  </div>
+                  <div class="detail center-align hide">
+                    <p>09:00</p>
+                    <img class="weather-icon weather-d3 weather-h9" src="" alt="">
+                    <p class="weather-temp weather-d3 weather-h9"></p>
+                  </div>
+                  <div class="detail center-align hide">
+                    <p>12:00</p>
+                    <img class="weather-icon weather-d3 weather-h12" src="" alt="">
+                    <p class="weather-temp weather-d3 weather-h12"></p>
+                  </div>
+                  <div class="detail center-align hide">
+                    <p>15:00</p>
+                    <img class="weather-icon weather-d3 weather-h15" src="" alt="">
+                    <p class="weather-temp weather-d3 weather-h15"></p>
+                  </div>
+                  <div class="detail center-align hide">
+                    <p>18:00</p>
+                    <img class="weather-icon weather-d3 weather-h18" src="" alt="">
+                    <p class="weather-temp weather-d3 weather-h18"></p>
+                  </div>
+                  <div class="detail center-align hide">
+                    <p>21:00</p>
+                    <img class="weather-icon weather-d3 weather-h21" src="" alt="">
+                    <p class="weather-temp weather-d3 weather-h21"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="d4" class="hide">
+              <h3 class="white-text center-align weather-full-date weather-d4"></h3>
+              <div class="row center-align">
+                <div class="day-detail white-text">
+                  <div class="detail center-align hide">
+                    <p>00:00</p>
+                    <img class="weather-icon weather-d4 weather-h0" src="" alt="">
+                    <p class="weather-temp weather-d4 weather-h0"></p>
+                  </div>
+                  <div class="detail center-align hide">
+                    <p>03:00</p>
+                    <img class="weather-icon weather-d4 weather-h3" src="" alt="">
+                    <p class="weather-temp weather-d4 weather-h3"></p>
+                  </div>
+                  <div class="detail center-align hide">
+                    <p>06:00</p>
+                    <img class="weather-icon weather-d4 weather-h6" src="" alt="">
+                    <p class="weather-temp weather-d4 weather-h6"></p>
+                  </div>
+                  <div class="detail center-align hide">
+                    <p>09:00</p>
+                    <img class="weather-icon weather-d4 weather-h9" src="" alt="">
+                    <p class="weather-temp weather-d4 weather-h9"></p>
+                  </div>
+                  <div class="detail center-align hide">
+                    <p>12:00</p>
+                    <img class="weather-icon weather-d4 weather-h12" src="" alt="">
+                    <p class="weather-temp weather-d4 weather-h12"></p>
+                  </div>
+                  <div class="detail center-align hide">
+                    <p>15:00</p>
+                    <img class="weather-icon weather-d4 weather-h15" src="" alt="">
+                    <p class="weather-temp weather-d4 weather-h15"></p>
+                  </div>
+                  <div class="detail center-align hide">
+                    <p>18:00</p>
+                    <img class="weather-icon weather-d4 weather-h18" src="" alt="">
+                    <p class="weather-temp weather-d4 weather-h18"></p>
+                  </div>
+                  <div class="detail center-align hide">
+                    <p>21:00</p>
+                    <img class="weather-icon weather-d4 weather-h21" src="" alt="">
+                    <p class="weather-temp weather-d4 weather-h21"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="d5" class="hide">
+              <h3 class="white-text center-align weather-full-date weather-d5"></h3>
+              <div class="row center-align">
+                <div class="day-detail white-text">
+                  <div class="detail center-align hide">
+                    <p>00:00</p>
+                    <img class="weather-icon weather-d5 weather-h0" src="" alt="">
+                    <p class="weather-temp weather-d5 weather-h0"></p>
+                  </div>
+                  <div class="detail center-align hide">
+                    <p>03:00</p>
+                    <img class="weather-icon weather-d5 weather-h3" src="" alt="">
+                    <p class="weather-temp weather-d5 weather-h3"></p>
+                  </div>
+                  <div class="detail center-align hide">
+                    <p>06:00</p>
+                    <img class="weather-icon weather-d5 weather-h6" src="" alt="">
+                    <p class="weather-temp weather-d5 weather-h6"></p>
+                  </div>
+                  <div class="detail center-align hide">
+                    <p>09:00</p>
+                    <img class="weather-icon weather-d5 weather-h9" src="" alt="">
+                    <p class="weather-temp weather-d5 weather-h9"></p>
+                  </div>
+                  <div class="detail center-align hide">
+                    <p>12:00</p>
+                    <img class="weather-icon weather-d5 weather-h12" src="" alt="">
+                    <p class="weather-temp weather-d5 weather-h12"></p>
+                  </div>
+                  <div class="detail center-align hide">
+                    <p>15:00</p>
+                    <img class="weather-icon weather-d5 weather-h15" src="" alt="">
+                    <p class="weather-temp weather-d5 weather-h15"></p>
+                  </div>
+                  <div class="detail center-align hide">
+                    <p>18:00</p>
+                    <img class="weather-icon weather-d5 weather-h18" src="" alt="">
+                    <p class="weather-temp weather-d5 weather-h18"></p>
+                  </div>
+                  <div class="detail center-align hide">
+                    <p>21:00</p>
+                    <img class="weather-icon weather-d5 weather-h21" src="" alt="">
+                    <p class="weather-temp weather-d5 weather-h21"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="d6" class="hide">
+              <h3 class="white-text center-align weather-full-date weather-d6"></h3>
+              <div class="row center-align">
+                <div class="day-detail white-text">
+                  <div class="detail center-align hide">
+                    <p>00:00</p>
+                    <img class="weather-icon weather-d6 weather-h0" src="" alt="">
+                    <p class="weather-temp weather-d6 weather-h0"></p>
+                  </div>
+                  <div class="detail center-align hide">
+                    <p>03:00</p>
+                    <img class="weather-icon weather-d6 weather-h3" src="" alt="">
+                    <p class="weather-temp weather-d6 weather-h3"></p>
+                  </div>
+                  <div class="detail center-align hide">
+                    <p>06:00</p>
+                    <img class="weather-icon weather-d6 weather-h6" src="" alt="">
+                    <p class="weather-temp weather-d6 weather-h6"></p>
+                  </div>
+                  <div class="detail center-align hide">
+                    <p>09:00</p>
+                    <img class="weather-icon weather-d6 weather-h9" src="" alt="">
+                    <p class="weather-temp weather-d6 weather-h9"></p>
+                  </div>
+                  <div class="detail center-align hide">
+                    <p>12:00</p>
+                    <img class="weather-icon weather-d6 weather-h12" src="" alt="">
+                    <p class="weather-temp weather-d6 weather-h12"></p>
+                  </div>
+                  <div class="detail center-align hide">
+                    <p>15:00</p>
+                    <img class="weather-icon weather-d6 weather-h15" src="" alt="">
+                    <p class="weather-temp weather-d6 weather-h15"></p>
+                  </div>
+                  <div class="detail center-align hide">
+                    <p>18:00</p>
+                    <img class="weather-icon weather-d6 weather-h18" src="" alt="">
+                    <p class="weather-temp weather-d6 weather-h18"></p>
+                  </div>
+                  <div class="detail center-align hide">
+                    <p>21:00</p>
+                    <img class="weather-icon weather-d6 weather-h21" src="" alt="">
+                    <p class="weather-temp weather-d6 weather-h21"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -189,7 +423,7 @@
       <span class="i18n-geo-unknown">An unknown error occurred</span>
       <span class="i18n-geo-unsupported">Geolocation is not supported by this browser</span>
 
-      <span class="i18n-currentlang">en</span>
+      <span class="i18n-currentlang weather-lang">en</span>
     </div>
     <footer class="page-footer blue darken-3" style="margin-top: 50px">
       <div class="container">
@@ -226,6 +460,7 @@
   <script src="libs/jquery-3.4.1.min.js"></script>
   <script src="libs/materializecss/materialize.min.js"></script>
   <script src="libs/materialize-stepper/mstepper.min.js"></script>
+  <script src="libs/charts/Chart.bundle.min.js"></script>
   <script src="js/i18n.js"></script>
   <script src="js/weatherize.js"></script>
   <script src="js/index.js"></script>
