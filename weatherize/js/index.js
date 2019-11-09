@@ -8,6 +8,7 @@ $(function(){
   const $stepApikeyTitle = $('#step-apikey-title');
   const $apiKeyButton = $('#apiKeyButton');
   const $weatherDetails = $('#weather-details');
+  const $tempChart = $('#temp-chart');
 
   const $locationNotFound = $('.i18n-locationnotfound');
   const $locationFound = $('.i18n-locationfound');
