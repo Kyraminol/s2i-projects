@@ -29,6 +29,119 @@ $(function(){
     $searchHelper.attr('data-success', $locationFound.text());
     $search.val(data.city.name + ', ' + data.city.country);
     M.updateTextFields();
+
+    let resultKeys = Object.keys(data.weather);
+
+    let chartOptions = {
+      scales: {
+        xAxes: [{
+          type: 'time',
+          time: {
+            unit: 'hour'
+          },
+          gridLines: {
+            color: 'rgba(255, 255, 255, 0.3)',
+          },
+          ticks: {
+            fontColor: 'rgb(255, 255, 255)',
+          },
+        }],
+        yAxes: [{
+          gridLines: {
+            color: 'rgba(255, 255, 255, 0.3)',
+          },
+          ticks: {
+            fontColor: 'rgb(255, 255, 255)',
+          },
+        }]
+      },
+      legend: {display: false},
+    };
+
+    for(let i = 0; i < resultKeys.length; i++){
+      let chartData = {
+        temperature: [],
+        pressure: [],
+        humidity: [],
+        rain: [],
+      };
+      let weather = data.weather[resultKeys[i]];
+      weather.forEach(function(info){
+        let time = new Date(info['dt'] * 1000);
+        chartData.temperature.push({
+          x: time,
+          y: info['main']['temp'],
+        });
+        chartData.pressure.push({
+          x: time,
+          y: info['main']['pressure'],
+        });
+        chartData.humidity.push({
+          x: time,
+          y: info['main']['humidity'],
+        });
+        let rain = 0;
+        if(Object.keys(info).includes('rain')){
+          rain = info['rain']['3h'];
+        }
+        chartData.rain.push({
+          x: time,
+          y: rain,
+        });
+
+      });
+
+      new Chart(document.querySelector('#d' + (i+1) + ' canvas.temp-chart'), {
+        type: 'line',
+        data: {
+          datasets: [{
+            label: 'Temperature (°C)',
+            backgroundColor: 'rgba(255, 255, 255, 0.3)',
+            borderColor: 'rgb(255, 255, 255)',
+            data: chartData.temperature
+          }]
+        },
+        options: chartOptions
+      });
+      new Chart(document.querySelector('#d' + (i+1) + ' canvas.rain-chart'), {
+        type: 'bar',
+        data: {
+          datasets: [{
+            label: 'Rainfall (mm)',
+            backgroundColor: 'rgb(255, 255, 255)',
+            borderColor: 'rgb(255, 255, 255)',
+            data: chartData.rain
+          }]
+        },
+        options: chartOptions
+      });
+      new Chart(document.querySelector('#d' + (i+1) + ' canvas.humidity-chart'), {
+        type: 'line',
+        data: {
+          datasets: [{
+            label: 'Humidity (%)',
+            backgroundColor: 'rgba(255, 255, 255, 0.3)',
+            borderColor: 'rgb(255, 255, 255)',
+            data: chartData.humidity
+          }]
+        },
+        options: chartOptions
+      });
+      new Chart(document.querySelector('#d' + (i+1) + ' canvas.pressure-chart'), {
+        type: 'line',
+        data: {
+          datasets: [{
+            label: 'Pressure (hPa)',
+            backgroundColor: 'rgba(255, 255, 255, 0.3)',
+            borderColor: 'rgb(255, 255, 255)',
+            data: chartData.pressure
+          }]
+        },
+        options: chartOptions
+      });
+
+    }
+
     $pickerRow.removeClass('hide');
   };
 
@@ -64,7 +177,7 @@ $(function(){
       return;
     }
     let $prev = $this.siblings('.selected');
-    $($prev.attr('href')).addClass('hide');
+    $('#weather-details > div > div:not(.hide)').addClass('hide');
     $prev.removeClass('selected');
     $($this.attr('href')).removeClass('hide');
     $this.addClass('selected');
