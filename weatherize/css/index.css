@@ -27,7 +27,7 @@ nav ul li a.dropdown-trigger {
     padding-right: 0;
 }
 
-#day-picker-row .card-panel {
+#day-picker {
     width: auto;
     position: relative;
     overflow-x: auto;
@@ -109,7 +109,10 @@ ul.stepper .step .step-title::after {
 
 .day-detail {
     margin: 0 10px;
-    display: inline-block;
+    width: auto;
+    position: relative;
+    overflow-x: auto;
+    white-space: nowrap;
 }
 
 .day-detail .detail {
@@ -132,4 +135,8 @@ ul.stepper .step .step-title::after {
 
 #weather-details h3 {
     padding-bottom: 20px;
+}
+
+.fa, .fab, .fal, .far, .fas {
+    padding-right: 5px;
 }

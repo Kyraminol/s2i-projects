@@ -1,22 +1,32 @@
 $(function(){
   const i18n = {
     'it': {
-      apikey: 'Chiave API',
-      confirm: 'Conferma',
-      currentlang: 'it',
-      editapikey: 'Modifica chiave API',
+      'apikey': 'Chiave API',
+      'confirm': 'Conferma',
+      'currentlang': 'it',
+      'editapikey': 'Modifica chiave API',
       'geo-denied': 'Richiesta per geolocalizzazione rifiutata',
       'geo-timeout': 'The request to get user location timed out',
       'geo-unavailable': 'Informazioni per la localizzazione non disponibili',
       'geo-unknown': 'Errore sconosciuto per la geolocalizzazione',
       'geo-unsupported': 'Geolocalizzazione non supportata da questo browser',
-      insertalocation: 'Inserire una località',
-      language: 'Lingua',
-      location: 'Località',
-      locationfound: 'Località trovata',
-      locationnotfound: 'Località non trovata',
-      search: 'Cerca',
-      wrongapikey: 'Chiave API sbagliata!',
+      'insertalocation': 'Inserire una località',
+      'language': 'Lingua',
+      'location': 'Località',
+      'locationfound': 'Località trovata',
+      'locationnotfound': 'Località non trovata',
+      'search': 'Cerca',
+      'wrongapikey': 'Chiave API sbagliata!',
+      'thanks': 'Ringraziamenti Speciali',
+      'thanks-content-1': 'Un ringraziamento enorme a ',
+      'thanks-content-2': ' per questa opportunità di imparare e migliorarmi, al team di ',
+      'thanks-content-3': ', ma soprattutto alla mia amata per il costante supporto ♥',
+      'links': 'Miei Links',
+      'source': 'Codice Sorgente',
+      'temperature': 'Temperatura (°C)',
+      'humidity': 'Umidità (%)',
+      'rainfall': 'Precipitazioni (mm)',
+      'pressure': 'Pressione (hPa)',
     },
     'en': {},
   };
@@ -49,7 +59,7 @@ $(function(){
     e.preventDefault();
     let lang = $(this).data('lang');
     localStorage.setItem('lang', lang);
-    translate(lang);
+    window.location.reload();
   })
 
 });
