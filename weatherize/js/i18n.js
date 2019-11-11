@@ -27,6 +27,7 @@ $(function(){
       'humidity': 'Umidità (%)',
       'rainfall': 'Precipitazioni (mm)',
       'pressure': 'Pressione (hPa)',
+      'selectday': 'Seleziona un giorno per mostrare altri dettagli',
     },
     'en': {},
   };
