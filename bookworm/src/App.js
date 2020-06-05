@@ -11,9 +11,28 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { makeStyles, fade } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import GoogleLogin from 'react-google-login';
+import axios from 'axios';
 import './App.css';
 
 function App() {
+  const [query, setQuery] = React.useState("");
+
+  React.useEffect(() => {
+    const timeOutId = setTimeout(() => {
+      if(query.length > 3){
+        axios.get('https://www.googleapis.com/books/v1/volumes?q=' + query).then((r) => {
+          if(r.status === 200){
+            r.data.items.forEach((volume) => {
+              console.log(volume)
+            });
+          }
+          console.log(r);
+        });
+      }
+    }, 500);
+    return () => clearTimeout(timeOutId);
+  }, [query]);
+
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
 
   const theme = React.useMemo(
@@ -81,7 +100,6 @@ function App() {
     },
     inputInput: {
       padding: theme.spacing(1, 1, 1, 0),
-      // vertical padding + font size from searchIcon
       paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
       transition: theme.transitions.create('width'),
       width: '100%',
@@ -136,6 +154,8 @@ function App() {
                     input: classes.inputInput,
                   }}
                   inputProps={{ 'aria-label': 'search' }}
+                  value={query}
+                  onChange={event => setQuery(event.target.value)}
                 />
               </div>
             </Container>
