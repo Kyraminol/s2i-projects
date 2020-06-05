@@ -4,11 +4,13 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+import InputBase from '@material-ui/core/InputBase';
+import deepPurple from '@material-ui/core/colors/deepPurple';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, fade } from '@material-ui/core/styles';
+import SearchIcon from '@material-ui/icons/Search';
+import GoogleLogin from 'react-google-login';
 import './App.css';
 
 function App() {
@@ -18,6 +20,7 @@ function App() {
     () =>
       createMuiTheme({
         palette: {
+          primary: deepPurple,
           type: prefersDarkMode ? 'dark' : 'light',
         },
       }),
@@ -31,9 +34,6 @@ function App() {
         padding: 0,
         listStyle: 'none',
       },
-    },
-    appBar: {
-      borderBottom: `1px solid ${theme.palette.divider}`,
     },
     toolbar: {
       flexWrap: 'wrap',
@@ -53,6 +53,45 @@ function App() {
       backgroundColor: theme.palette.background.paper,
       padding: theme.spacing(6),
     },
+    search: {
+      position: 'relative',
+      borderRadius: theme.shape.borderRadius,
+      backgroundColor: fade(theme.palette.common.white, 0.15),
+      '&:hover': {
+        backgroundColor: fade(theme.palette.common.white, 0.25),
+      },
+      marginLeft: 0,
+      width: '100%',
+      [theme.breakpoints.up('sm')]: {
+        marginLeft: theme.spacing(1),
+        width: 'min-content',
+      },
+    },
+    searchIcon: {
+      padding: theme.spacing(0, 2),
+      height: '100%',
+      position: 'absolute',
+      pointerEvents: 'none',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    inputRoot: {
+      color: 'inherit',
+    },
+    inputInput: {
+      padding: theme.spacing(1, 1, 1, 0),
+      // vertical padding + font size from searchIcon
+      paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+      transition: theme.transitions.create('width'),
+      width: '100%',
+      [theme.breakpoints.up('sm')]: {
+        width: '40ch',
+        '&:focus': {
+          width: '100ch',
+        },
+      },
+    },
   }), {defaultTheme: theme})();
 
   return (
@@ -64,17 +103,20 @@ function App() {
             <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
               Bookworm
             </Typography>
-            <Button href="#" color="inherit" variant="outlined" className={classes.link}>
-              Login with Google
-            </Button>
+            <GoogleLogin
+              clientId="677208347872-r20r0a8f9at4n54vi59i47iemilm893i.apps.googleusercontent.com"
+              buttonText="Sign in with Google"
+              onSuccess={responseGoogle}
+              onFailure={responseGoogle}
+              cookiePolicy={'single_host_origin'}
+              scope="https://www.googleapis.com/auth/drive.appdata"
+              isSignedIn={true}
+            />
           </Toolbar>
         </AppBar>
         <main>
           <div className={classes.landing}>
             <Container maxWidth="sm">
-              <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-                Bookworm
-              </Typography>
               <Typography variant="h5" align="center" color="textSecondary" paragraph>
                 Your personal cozy companion for searching and wishlisting books.
               </Typography>
@@ -82,10 +124,20 @@ function App() {
                 I can remember which books you already completed and your progress at reading!
               </Typography>
             </Container>
-            <Container maxWidth="md">
-              <form className={classes.root} noValidate autoComplete="off">
-                <TextField id="search-input" placeholder="Search for books you love" variant="outlined" fullWidth margin="normal" InputLabelProps={{shrink: true,}}/>
-              </form>
+            <Container maxWidth="md" align="center">
+              <div className={classes.search}>
+                <div className={classes.searchIcon}>
+                  <SearchIcon />
+                </div>
+                <InputBase
+                  placeholder="Search for books you love"
+                  classes={{
+                    root: classes.inputRoot,
+                    input: classes.inputInput,
+                  }}
+                  inputProps={{ 'aria-label': 'search' }}
+                />
+              </div>
             </Container>
           </div>
         </main>
@@ -101,6 +153,10 @@ function App() {
       </ThemeProvider>
     </React.Fragment>
   );
+}
+
+const responseGoogle = (response) => {
+  console.log(response);
 }
 
 function Copyright() {
