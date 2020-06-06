@@ -6,33 +6,17 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import InputBase from '@material-ui/core/InputBase';
 import deepPurple from '@material-ui/core/colors/deepPurple';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import {createMuiTheme, fade, makeStyles, ThemeProvider} from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { makeStyles, fade } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import GoogleLogin from 'react-google-login';
+import {BrowserRouter as Router, Switch, Route, useParams} from "react-router-dom";
 import axios from 'axios';
 import './App.css';
 
+const ClassesContext = React.createContext({});
+
 function App() {
-  const [query, setQuery] = React.useState("");
-
-  React.useEffect(() => {
-    const timeOutId = setTimeout(() => {
-      if(query.length > 3){
-        axios.get('https://www.googleapis.com/books/v1/volumes?q=' + query).then((r) => {
-          if(r.status === 200){
-            r.data.items.forEach((volume) => {
-              console.log(volume)
-            });
-          }
-          console.log(r);
-        });
-      }
-    }, 500);
-    return () => clearTimeout(timeOutId);
-  }, [query]);
-
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
 
   const theme = React.useMemo(
@@ -107,6 +91,7 @@ function App() {
         width: '40ch',
         '&:focus': {
           width: '100ch',
+          height: '1.5rem',
         },
       },
     },
@@ -133,38 +118,26 @@ function App() {
           </Toolbar>
         </AppBar>
         <main>
-          <div className={classes.landing}>
-            <Container maxWidth="sm">
-              <Typography variant="h5" align="center" color="textSecondary" paragraph>
-                Your personal cozy companion for searching and wishlisting books.
-              </Typography>
-              <Typography align="center" color="textSecondary" paragraph>
-                I can remember which books you already completed and your progress at reading!
-              </Typography>
-            </Container>
-            <Container maxWidth="md" align="center">
-              <div className={classes.search}>
-                <div className={classes.searchIcon}>
-                  <SearchIcon />
-                </div>
-                <InputBase
-                  placeholder="Search for books you love"
-                  classes={{
-                    root: classes.inputRoot,
-                    input: classes.inputInput,
-                  }}
-                  inputProps={{ 'aria-label': 'search' }}
-                  value={query}
-                  onChange={event => setQuery(event.target.value)}
-                />
-              </div>
-            </Container>
-          </div>
+          <ClassesContext.Provider value={classes}>
+            <Router>
+              <Switch>
+                <Route exact path="/">
+                  <Home/>
+                </Route>
+                <Route path="/book/:id">
+                  <Book/>
+                </Route>
+                <Route path="*">
+                  <NotFound/>
+                </Route>
+              </Switch>
+            </Router>
+          </ClassesContext.Provider>
         </main>
         <footer className={classes.footer}>
-          <Typography variant="h6" align="center" gutterBottom>
-            Credits
-          </Typography>
+        <Typography variant="h6" align="center" gutterBottom>
+          Credits
+        </Typography>
           <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
 
           </Typography>
@@ -177,6 +150,79 @@ function App() {
 
 const responseGoogle = (response) => {
   console.log(response);
+}
+
+class Home extends React.Component {
+  static contextType = ClassesContext;
+  render() {
+    let classes = this.context;
+
+    return (
+      <div className={classes.landing}>
+        <Container maxWidth="sm">
+          <Typography variant="h5" align="center" color="textSecondary" paragraph>
+            Your personal cozy companion for searching and wishlisting books.
+          </Typography>
+          <Typography align="center" color="textSecondary" paragraph>
+            I can remember which books you already completed and your progress at reading!
+          </Typography>
+        </Container>
+        <Container maxWidth="md" align="center">
+          <SearchInput classes={classes}/>
+        </Container>
+      </div>
+    );
+  }
+}
+
+
+function SearchInput(props){
+  const [query, setQuery] = React.useState("");
+
+  React.useEffect(() => {
+    const timeOutId = setTimeout(() => {
+      if(query.length > 3){
+        axios.get('https://www.googleapis.com/books/v1/volumes?q=' + query).then((r) => {
+          if(r.status === 200){
+            r.data.items.forEach((volume) => {
+              console.log(volume)
+            });
+          }
+          console.log(r);
+        });
+      }
+    }, 500);
+    return () => clearTimeout(timeOutId);
+  }, [query]);
+
+  let classes = props.classes;
+
+  return (
+    <div className={classes.search}>
+      <div className={classes.searchIcon}>
+        <SearchIcon/>
+      </div>
+      <InputBase
+        placeholder="Search for books you love"
+        classes={{
+          root: classes.inputRoot,
+          input: classes.inputInput,
+        }}
+        inputProps={{'aria-label': 'search'}}
+        value={query}
+        onChange={event => setQuery(event.target.value)}
+      />
+    </div>
+  )
+}
+
+function Book() {
+  let { id } = useParams();
+  return id;
+}
+
+function NotFound() {
+  return '404';
 }
 
 function Copyright() {
