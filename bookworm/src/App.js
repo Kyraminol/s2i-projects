@@ -9,7 +9,7 @@ import deepPurple from '@material-ui/core/colors/deepPurple';
 import {createMuiTheme, fade, makeStyles, ThemeProvider} from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import SearchIcon from '@material-ui/icons/Search';
-import GoogleLogin from 'react-google-login';
+import {GoogleLogin, GoogleLogout} from 'react-google-login';
 import {BrowserRouter as Router, Switch, Route, useParams} from "react-router-dom";
 import axios from 'axios';
 import './App.css';
@@ -106,15 +106,7 @@ function App() {
             <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
               Bookworm
             </Typography>
-            <GoogleLogin
-              clientId="677208347872-r20r0a8f9at4n54vi59i47iemilm893i.apps.googleusercontent.com"
-              buttonText="Sign in with Google"
-              onSuccess={responseGoogle}
-              onFailure={responseGoogle}
-              cookiePolicy={'single_host_origin'}
-              scope="https://www.googleapis.com/auth/drive.appdata"
-              isSignedIn={true}
-            />
+            <Google/>
           </Toolbar>
         </AppBar>
         <main>
@@ -135,9 +127,9 @@ function App() {
           </ClassesContext.Provider>
         </main>
         <footer className={classes.footer}>
-        <Typography variant="h6" align="center" gutterBottom>
-          Credits
-        </Typography>
+          <Typography variant="h6" align="center" gutterBottom>
+            Credits
+          </Typography>
           <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
 
           </Typography>
@@ -148,30 +140,80 @@ function App() {
   );
 }
 
-const responseGoogle = (response) => {
-  console.log(response);
+function Home(){
+  const [searchResults, setSearchResults] = React.useState({});
+
+  return (
+    <HomeComponent
+      searchResults={searchResults}
+      setSearchResults={setSearchResults}
+    />
+  )
 }
 
-class Home extends React.Component {
+class HomeComponent extends React.Component {
   static contextType = ClassesContext;
   render() {
     let classes = this.context;
-
+    let props = this.props;
     return (
-      <div className={classes.landing}>
-        <Container maxWidth="sm">
-          <Typography variant="h5" align="center" color="textSecondary" paragraph>
-            Your personal cozy companion for searching and wishlisting books.
-          </Typography>
-          <Typography align="center" color="textSecondary" paragraph>
-            I can remember which books you already completed and your progress at reading!
-          </Typography>
-        </Container>
-        <Container maxWidth="md" align="center">
-          <SearchInput classes={classes}/>
-        </Container>
+      <div>
+        <div className={classes.landing}>
+          <Container maxWidth="sm">
+            <Typography variant="h5" align="center" color="textSecondary" paragraph>
+              Your personal cozy companion for searching and wishlisting books.
+            </Typography>
+            <Typography align="center" color="textSecondary" paragraph>
+              I can remember which books you already completed and your progress at reading!
+            </Typography>
+          </Container>
+          <Container maxWidth="md" align="center">
+            <SearchInput
+              classes={classes}
+              setSearchResults={props.setSearchResults}
+            />
+          </Container>
+        </div>
+        <div>
+          <SearchResults
+            classes={classes}
+            searchResults={props.searchResults}
+          />
+        </div>
       </div>
     );
+  }
+}
+
+function Google(){
+  const [isLogged, setLogged] = React.useState(false);
+  if(!isLogged){
+    return (
+      <GoogleLogin
+        clientId="677208347872-r20r0a8f9at4n54vi59i47iemilm893i.apps.googleusercontent.com"
+        buttonText="Sign in with Google"
+        onSuccess={callbackLogin}
+        onFailure={callbackLogin}
+        cookiePolicy={'single_host_origin'}
+        scope="https://www.googleapis.com/auth/drive.appdata"
+      />
+    )
+  } else {
+    return (
+      <GoogleLogout
+        clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+        buttonText="Sign out"
+        onLogoutSuccess={callbackLogout}
+      />
+    )
+  }
+
+  function callbackLogin(){
+    setLogged(true);
+  }
+
+  function callbackLogout() {
+    setLogged(false);
   }
 }
 
@@ -181,20 +223,20 @@ function SearchInput(props){
 
   React.useEffect(() => {
     const timeOutId = setTimeout(() => {
-      if(query.length > 3){
-        axios.get('https://www.googleapis.com/books/v1/volumes?q=' + query).then((r) => {
-          if(r.status === 200){
-            r.data.items.forEach((volume) => {
-              console.log(volume)
-            });
-          }
-          console.log(r);
-        });
+      if(typeof  query === 'string'){
+        if(query.length > 2){
+          axios.get('https://www.googleapis.com/books/v1/volumes?q=' + query).then((r) => {
+            if(r.status === 200){
+              props.setSearchResults(r);
+            }
+          });
+        } else {
+          props.setSearchResults({});
+        }
       }
     }, 500);
     return () => clearTimeout(timeOutId);
-  }, [query]);
-
+  }, [query, props]);
   let classes = props.classes;
 
   return (
@@ -214,6 +256,19 @@ function SearchInput(props){
       />
     </div>
   )
+}
+
+function SearchResults(props){
+  //let classes = props.classes;
+  let searchResults = props.searchResults;
+
+  let result = "";
+  console.log(searchResults);
+  if(searchResults.data !== undefined){
+    searchResults.data.items.forEach(book => {
+    });
+  }
+  return result
 }
 
 function Book() {
