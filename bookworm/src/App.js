@@ -7,27 +7,33 @@ import Container from '@material-ui/core/Container';
 import InputBase from '@material-ui/core/InputBase';
 import deepPurple from '@material-ui/core/colors/deepPurple';
 import {createMuiTheme, fade, makeStyles, ThemeProvider} from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
 import SearchIcon from '@material-ui/icons/Search';
 import {GoogleLogin, GoogleLogout} from 'react-google-login';
-import {BrowserRouter as Router, Switch, Route, useParams} from "react-router-dom";
+import {BrowserRouter as Router, Route, Switch, useParams, Link} from "react-router-dom";
 import axios from 'axios';
 import './App.css';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardActions from '@material-ui/core/CardActions';
+import IconButton from '@material-ui/core/IconButton';
+import { red } from '@material-ui/core/colors';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import Grid from '@material-ui/core/Grid';
 
 const ClassesContext = React.createContext({});
 
 function App() {
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-
   const theme = React.useMemo(
     () =>
       createMuiTheme({
         palette: {
           primary: deepPurple,
-          type: prefersDarkMode ? 'dark' : 'light',
+          type: 'dark',
         },
       }),
-    [prefersDarkMode],
+    [],
   );
 
   const classes = makeStyles((theme) => ({
@@ -95,6 +101,28 @@ function App() {
         },
       },
     },
+    root: {
+      height: "100%",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "space-between"
+    },
+    media: {
+      height: 'min-content',
+      width: 'min-content',
+      display: 'inline-block',
+      paddingLeft: '20px'
+    },
+    avatar: {
+      backgroundColor: red[500],
+    },
+    cardGrid: {
+      paddingTop: theme.spacing(8),
+      paddingBottom: theme.spacing(8),
+    },
+    cardactions: {
+      justifyContent: "end",
+    }
   }), {defaultTheme: theme})();
 
   return (
@@ -114,6 +142,9 @@ function App() {
             <Router>
               <Switch>
                 <Route exact path="/">
+                  <Home/>
+                </Route>
+                <Route path="/search/:query">
                   <Home/>
                 </Route>
                 <Route path="/book/:id">
@@ -142,9 +173,11 @@ function App() {
 
 function Home(){
   const [searchResults, setSearchResults] = React.useState({});
+  let { query } = useParams();
 
   return (
     <HomeComponent
+      query={query}
       searchResults={searchResults}
       setSearchResults={setSearchResults}
     />
@@ -161,25 +194,23 @@ class HomeComponent extends React.Component {
         <div className={classes.landing}>
           <Container maxWidth="sm">
             <Typography variant="h5" align="center" color="textSecondary" paragraph>
-              Your personal cozy companion for searching and wishlisting books.
-            </Typography>
-            <Typography align="center" color="textSecondary" paragraph>
-              I can remember which books you already completed and your progress at reading!
+              Your cozy companion for searching and wishlisting books.
             </Typography>
           </Container>
           <Container maxWidth="md" align="center">
             <SearchInput
               classes={classes}
+              query={props.query}
               setSearchResults={props.setSearchResults}
             />
           </Container>
         </div>
-        <div>
+        <Container className={classes.cardGrid} maxWidth="xl">
           <SearchResults
             classes={classes}
             searchResults={props.searchResults}
           />
-        </div>
+        </Container>
       </div>
     );
   }
@@ -195,7 +226,7 @@ function Google(){
         onSuccess={callbackLogin}
         onFailure={callbackLogin}
         cookiePolicy={'single_host_origin'}
-        scope="https://www.googleapis.com/auth/drive.appdata"
+        scope="https://www.googleapis.com/auth/books"
       />
     )
   } else {
@@ -220,12 +251,15 @@ function Google(){
 
 function SearchInput(props){
   const [query, setQuery] = React.useState("");
+  if(query === "" && props.query){
+    setQuery(props.query);
+  }
 
   React.useEffect(() => {
     const timeOutId = setTimeout(() => {
       if(typeof  query === 'string'){
         if(query.length > 2){
-          axios.get('https://www.googleapis.com/books/v1/volumes?q=' + query).then((r) => {
+          axios.get('https://www.googleapis.com/books/v1/volumes?maxResults=12&q=' + query).then((r) => {
             if(r.status === 200){
               props.setSearchResults(r);
             }
@@ -258,17 +292,71 @@ function SearchInput(props){
   )
 }
 
+class ResultCard extends React.Component {
+  static contextType = ClassesContext;
+
+  render() {
+    let classes = this.context;
+    let props = this.props;
+    let book = props.book;
+    return (
+      <Card className={classes.root}>
+        <CardHeader
+          action={
+            <IconButton aria-label="settings">
+              <MoreVertIcon />
+            </IconButton>
+          }
+          classes={{
+            content: classes.cardheader
+          }}
+          titleTypographyProps={{variant: 'body1'}}
+          subheaderTypographyProps={{variant: 'body2'}}
+          title={book.volumeInfo.title}
+          subheader={(book.volumeInfo.authors || []).join(', ')}
+        />
+        <div className={classes.mediaroot}>
+          <Link to={'/book/' + book.id}>
+            <CardMedia
+              className={classes.media}
+              component='img'
+              image={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : ''}
+              title={book.volumeInfo.title}
+            />
+          </Link>
+
+        </div>
+        <CardActions disableSpacing className={classes.cardactions}>
+          <IconButton aria-label="add to favorites">
+            <FavoriteIcon/>
+          </IconButton>
+        </CardActions>
+      </Card>
+    )
+  }
+}
+
+
 function SearchResults(props){
   //let classes = props.classes;
   let searchResults = props.searchResults;
 
-  let result = "";
+  let result = [];
   console.log(searchResults);
   if(searchResults.data !== undefined){
-    searchResults.data.items.forEach(book => {
+    searchResults.data.items.forEach((book) => {
+      result.push(
+        <Grid item key={book.id} xs={12} sm={6} md={4}>
+          <ResultCard book={book}/>
+        </Grid>
+      )
     });
   }
-  return result
+  return (
+    <Grid container spacing={4}>
+      {result}
+    </Grid>
+  )
 }
 
 function Book() {
