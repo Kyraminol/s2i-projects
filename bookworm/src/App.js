@@ -360,8 +360,37 @@ function SearchResults(props){
 }
 
 function Book() {
+  const [book, setBook] = React.useState({});
   let { id } = useParams();
-  return id;
+
+  if(Object.keys(book).length === 0){
+    axios.get('https://www.googleapis.com/books/v1/volumes/' + id).then((r) => {
+      if(r.status === 200){
+        setBook(r);
+        console.log(r);
+      }
+    });
+  }
+
+  return (
+    <BookComponent book={book}/>
+  );
+}
+
+class BookComponent extends React.Component {
+  static contextType = ClassesContext;
+
+  render() {
+    let classes = this.context;
+    let props = this.props;
+    let book = props.book;
+
+    return (
+      <div>
+
+      </div>
+    )
+  }
 }
 
 function NotFound() {
