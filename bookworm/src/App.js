@@ -21,6 +21,7 @@ import { red } from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Grid from '@material-ui/core/Grid';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const ClassesContext = React.createContext({});
 
@@ -122,6 +123,22 @@ function App() {
     },
     cardactions: {
       justifyContent: "end",
+    },
+    bookcontainer: {
+      paddingTop: theme.spacing(8),
+      paddingBottom: theme.spacing(8),
+    },
+    mediaroot: {
+      display: "flex",
+      flexDirection: "row",
+    },
+    mediadescription: {
+      flex: "auto",
+      paddingRight: theme.spacing(2),
+      paddingLeft: theme.spacing(2),
+    },
+    link: {
+      color: theme.palette.text.primary,
     }
   }), {defaultTheme: theme})();
 
@@ -222,7 +239,7 @@ function Google(){
     return (
       <GoogleLogin
         clientId="677208347872-r20r0a8f9at4n54vi59i47iemilm893i.apps.googleusercontent.com"
-        buttonText="Sign in with Google"
+        buttonText="Sign in"
         onSuccess={callbackLogin}
         onFailure={callbackLogin}
         cookiePolicy={'single_host_origin'}
@@ -251,6 +268,7 @@ function Google(){
 
 function SearchInput(props){
   const [query, setQuery] = React.useState("");
+  const [lastQuery, setLastQuery] = React.useState("");
   if(query === "" && props.query){
     setQuery(props.query);
   }
@@ -259,18 +277,21 @@ function SearchInput(props){
     const timeOutId = setTimeout(() => {
       if(typeof  query === 'string'){
         if(query.length > 2){
-          axios.get('https://www.googleapis.com/books/v1/volumes?maxResults=12&q=' + query).then((r) => {
-            if(r.status === 200){
-              props.setSearchResults(r);
-            }
-          });
+          if(query !== lastQuery){
+            setLastQuery(query);
+            axios.get('https://www.googleapis.com/books/v1/volumes?maxResults=12&q=' + query).then((r) => {
+              if(r.status === 200){
+                props.setSearchResults(r);
+              }
+            });
+          }
         } else {
           props.setSearchResults({});
         }
       }
     }, 500);
     return () => clearTimeout(timeOutId);
-  }, [query, props]);
+  }, [query, props, lastQuery]);
   let classes = props.classes;
 
   return (
@@ -311,8 +332,8 @@ class ResultCard extends React.Component {
             content: classes.cardheader
           }}
           titleTypographyProps={{variant: 'body1'}}
-          subheaderTypographyProps={{variant: 'body2'}}
-          title={book.volumeInfo.title}
+          subheaderTypographyProps={{variant: 'body2', className: ''}}
+          title={(<Link className={classes.link} to={'/book/'+book.id}>{book.volumeInfo.title}</Link>)}
           subheader={(book.volumeInfo.authors || []).join(', ')}
         />
         <div className={classes.mediaroot}>
@@ -324,7 +345,10 @@ class ResultCard extends React.Component {
               title={book.volumeInfo.title}
             />
           </Link>
-
+          <div className={classes.mediadescription}>
+            { book.volumeInfo.description ? book.volumeInfo.description.substr(0, 300) + "... " : ""}
+            <Link className={classes.link} to={'/book/' + book.id}>Details</Link>
+          </div>
         </div>
         <CardActions disableSpacing className={classes.cardactions}>
           <IconButton aria-label="add to favorites">
@@ -386,9 +410,9 @@ class BookComponent extends React.Component {
     let book = props.book;
 
     return (
-      <div>
-
-      </div>
+      <Container className={classes.bookcontainer}>
+        {Object.keys(book).length === 0 ? (<div align='center'><CircularProgress size="8rem"/></div>) : ""}
+      </Container>
     )
   }
 }
