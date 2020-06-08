@@ -24,6 +24,7 @@ import Grid from '@material-ui/core/Grid';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 const ClassesContext = React.createContext({});
+const GoogleContext = React.createContext({});
 
 function App() {
   const theme = React.useMemo(
@@ -142,23 +143,28 @@ function App() {
     }
   }), {defaultTheme: theme})();
 
+  const [loggedUser, setLoggedUser] = React.useState({});
+  if(Object.keys(loggedUser).length > 0){
+    console.log(loggedUser);
+  }
+
   return (
     <React.Fragment>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={theme}><GoogleContext.Provider value={loggedUser}>
         <CssBaseline />
         <AppBar position="static" color="primary" elevation={0} className={classes.appBar}>
           <Toolbar className={classes.toolbar}>
             <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
               Bookworm
             </Typography>
-            <Google/>
+              <Google setLogged={setLoggedUser}/>
           </Toolbar>
         </AppBar>
         <main>
           <ClassesContext.Provider value={classes}>
             <Router>
               <Switch>
-                <Route exact path="/">
+                <Route exact path="/" component={RouterComponent}>
                   <Home/>
                 </Route>
                 <Route path="/search/:query">
@@ -183,7 +189,7 @@ function App() {
           </Typography>
           <Copyright/>
         </footer>
-      </ThemeProvider>
+      </GoogleContext.Provider></ThemeProvider>
     </React.Fragment>
   );
 }
@@ -233,38 +239,44 @@ class HomeComponent extends React.Component {
   }
 }
 
-function Google(){
-  const [isLogged, setLogged] = React.useState(false);
-  if(!isLogged){
-    return (
-      <GoogleLogin
-        clientId="677208347872-r20r0a8f9at4n54vi59i47iemilm893i.apps.googleusercontent.com"
-        buttonText="Sign in"
-        onSuccess={callbackLogin}
-        onFailure={callbackLogin}
-        cookiePolicy={'single_host_origin'}
-        scope="https://www.googleapis.com/auth/books"
-      />
-    )
-  } else {
-    return (
-      <GoogleLogout
-        clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
-        buttonText="Sign out"
-        onLogoutSuccess={callbackLogout}
-      />
-    )
-  }
+class Google extends React.Component {
+  static contextType = GoogleContext;
 
-  function callbackLogin(){
-    setLogged(true);
-  }
+  render() {
+    let user = this.context;
 
-  function callbackLogout() {
-    setLogged(false);
+    if(Object.keys(user).length === 0){
+      return (
+        <GoogleLogin
+          clientId="677208347872-r20r0a8f9at4n54vi59i47iemilm893i.apps.googleusercontent.com"
+          buttonText="Sign in"
+          onSuccess={(user) => {
+            this.props.setLogged(user);
+          }}
+          onFailure={() => {}}
+          cookiePolicy={'single_host_origin'}
+          scope="https://www.googleapis.com/auth/books"
+          isSignedIn={true}
+        />
+      )
+    } else {
+      return (
+        <GoogleLogout
+          clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+          buttonText="Sign out"
+          onLogoutSuccess={(user) => {this.props.setLogged({});}}
+        />
+      )
+    }
   }
 }
 
+class RouterComponent extends React.Component {
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    const locationChanged = this.props.location !== prevProps.location;
+    console.log(locationChanged);
+  }
+}
 
 function SearchInput(props){
   const [query, setQuery] = React.useState("");
@@ -366,7 +378,6 @@ function SearchResults(props){
   let searchResults = props.searchResults;
 
   let result = [];
-  console.log(searchResults);
   if(searchResults.data !== undefined){
     searchResults.data.items.forEach((book) => {
       result.push(
@@ -391,7 +402,6 @@ function Book() {
     axios.get('https://www.googleapis.com/books/v1/volumes/' + id).then((r) => {
       if(r.status === 200){
         setBook(r);
-        console.log(r);
       }
     });
   }
