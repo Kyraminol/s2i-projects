@@ -11,7 +11,7 @@ import Typography from '@material-ui/core/Typography';
 
 
 function BookDetails(props){
-  let classes = useStyles(props);
+  const classes = useStyles(props);
 
   return (
     <BookDetailsComponent {...props} classes={classes}/>

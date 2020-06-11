@@ -13,6 +13,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import ExpandMore from '@material-ui/icons/ExpandMore';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 function ResultCard(props){
@@ -100,7 +101,9 @@ function SearchResults(props){
 }
 
 function MoreButton(props) {
-  let classes = useStyles(props);
+  const [loading, setLoading] = React.useState(false);
+  const classes = useStyles(props);
+
   return (
     <div align="center" className={classes.morebutton}>
       <Button
@@ -108,12 +111,15 @@ function MoreButton(props) {
         color="primary"
         size="large"
         fullWidth={true}
+        disabled={loading}
         onClick={
           function(){
+            setLoading(true);
             let query = document.getElementById('search-input').value;
             search(query, props.searchResults.length).then((r) => {
               if(r.status === 200){
                 props.setSearchResults(props.searchResults.concat(ResultsGridItems(r)));
+                setLoading(false);
               }
             });
           }
@@ -121,6 +127,7 @@ function MoreButton(props) {
         More
         <ExpandMore/>
       </Button>
+      {loading && <CircularProgress size={32} className={classes.MoreButtonLoading} />}
     </div>
   )
 }

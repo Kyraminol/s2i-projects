@@ -1,4 +1,6 @@
 import { fade, makeStyles } from '@material-ui/core/styles';
+import green from '@material-ui/core/colors/green';
+import {deepPurple} from "@material-ui/core/colors";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -119,8 +121,17 @@ const useStyles = makeStyles((theme) => ({
     maxHeight: '100%',
   },
   morebutton: {
-    paddingTop: theme.spacing(4),
-  }
+    marginTop: theme.spacing(4),
+    position: 'relative',
+  },
+  MoreButtonLoading: {
+    color: 'white !important',
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    marginTop: -16,
+    marginLeft: -18,
+  },
 
 }));
 
