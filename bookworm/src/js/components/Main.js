@@ -1,7 +1,8 @@
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import Home from "../routes/home";
-import { Book } from "../routes/book"
-import React from "react";
+import Book from '../routes/BookDetailsRoute';
+import HomeRoute from '../routes/HomeRoute';
+
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 function Main(){
   return (
@@ -9,10 +10,10 @@ function Main(){
       <Router>
         <Switch>
           <Route exact path="/" component={RouterComponent}>
-            <Home/>
+            <HomeRoute/>
           </Route>
           <Route path="/search/:query">
-            <Home/>
+            <HomeRoute/>
           </Route>
           <Route path="/book/:id">
             <Book/>

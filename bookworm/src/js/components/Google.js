@@ -1,8 +1,17 @@
-import React from "react";
-import {GoogleContext} from "./search";
-import {GoogleLogin, GoogleLogout} from "react-google-login";
+import React from 'react';
+import { GoogleLogin, GoogleLogout } from 'react-google-login';
 
-class Google extends React.Component {
+
+const GoogleContext = React.createContext({});
+
+
+function Google(props) {
+  return (
+    <GoogleComponent {...props}/>
+  )
+}
+
+class GoogleComponent extends React.Component {
   static contextType = GoogleContext;
 
   render() {
@@ -34,4 +43,5 @@ class Google extends React.Component {
   }
 }
 
-export {Google};
+export { Google, GoogleContext };
+export default GoogleContext;

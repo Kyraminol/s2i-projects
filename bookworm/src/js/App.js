@@ -1,10 +1,10 @@
-import React from 'react';
-import { Header } from './components/header';
-import Main from './components/main';
-import { Footer } from './components/footer';
-import { GoogleContext } from './components/search'
-
+import Header from './components/Header';
+import Main from './components/Main';
+import Footer from './components/Footer';
+import GoogleContext from './components/Google';
 import CssBaseline from '@material-ui/core/CssBaseline';
+
+import React from 'react';
 import deepPurple from '@material-ui/core/colors/deepPurple';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 

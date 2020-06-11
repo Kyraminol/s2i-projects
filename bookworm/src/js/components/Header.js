@@ -1,9 +1,11 @@
-import {useStyles} from "../styles";
-import { Google } from "./google"
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import React from "react";
+import useStyles from '../styles';
+import { Google } from './Google';
+
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import React from 'react';
+
 
 function Header(props){
   let classes = useStyles(props);
@@ -20,4 +22,4 @@ function Header(props){
   )
 }
 
-export { Header };
+export default Header;

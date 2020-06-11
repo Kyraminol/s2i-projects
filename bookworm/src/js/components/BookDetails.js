@@ -1,35 +1,27 @@
-import React from "react";
-import {useParams} from "react-router-dom";
-import axios from "axios";
-import Backdrop from "@material-ui/core/Backdrop";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import Container from "@material-ui/core/Container";
-import Paper from "@material-ui/core/Paper";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
+import useStyles from '../styles';
 
-function Book() {
-  const [book, setBook] = React.useState({});
-  let { id } = useParams();
+import React from 'react';
+import Backdrop from '@material-ui/core/Backdrop';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Container from '@material-ui/core/Container';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
 
-  if(Object.keys(book).length === 0){
-    axios.get('https://www.googleapis.com/books/v1/volumes/' + id).then((r) => {
-      if(r.status === 200){
-        setBook(r);
-      }
-    });
-  }
+
+function BookDetails(props){
+  let classes = useStyles(props);
 
   return (
-    <BookComponent book={book}/>
-  );
+    <BookDetailsComponent {...props} classes={classes}/>
+  )
 }
 
-class BookComponent extends React.Component {
+class BookDetailsComponent extends React.Component {
   render() {
-    let classes = this.context;
     let props = this.props;
+    let classes = props.classes;
     let book = props.book;
 
     if(Object.keys(book).length === 0){
@@ -81,4 +73,4 @@ class BookComponent extends React.Component {
   }
 }
 
-export { Book };
+export default BookDetails;

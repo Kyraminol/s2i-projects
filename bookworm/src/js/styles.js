@@ -1,4 +1,5 @@
-import {fade, makeStyles} from '@material-ui/core/styles';
+import { fade, makeStyles } from '@material-ui/core/styles';
+
 
 const useStyles = makeStyles((theme) => ({
   '@global': {
@@ -67,10 +68,10 @@ const useStyles = makeStyles((theme) => ({
   },
 
   root: {
-    height: "100%",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-between"
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
   },
   media: {
     height: 'min-content',
@@ -83,18 +84,18 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(8),
   },
   cardactions: {
-    justifyContent: "end",
+    justifyContent: 'end',
   },
   bookcontainer: {
     paddingTop: theme.spacing(8),
     paddingBottom: theme.spacing(8),
   },
   mediaroot: {
-    display: "flex",
-    flexDirection: "row",
+    display: 'flex',
+    flexDirection: 'row',
   },
   mediadescription: {
-    flex: "auto",
+    flex: 'auto',
     paddingRight: theme.spacing(2),
     paddingLeft: theme.spacing(2),
   },
@@ -123,4 +124,4 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export { useStyles };
+export default useStyles;

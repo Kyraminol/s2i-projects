@@ -1,6 +1,8 @@
-import {useStyles} from "../styles";
-import Typography from "@material-ui/core/Typography";
-import React from "react";
+import useStyles from '../styles';
+
+import Typography from '@material-ui/core/Typography';
+import React from 'react';
+
 
 function Footer(props){
   let classes = useStyles(props);
@@ -20,4 +22,4 @@ function Footer(props){
   )
 }
 
-export { Footer };
+export default Footer;

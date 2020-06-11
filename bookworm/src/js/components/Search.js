@@ -1,10 +1,10 @@
-import React from "react";
-import axios from "axios";
-import {useStyles} from "../styles";
-import SearchIcon from "@material-ui/icons/Search";
-import InputBase from "@material-ui/core/InputBase";
+import useStyles from '../styles';
 
-const GoogleContext = React.createContext({});
+import React from 'react';
+import axios from 'axios';
+import SearchIcon from '@material-ui/icons/Search';
+import InputBase from '@material-ui/core/InputBase';
+
 
 function SearchInput(props){
   const [query, setQuery] = React.useState("");
@@ -54,4 +54,4 @@ function SearchInput(props){
   )
 }
 
-export { SearchInput, GoogleContext }
+export default SearchInput;
