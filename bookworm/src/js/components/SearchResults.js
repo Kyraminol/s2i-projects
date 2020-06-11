@@ -1,11 +1,12 @@
 import useStyles from '../styles';
+import { search } from './Search';
 
 import React from 'react';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import IconButton from '@material-ui/core/IconButton';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardActions from '@material-ui/core/CardActions';
 import FavoriteIcon from '@material-ui/icons/Favorite';
@@ -60,31 +61,37 @@ function toggleFavorite(id) {
   console.log(id);
 }
 
+function ResultsGridItems(searchResults){
+  let results = [];
+  searchResults.data.items.forEach((book) => {
+    results.push(
+      <Grid item key={book.id} xs={12} sm={6} md={4}>
+        <ResultCard book={book}/>
+      </Grid>
+    )
+  });
+  return results;
+}
 
 function SearchResults(props){
-  let searchResults = props.searchResults;
+  const [searchResults, setSearchResults] = React.useState([]);
 
-  let result = [];
   let more = "";
-  if(searchResults.data !== undefined){
-    searchResults.data.items.forEach((book) => {
-      result.push(
-        <Grid item key={book.id} xs={12} sm={6} md={4}>
-          <ResultCard book={book}/>
-        </Grid>
-      )
-    });
+  if(props.searchResults.data !== undefined){
+    if(searchResults.length === 0){
+      setSearchResults(searchResults.concat(ResultsGridItems(props.searchResults)));
+    }
 
-    if(searchResults.data.totalItems > searchResults.data.items.length){
+    if(props.searchResults.data.totalItems > searchResults.length){
       more = (
-        <MoreButton/>
+        <MoreButton searchResults={searchResults} setSearchResults={setSearchResults}/>
       )
     }
   }
   return (
     <div>
       <Grid container spacing={4}>
-        {result}
+        {searchResults}
       </Grid>
       {more}
     </div>
@@ -96,7 +103,21 @@ function MoreButton(props) {
   let classes = useStyles(props);
   return (
     <div align="center" className={classes.morebutton}>
-      <Button variant="contained" color="primary" size="large" fullWidth={true}>
+      <Button
+        variant="contained"
+        color="primary"
+        size="large"
+        fullWidth={true}
+        onClick={
+          function(){
+            let query = document.getElementById('search-input').value;
+            search(query, props.searchResults.length).then((r) => {
+              if(r.status === 200){
+                props.setSearchResults(props.searchResults.concat(ResultsGridItems(r)));
+              }
+            });
+          }
+        }>
         More
         <ExpandMore/>
       </Button>

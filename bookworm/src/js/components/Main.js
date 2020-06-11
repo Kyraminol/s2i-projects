@@ -9,7 +9,7 @@ function Main(){
     <main>
       <Router>
         <Switch>
-          <Route exact path="/" component={RouterComponent}>
+          <Route exact path="/">
             <HomeRoute/>
           </Route>
           <Route path="/search/:query">
@@ -25,13 +25,6 @@ function Main(){
       </Router>
     </main>
   )
-}
-
-class RouterComponent extends React.Component {
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    const locationChanged = this.props.location !== prevProps.location;
-    console.log(locationChanged);
-  }
 }
 
 function NotFound() {

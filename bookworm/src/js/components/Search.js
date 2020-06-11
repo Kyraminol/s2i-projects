@@ -6,6 +6,10 @@ import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 
 
+function search(query, startIndex=0){
+  return axios.get('https://www.googleapis.com/books/v1/volumes?maxResults=12&startIndex=' + startIndex + '&q=' + query);
+}
+
 function SearchInput(props){
   const [query, setQuery] = React.useState("");
   const [lastQuery, setLastQuery] = React.useState("");
@@ -20,7 +24,7 @@ function SearchInput(props){
         if(query.length > 2){
           if(query !== lastQuery){
             setLastQuery(query);
-            axios.get('https://www.googleapis.com/books/v1/volumes?maxResults=12&q=' + query).then((r) => {
+            search(query).then((r) => {
               if(r.status === 200){
                 props.setSearchResults(r);
               }
@@ -46,6 +50,7 @@ function SearchInput(props){
           root: classes.searchInputRoot,
           input: classes.searchInputInput,
         }}
+        id="search-input"
         inputProps={{'aria-label': 'search'}}
         value={query}
         onChange={event => setQuery(event.target.value)}
@@ -55,3 +60,4 @@ function SearchInput(props){
 }
 
 export default SearchInput;
+export {SearchInput, search}
