@@ -1,5 +1,5 @@
 import SearchInput from '../components/Search';
-import SearchResults from '../components/SearchResults';
+import SearchResultsComponent from '../components/SearchResults';
 
 import React from 'react';
 import { useParams } from 'react-router-dom';
@@ -30,9 +30,9 @@ class HomeComponent extends React.Component {
     return (
       <div>
         <div className={classes.landing}>
-          <Container maxWidth="sm">
+          <Container maxWidth="md">
             <Typography variant="h5" align="center" color="textSecondary" paragraph>
-              Your cozy companion for searching and wishlisting books.
+              Your cozy companion for searching and saving books.
             </Typography>
           </Container>
           <Container maxWidth="md" align="center">
@@ -44,7 +44,7 @@ class HomeComponent extends React.Component {
           </Container>
         </div>
         <Container className={classes.cardGrid} maxWidth="xl">
-          <SearchResults
+          <SearchResultsComponent
             classes={classes}
             searchResults={props.searchResults}
           />

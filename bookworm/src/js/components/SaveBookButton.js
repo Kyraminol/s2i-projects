@@ -1,33 +1,13 @@
-import GoogleContext from './Google';
-
 import React from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import axios from 'axios';
 
-
-const options = [
-  'None',
-  'Atria',
-  'Callisto',
-  'Dione',
-  'Ganymede',
-  'Hangouts Call',
-  'Luna',
-  'Oberon',
-  'Phobos',
-  'Pyxis',
-  'Sedna',
-  'Titania',
-  'Triton',
-  'Umbriel',
-];
 
 const ITEM_HEIGHT = 48;
 
-export default function LongMenu() {
+export default function SaveBookButton(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
@@ -58,46 +38,16 @@ export default function LongMenu() {
         PaperProps={{
           style: {
             maxHeight: ITEM_HEIGHT * 4.5,
-            width: '20ch',
+            width: '40ch',
           },
         }}
       >
-        {options.map((option) => (
-          <MenuItem key={option} selected={option === 'Pyxis'} onClick={handleClose}>
-            {option}
+        {props.bookshelves.data.items.map((option) => (
+          <MenuItem key={option.id} selected={option === 'Pyxis'} onClick={handleClose}>
+            {option.title}
           </MenuItem>
         ))}
       </Menu>
     </div>
   );
-}
-
-class MenuItemComponent extends React.Component {
-  static contextType = GoogleContext;
-
-  render() {
-    let user = this.context;
-    console.log(user);
-    if(Object.keys(user).length > 0) {
-      axios.get(
-        'https://www.googleapis.com/books/v1/mylibrary/bookshelves',
-        {
-          headers: {
-            'Authorization': 'Bearer ' + user.accessToken
-          }
-        }
-      ).then((r) => {
-        if (r.status === 200) {
-        }
-        console.log(r);
-      });
-    }
-
-    return (
-      <div>
-
-      </div>
-    )
-  }
-
 }
