@@ -9,12 +9,11 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { Link } from 'react-router-dom';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardActions from '@material-ui/core/CardActions';
-import FavoriteIcon from '@material-ui/icons/Favorite';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import CircularProgress from '@material-ui/core/CircularProgress';
-
+import LongMenu from './SaveBookButton';
 
 function ResultCard(props){
   let classes = useStyles(props);
@@ -50,16 +49,10 @@ function ResultCard(props){
         </div>
       </div>
       <CardActions disableSpacing className={classes.cardactions}>
-        <IconButton aria-label="add to favorites" onClick={toggleFavorite}>
-          <FavoriteIcon/>
-        </IconButton>
+        <LongMenu/>
       </CardActions>
     </Card>
   )
-}
-
-function toggleFavorite(id) {
-  console.log(id);
 }
 
 function ResultsGridItems(searchResults){

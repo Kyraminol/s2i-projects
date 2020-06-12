@@ -1,6 +1,4 @@
 import { fade, makeStyles } from '@material-ui/core/styles';
-import green from '@material-ui/core/colors/green';
-import {deepPurple} from "@material-ui/core/colors";
 
 
 const useStyles = makeStyles((theme) => ({
