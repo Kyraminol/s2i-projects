@@ -20,8 +20,8 @@ function SearchInput(props){
 
   React.useEffect(() => {
     const timeOutId = setTimeout(() => {
-      if(typeof  query === 'string'){
-        if(query.length > 2){
+      if(typeof query === 'string'){
+        if(query.length > 0){
           if(query !== lastQuery){
             setLastQuery(query);
             search(query).then((r) => {
@@ -34,7 +34,7 @@ function SearchInput(props){
           props.setSearchResults({});
         }
       }
-    }, 500);
+    }, 250);
     return () => clearTimeout(timeOutId);
   }, [query, props, lastQuery]);
   const classes = useStyles(props);

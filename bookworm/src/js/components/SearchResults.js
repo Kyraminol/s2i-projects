@@ -2,6 +2,7 @@ import useStyles from '../styles';
 import { search } from './Search';
 import GoogleContext from './Google';
 
+import { isEqual } from 'lodash';
 import React from 'react';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -76,7 +77,7 @@ function ResultsGridItems(searchResults, bookshelves){
 function SearchResults(props){
   const [searchResults, setSearchResults] = React.useState([]);
   const [bookshelves, setBookshelves] = React.useState({});
-
+  const [lastSearchResults, setLastSearchResults] = React.useState({});
 
   if(Object.keys(bookshelves).length === 0 && Object.keys(props.user).length > 0){
     axios.get(
@@ -94,17 +95,23 @@ function SearchResults(props){
   }
 
   let more = "";
-  if(props.searchResults.data !== undefined){
-    if(searchResults.length === 0){
-      setSearchResults(searchResults.concat(ResultsGridItems(props.searchResults, bookshelves)));
+  if(!isEqual(lastSearchResults, props.searchResults)){
+    if(props.searchResults.data !== undefined){
+      setLastSearchResults(props.searchResults);
+      setSearchResults(ResultsGridItems(props.searchResults, bookshelves));
+
+      if(props.searchResults.data.totalItems > searchResults.length){
+        more = (
+          <MoreButton searchResults={searchResults} setSearchResults={setSearchResults}/>
+        )
+      }
+    } else {
+      setSearchResults([]);
+      setLastSearchResults({});
     }
 
-    if(props.searchResults.data.totalItems > searchResults.length){
-      more = (
-        <MoreButton searchResults={searchResults} setSearchResults={setSearchResults}/>
-      )
-    }
   }
+
   return (
     <div>
       <Grid container spacing={4}>
