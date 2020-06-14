@@ -43,7 +43,7 @@ function ResultCard(props){
           <CardMedia
             className={classes.media}
             component='img'
-            image={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : ''}
+            image={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail || book.volumeInfo.smallThumbnail : ''}
             title={book.volumeInfo.title}
           />
         </Link>
@@ -89,8 +89,6 @@ function SearchResults(props){
       }
     ).then((r) => {
       setBookshelves(r);
-
-      console.log(r);
     });
   }
 
@@ -99,17 +97,16 @@ function SearchResults(props){
     if(props.searchResults.data !== undefined){
       setLastSearchResults(props.searchResults);
       setSearchResults(ResultsGridItems(props.searchResults, bookshelves));
-
-      if(props.searchResults.data.totalItems > searchResults.length){
-        more = (
-          <MoreButton searchResults={searchResults} setSearchResults={setSearchResults}/>
-        )
-      }
     } else {
       setSearchResults([]);
       setLastSearchResults({});
     }
+  }
 
+  if(props.searchResults.data !== undefined && props.searchResults.data.totalItems > searchResults.length){
+    more = (
+      <MoreButton searchResults={searchResults} setSearchResults={setSearchResults} bookshelves={bookshelves}/>
+    )
   }
 
   return (
@@ -153,7 +150,7 @@ function MoreButton(props) {
             let query = document.getElementById('search-input').value;
             search(query, props.searchResults.length).then((r) => {
               if(r.status === 200){
-                props.setSearchResults(props.searchResults.concat(ResultsGridItems(r)));
+                props.setSearchResults(props.searchResults.concat(ResultsGridItems(r, props.bookshelves)));
                 setLoading(false);
               }
             });

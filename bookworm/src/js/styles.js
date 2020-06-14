@@ -111,7 +111,7 @@ const useStyles = makeStyles((theme) => ({
     margin: 'auto',
   },
   image: {
-
+    margin: 'auto',
   },
   img: {
     margin: 'auto',

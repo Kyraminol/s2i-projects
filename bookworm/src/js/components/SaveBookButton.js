@@ -1,5 +1,6 @@
 import React from 'react';
 import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import FavoriteIcon from '@material-ui/icons/Favorite';
@@ -21,14 +22,28 @@ export default function SaveBookButton(props) {
 
   return (
     <div>
-      <IconButton
-        aria-label="more"
-        aria-controls="long-menu"
-        aria-haspopup="true"
-        onClick={handleClick}
-      >
-        <FavoriteIcon/>
-      </IconButton>
+      {props.text ?
+        <Button
+          variant="contained"
+          color="primary"
+          size="large"
+          onClick={handleClick}
+          endIcon={<FavoriteIcon/>}
+        >
+          {props.text}
+        </Button>
+      :
+        <IconButton
+          aria-label="more"
+          aria-controls="long-menu"
+          aria-haspopup="true"
+          onClick={handleClick}
+        >
+          <FavoriteIcon/>
+        </IconButton>
+      }
+
+
       <Menu
         id="long-menu"
         anchorEl={anchorEl}
