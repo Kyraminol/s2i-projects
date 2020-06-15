@@ -9,9 +9,12 @@ import Container from '@material-ui/core/Container';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import GoogleContext from "./Google";
 import CardActions from '@material-ui/core/CardActions';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import { useHistory } from 'react-router-dom';
 
 
 function BookDetails(props){
@@ -19,6 +22,23 @@ function BookDetails(props){
 
   return (
     <BookDetailsComponent {...props} classes={classes}/>
+  )
+}
+
+function Back(props){
+  let history = useHistory();
+  let classes = useStyles(props);
+
+  return (
+    <Button
+      classes={{root: classes.DetailsBackButton}}
+      variant="contained"
+      color="secondary"
+      onClick={() => {history.goBack()}}
+      startIcon={<ArrowBackIosIcon/>}
+    >
+      Back To Search
+    </Button>
   )
 }
 
@@ -40,10 +60,11 @@ class BookDetailsComponent extends React.Component {
     } else {
       return (
         <Container className={classes.bookcontainer}>
+          <Back/>
           <div className={classes.roodt}>
             <Paper className={classes.paper}>
               <Grid container spacing={2}>
-                <Grid item alignContent="center" alignItems="center" xs={12} sm={2} justify="center">
+                <Grid item xs={12} sm={2}>
                   <Box className={classes.image} maxWidth={200}>
                     <img className={classes.img} alt="" src={book.data ? book.data.volumeInfo.imageLinks.large || book.data.volumeInfo.imageLinks.medium || book.data.volumeInfo.imageLinks.small || book.data.volumeInfo.imageLinks.thumbnail || book.data.volumeInfo.smallThumbnail : ""} />
                   </Box>
@@ -65,10 +86,12 @@ class BookDetailsComponent extends React.Component {
 
                     </Grid>
                   </Grid>
-                  <Grid item xs={12} sm={1} alignContent="right">
-                    <CardActions disableSpacing className={classes.cardactions}>
-                      <SaveBook user={user}/>
-                    </CardActions>
+                  <Grid item xs={12} sm={1}>
+                    <Box alignContent="right">
+                      <CardActions disableSpacing className={classes.cardactions}>
+                        <SaveBook user={user}/>
+                      </CardActions>
+                    </Box>
                   </Grid>
                 </Grid>
               </Grid>

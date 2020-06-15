@@ -57,11 +57,15 @@ export default function SaveBookButton(props) {
           },
         }}
       >
-        {props.bookshelves.data.items.map((option) => (
-          <MenuItem key={option.id} selected={option === 'Pyxis'} onClick={handleClose}>
+        {props.bookshelves.data ? props.bookshelves.data.items.map((option) => (
+          <MenuItem key={option.id} selected={false} onClick={handleClose}>
             {option.title}
           </MenuItem>
-        ))}
+        )) : (
+          <MenuItem selected={true} onClick={handleClose}>
+            No bookshelves found<br/>Sign in with google and refresh page
+          </MenuItem>
+        )}
       </Menu>
     </div>
   );

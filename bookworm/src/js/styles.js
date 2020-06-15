@@ -88,7 +88,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'end',
   },
   bookcontainer: {
-    paddingTop: theme.spacing(8),
+    paddingTop: theme.spacing(3),
     paddingBottom: theme.spacing(8),
   },
   mediaroot: {
@@ -131,7 +131,9 @@ const useStyles = makeStyles((theme) => ({
     marginTop: -16,
     marginLeft: -18,
   },
-
+  DetailsBackButton: {
+    marginBottom: '20px !important',
+  }
 }));
 
 export default useStyles;

@@ -8,16 +8,32 @@ import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import IconButton from '@material-ui/core/IconButton';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardActions from '@material-ui/core/CardActions';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import ExpandMore from '@material-ui/icons/ExpandMore';
+import ChevronRight from '@material-ui/icons/ChevronRight';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import SaveBookButton from './SaveBookButton';
 import axios from 'axios';
 
+
+function BookLink(props){
+  let history = useHistory();
+  let classes = useStyles(props);
+
+  function handleClick(){
+    history.push('/search/'+document.getElementById('search-input').value);
+  }
+
+  return (
+    <Link className={classes.link} to={props.href} onClick={handleClick}>
+      {props.children}
+    </Link>
+  )
+}
 
 function ResultCard(props){
   let classes = useStyles(props);
@@ -35,21 +51,30 @@ function ResultCard(props){
         }}
         titleTypographyProps={{variant: 'body1'}}
         subheaderTypographyProps={{variant: 'body2', className: ''}}
-        title={(<Link className={classes.link} to={'/book/'+book.id}>{book.volumeInfo.title}</Link>)}
+        title={(<BookLink href={'/book/'+book.id}>{book.volumeInfo.title}</BookLink>)}
         subheader={(book.volumeInfo.authors || []).join(', ')}
       />
       <div className={classes.mediaroot}>
-        <Link to={'/book/' + book.id}>
+        <BookLink href={'/book/'+book.id}>
           <CardMedia
             className={classes.media}
             component='img'
             image={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail || book.volumeInfo.smallThumbnail : ''}
             title={book.volumeInfo.title}
           />
-        </Link>
+        </BookLink>
         <div className={classes.mediadescription}>
-          { book.volumeInfo.description ? book.volumeInfo.description.substr(0, 300) + "... " : ""}
-          <Link className={classes.link} to={'/book/' + book.id}>Details</Link>
+          { book.volumeInfo.description ? book.volumeInfo.description.substr(0, 300) + "... " : "No description available"}
+          <br/><BookLink href={'/book/'+book.id}>
+            <Button
+              variant="contained"
+              color="primary"
+              className={classes.button}
+              endIcon={<ChevronRight/>}
+            >
+              Details
+            </Button>
+          </BookLink>
         </div>
       </div>
       <CardActions disableSpacing className={classes.cardactions}>
