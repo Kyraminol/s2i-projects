@@ -15,6 +15,7 @@ import GoogleContext from "./Google";
 import CardActions from '@material-ui/core/CardActions';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import { useHistory } from 'react-router-dom';
+import { Markup } from 'interweave';
 
 
 function BookDetails(props){
@@ -42,6 +43,16 @@ function Back(props){
   )
 }
 
+function Description(props){
+
+  return (
+    <Box>
+      <Typography>Description</Typography>
+      <Markup content={props.children}/>
+    </Box>
+  )
+}
+
 class BookDetailsComponent extends React.Component {
   static contextType = GoogleContext;
 
@@ -66,7 +77,7 @@ class BookDetailsComponent extends React.Component {
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={2}>
                   <Box className={classes.image} maxWidth={200}>
-                    <img className={classes.img} alt="" src={book.data ? book.data.volumeInfo.imageLinks.large || book.data.volumeInfo.imageLinks.medium || book.data.volumeInfo.imageLinks.small || book.data.volumeInfo.imageLinks.thumbnail || book.data.volumeInfo.smallThumbnail : ""} />
+                    <img className={classes.img} alt="" src={book.data ? book.data.volumeInfo.imageLinks.large || book.data.volumeInfo.imageLinks.medium || book.data.volumeInfo.imageLinks.small || book.data.volumeInfo.imageLinks.thumbnail || book.data.volumeInfo.smallThumbnail : 'img/placeholder.jpg'} />
                   </Box>
                 </Grid>
                 <Grid item xs={12} sm container>
@@ -79,7 +90,7 @@ class BookDetailsComponent extends React.Component {
                         {(book.data.volumeInfo.authors || []).join(', ')}
                       </Typography>
                       <Typography variant="body2" color="textSecondary">
-                        {book.data ? book.data.volumeInfo.description : ""}
+                        {book.data ? (book.data.volumeInfo.description ? <Description>{book.data.volumeInfo.description}</Description> : "No description available") : ""}
                       </Typography>
                     </Grid>
                     <Grid item>

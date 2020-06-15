@@ -59,12 +59,12 @@ function ResultCard(props){
           <CardMedia
             className={classes.media}
             component='img'
-            image={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail || book.volumeInfo.smallThumbnail : ''}
+            image={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail || book.volumeInfo.smallThumbnail : 'img/placeholder.jpg'}
             title={book.volumeInfo.title}
           />
         </BookLink>
         <div className={classes.mediadescription}>
-          { book.volumeInfo.description ? book.volumeInfo.description.substr(0, 300) + "... " : "No description available"}
+          { book.volumeInfo.description ? book.volumeInfo.description.substr(0, 300) + "..." : "No description available"}
           <br/><BookLink href={'/book/'+book.id}>
             <Button
               variant="contained"
