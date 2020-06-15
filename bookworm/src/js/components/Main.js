@@ -19,16 +19,12 @@ function Main(){
             <Book/>
           </Route>
           <Route path="*">
-            <NotFound/>
+            <HomeRoute/>
           </Route>
         </Switch>
       </Router>
     </main>
   )
-}
-
-function NotFound() {
-  return '404';
 }
 
 export default Main;

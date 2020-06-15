@@ -12,6 +12,7 @@ import { Link, useHistory } from 'react-router-dom';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardActions from '@material-ui/core/CardActions';
 import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import ChevronRight from '@material-ui/icons/ChevronRight';
@@ -86,16 +87,24 @@ function ResultCard(props){
 
 function ResultsGridItems(searchResults, bookshelves){
   let results = [];
-  searchResults.data.items.forEach((book) => {
-    results.push(
-      <Grid item key={book.id} xs={12} sm={6} md={4}>
-        <ResultCard
-          book={book}
-          bookshelves={bookshelves}
-        />
-      </Grid>
-    )
-  });
+  if(searchResults.data.items){
+    searchResults.data.items.forEach((book) => {
+      results.push(
+        <Grid item key={book.id} xs={12} sm={6} md={4}>
+          <ResultCard
+            book={book}
+            bookshelves={bookshelves}
+          />
+        </Grid>
+      )
+    });
+  } else {
+    results = (
+      <Box mx="auto" pt={0}>
+        No results found
+      </Box>
+    );
+  }
   return results;
 }
 
