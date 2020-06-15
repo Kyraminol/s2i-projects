@@ -133,6 +133,14 @@ const useStyles = makeStyles((theme) => ({
   },
   DetailsBackButton: {
     marginBottom: '20px !important',
+  },
+  SearchLoading: {
+    color: 'white !important',
+    position: 'absolute',
+    top: '50%',
+    right: '10%',
+    marginTop: -16,
+    marginLeft: -18,
   }
 }));
 

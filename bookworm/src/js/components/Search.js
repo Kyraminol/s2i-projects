@@ -4,6 +4,7 @@ import React from 'react';
 import axios from 'axios';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 function search(query, startIndex=0){
@@ -13,6 +14,7 @@ function search(query, startIndex=0){
 function SearchInput(props){
   const [query, setQuery] = React.useState("");
   const [lastQuery, setLastQuery] = React.useState("");
+  const [loading, setLoading] = React.useState(false);
 
   if(query === "" && props.query){
     setQuery(props.query);
@@ -24,9 +26,11 @@ function SearchInput(props){
         if(query.length > 0){
           if(query !== lastQuery){
             setLastQuery(query);
+            setLoading(true);
             search(query).then((r) => {
               if(r.status === 200){
                 props.setSearchResults(r);
+                setLoading(false);
               }
             });
           }
@@ -34,9 +38,11 @@ function SearchInput(props){
           props.setSearchResults({});
         }
       }
-    }, 250);
-    return () => clearTimeout(timeOutId);
-  }, [query, props, lastQuery]);
+    }, 200);
+    return () => {
+      clearTimeout(timeOutId);
+    };
+  }, [query, props, lastQuery, setLoading]);
   const classes = useStyles(props);
 
   return (
@@ -55,6 +61,7 @@ function SearchInput(props){
         value={query}
         onChange={event => setQuery(event.target.value)}
       />
+      {loading && <CircularProgress size={30} className={classes.SearchLoading}/>}
     </div>
   )
 }
