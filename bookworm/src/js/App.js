@@ -3,6 +3,7 @@ import Main from './components/Main';
 import Footer from './components/Footer';
 import GoogleContext from './components/Google';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import './i18n/i18n';
 
 import React from 'react';
 import deepPurple from '@material-ui/core/colors/deepPurple';

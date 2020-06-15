@@ -16,19 +16,22 @@ import CardActions from '@material-ui/core/CardActions';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import { useHistory } from 'react-router-dom';
 import { Markup } from 'interweave';
+import { useTranslation } from 'react-i18next';
 
 
 function BookDetails(props){
+  const [t,] = useTranslation();
   const classes = useStyles(props);
 
   return (
-    <BookDetailsComponent {...props} classes={classes}/>
+    <BookDetailsComponent {...props} classes={classes} t={t}/>
   )
 }
 
 function Back(props){
   let history = useHistory();
   let classes = useStyles(props);
+  const [t,] = useTranslation();
 
   return (
     <Button
@@ -38,7 +41,7 @@ function Back(props){
       onClick={() => {history.goBack()}}
       startIcon={<ArrowBackIosIcon/>}
     >
-      Back To Search
+      {t("details-back")}
     </Button>
   )
 }
@@ -61,6 +64,7 @@ class BookDetailsComponent extends React.Component {
     let props = this.props;
     let classes = props.classes;
     let book = props.book;
+    let t = props.t;
 
     if(Object.keys(book).length === 0){
       return (
@@ -90,7 +94,7 @@ class BookDetailsComponent extends React.Component {
                         {(book.data.volumeInfo.authors || []).join(', ')}
                       </Typography>
                       <Typography variant="body2" color="textSecondary">
-                        {book.data ? (book.data.volumeInfo.description ? <Description>{book.data.volumeInfo.description}</Description> : "No description available") : ""}
+                        {book.data ? (book.data.volumeInfo.description ? <Description>{book.data.volumeInfo.description}</Description> : t("details-no-description")) : ""}
                       </Typography>
                     </Grid>
                     <Grid item>

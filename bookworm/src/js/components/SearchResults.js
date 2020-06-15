@@ -19,6 +19,8 @@ import ChevronRight from '@material-ui/icons/ChevronRight';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import SaveBookButton from './SaveBookButton';
 import axios from 'axios';
+import LinesEllipsis from 'react-lines-ellipsis'
+import {useTranslation, Translation} from "react-i18next";
 
 
 function BookLink(props){
@@ -38,6 +40,7 @@ function BookLink(props){
 
 function ResultCard(props){
   let classes = useStyles(props);
+  const [t,] = useTranslation();
   let book = props.book;
   return (
     <Card className={classes.root}>
@@ -65,7 +68,15 @@ function ResultCard(props){
           />
         </BookLink>
         <div className={classes.mediadescription}>
-          { book.volumeInfo.description ? book.volumeInfo.description.substr(0, 300) + "..." : "No description available"}
+          { book.volumeInfo.description ?
+            <LinesEllipsis
+              text={book.volumeInfo.description}
+              maxLine='5'
+              ellipsis='...'
+              trimRight
+              basedOn='words'
+            />
+            : t("search-no-summary")}
           <br/><BookLink href={'/book/'+book.id}>
             <Button
               variant="contained"
@@ -73,7 +84,7 @@ function ResultCard(props){
               className={classes.button}
               endIcon={<ChevronRight/>}
             >
-              Details
+              {t("search-details")}
             </Button>
           </BookLink>
         </div>
@@ -101,7 +112,11 @@ function ResultsGridItems(searchResults, bookshelves){
   } else {
     results = (
       <Box mx="auto" pt={0}>
-        No results found
+        <Translation>
+          {
+            (t) => <p>{t("search-no-results")}</p>
+          }
+        </Translation>
       </Box>
     );
   }
@@ -112,8 +127,10 @@ function SearchResults(props){
   const [searchResults, setSearchResults] = React.useState([]);
   const [bookshelves, setBookshelves] = React.useState({});
   const [lastSearchResults, setLastSearchResults] = React.useState({});
+  const [loading, setLoading] = React.useState(false);
 
-  if(Object.keys(bookshelves).length === 0 && Object.keys(props.user).length > 0){
+  if(!loading && Object.keys(bookshelves).length === 0 && Object.keys(props.user).length > 0){
+    setLoading(true);
     axios.get(
       'https://www.googleapis.com/books/v1/mylibrary/bookshelves',
       {
@@ -123,6 +140,7 @@ function SearchResults(props){
       }
     ).then((r) => {
       setBookshelves(r);
+      setLoading(false);
     });
   }
 
@@ -169,6 +187,7 @@ class SearchResultsComponent extends React.Component {
 function MoreButton(props) {
   const [loading, setLoading] = React.useState(false);
   const classes = useStyles(props);
+  const [t,] = useTranslation();
 
   return (
     <div align="center" className={classes.morebutton}>
@@ -190,7 +209,7 @@ function MoreButton(props) {
             });
           }
         }>
-        More
+        {t("search-more")}
         <ExpandMore/>
       </Button>
       {loading && <CircularProgress size={32} className={classes.MoreButtonLoading} />}

@@ -1,0 +1,31 @@
+{
+  "en": {
+    "translation": {
+      "landing": "Your cozy companion for searching and saving books",
+      "google-signin": "Sign in",
+      "google-signout": "Sign out",
+      "search-placeholder": "Search for books you love",
+      "search-no-results" : "No results",
+      "search-no-summary": "No summary available",
+      "search-details": "Show details",
+      "search-more": "More results",
+      "details-back": "Back to results",
+      "details-no-description": "No description available"
+    }
+  },
+
+  "it": {
+    "translation": {
+      "landing": "Il tuo compagno accogliente per la ricerca e il salvataggio di libri",
+      "google-signin": "Accedi",
+      "google-signout": "Disconnetti",
+      "search-placeholder": "Cerca i libri che ti piacciono",
+      "search-no-results": "Nessun risultato",
+      "search-no-summary": "Riassunto non disponibile",
+      "search-details": "Mostra dettagli",
+      "search-more": "Altri risultati",
+      "details-back": "Torna ai risultati",
+      "details-no-description": "Descrizione non disponibile"
+    }
+  }
+}

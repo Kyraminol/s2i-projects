@@ -5,6 +5,7 @@ import axios from 'axios';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import {useTranslation} from "react-i18next";
 
 
 function search(query, startIndex=0){
@@ -44,6 +45,7 @@ function SearchInput(props){
     };
   }, [query, props, lastQuery, setLoading]);
   const classes = useStyles(props);
+  const [t,] = useTranslation();
 
   return (
     <div className={classes.searchRoot}>
@@ -51,7 +53,7 @@ function SearchInput(props){
         <SearchIcon/>
       </div>
       <InputBase
-        placeholder="Search for books you love"
+        placeholder={t("search-placeholder")}
         classes={{
           root: classes.searchInputRoot,
           input: classes.searchInputInput,

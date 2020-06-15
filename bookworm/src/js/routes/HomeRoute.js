@@ -6,12 +6,14 @@ import { useParams } from 'react-router-dom';
 import useStyles from '../styles';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
+import {useTranslation} from "react-i18next";
 
 
 function HomeRoute(props){
   const [searchResults, setSearchResults] = React.useState({});
   let { query } = useParams();
   const classes = useStyles(props);
+  const [t,] = useTranslation();
 
   return (
     <HomeComponent
@@ -19,6 +21,7 @@ function HomeRoute(props){
       searchResults={searchResults}
       setSearchResults={setSearchResults}
       classes={classes}
+      t={t}
     />
   )
 }
@@ -32,7 +35,7 @@ class HomeComponent extends React.Component {
         <div className={classes.landing}>
           <Container maxWidth="md">
             <Typography variant="h5" align="center" color="textSecondary" paragraph>
-              Your cozy companion for searching and saving books.
+              {props.t("landing")}
             </Typography>
           </Container>
           <Container maxWidth="md" align="center">
