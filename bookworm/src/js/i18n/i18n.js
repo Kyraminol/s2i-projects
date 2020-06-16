@@ -13,8 +13,9 @@ i18n
     resources,
     fallbackLng: 'en',
     detection: {
-      order: ['querystring', 'navigator', 'htmlTag'],
+      order: ['localStorage', 'sessionStorage', 'querystring', 'navigator', 'htmlTag'],
       lookupQuerystring: 'lang',
+      lookupLocalStorage: 'lang',
     },
 
     keySeparator: false, // we do not use keys in form messages.welcome

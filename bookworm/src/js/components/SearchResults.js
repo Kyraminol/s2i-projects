@@ -6,8 +6,6 @@ import { isEqual } from 'lodash';
 import React from 'react';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
-import IconButton from '@material-ui/core/IconButton';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { Link, useHistory } from 'react-router-dom';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardActions from '@material-ui/core/CardActions';
@@ -45,11 +43,6 @@ function ResultCard(props){
   return (
     <Card className={classes.root}>
       <CardHeader
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
         classes={{
           content: classes.cardheader
         }}
@@ -90,7 +83,7 @@ function ResultCard(props){
         </div>
       </div>
       <CardActions disableSpacing className={classes.cardactions}>
-        <SaveBookButton bookshelves={props.bookshelves}/>
+        <SaveBookButton bookshelves={props.bookshelves} book={book.id}/>
       </CardActions>
     </Card>
   )
@@ -98,27 +91,29 @@ function ResultCard(props){
 
 function ResultsGridItems(searchResults, bookshelves){
   let results = [];
-  if(searchResults.data.items){
-    searchResults.data.items.forEach((book) => {
-      results.push(
-        <Grid item key={book.id} xs={12} sm={6} md={4}>
-          <ResultCard
-            book={book}
-            bookshelves={bookshelves}
-          />
-        </Grid>
-      )
-    });
-  } else {
-    results = (
-      <Box mx="auto" pt={0}>
-        <Translation>
-          {
-            (t) => <p>{t("search-no-results")}</p>
-          }
-        </Translation>
-      </Box>
-    );
+  if(searchResults.data){
+    if(searchResults.data.items){
+      searchResults.data.items.forEach((book) => {
+        results.push(
+          <Grid item key={book.id} xs={12} sm={6} md={4}>
+            <ResultCard
+              book={book}
+              bookshelves={bookshelves}
+            />
+          </Grid>
+        )
+      });
+    } else {
+      results = (
+        <Box mx="auto" pt={0}>
+          <Translation>
+            {
+              (t) => <p>{t("search-no-results")}</p>
+            }
+          </Translation>
+        </Box>
+      );
+    }
   }
   return results;
 }
@@ -128,6 +123,7 @@ function SearchResults(props){
   const [bookshelves, setBookshelves] = React.useState({});
   const [lastSearchResults, setLastSearchResults] = React.useState({});
   const [loading, setLoading] = React.useState(false);
+  const [refreshCards, setRefreshCards] = React.useState(false);
 
   if(!loading && Object.keys(bookshelves).length === 0 && Object.keys(props.user).length > 0){
     setLoading(true);
@@ -141,6 +137,7 @@ function SearchResults(props){
     ).then((r) => {
       setBookshelves(r);
       setLoading(false);
+      setRefreshCards(true);
     });
   }
 
@@ -153,6 +150,11 @@ function SearchResults(props){
       setSearchResults([]);
       setLastSearchResults({});
     }
+  }
+
+  if(refreshCards){
+    setRefreshCards(false);
+    setSearchResults(ResultsGridItems(props.searchResults, bookshelves));
   }
 
   if(props.searchResults.data !== undefined && props.searchResults.data.totalItems > searchResults.length){

@@ -141,6 +141,20 @@ const useStyles = makeStyles((theme) => ({
     right: '10%',
     marginTop: -16,
     marginLeft: -18,
+  },
+  TranslateButton: {
+    marginRight: '16px !important',
+  },
+  BookshelvesRoot: {
+    position: 'relative',
+  },
+  BookshelvesLoading: {
+    color: 'white !important',
+    position: 'absolute',
+    top: '50%',
+    right: '10%',
+    marginTop: -16,
+    marginLeft: -18,
   }
 }));
 
