@@ -83,7 +83,7 @@ function ResultCard(props){
         </div>
       </div>
       <CardActions disableSpacing className={classes.CardActions}>
-        <SaveBookButton bookshelves={props.bookshelves} book={book.id}/>
+        {Object.keys(props.bookshelves).length > 0 && <SaveBookButton bookshelves={props.bookshelves} book={book.id}/>}
       </CardActions>
     </Card>
   )

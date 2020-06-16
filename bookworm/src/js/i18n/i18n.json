@@ -10,9 +10,7 @@
       "search-details": "Show details",
       "search-more": "More results",
       "details-back": "Back to results",
-      "details-no-description": "No description available",
-      "bookshelves-notfound": "No collections found",
-      "bookshelves-login": "Sign in with Google and refresh page"
+      "details-no-description": "No description available"
     }
   },
 
@@ -27,9 +25,7 @@
       "search-details": "Mostra dettagli",
       "search-more": "Altri risultati",
       "details-back": "Torna ai risultati",
-      "details-no-description": "Descrizione non disponibile",
-      "bookshelves-notfound": "Nessuna raccolta trovata",
-      "bookshelves-login": "Accedi con Google e ricarica la pagina"
+      "details-no-description": "Descrizione non disponibile"
     }
   }
 }

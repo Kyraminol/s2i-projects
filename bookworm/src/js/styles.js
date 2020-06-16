@@ -154,6 +154,9 @@ const useStyles = makeStyles((theme) => ({
     right: '10%',
     marginTop: -16,
     marginLeft: -18,
+  },
+  SaveBookBox: {
+    marginLeft: 'auto',
   }
 }));
 
