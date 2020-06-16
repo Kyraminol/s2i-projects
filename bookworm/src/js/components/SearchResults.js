@@ -15,9 +15,9 @@ import Button from '@material-ui/core/Button';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import ChevronRight from '@material-ui/icons/ChevronRight';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Typography from '@material-ui/core/Typography';
 import SaveBookButton from './SaveBookButton';
 import axios from 'axios';
-import LinesEllipsis from 'react-lines-ellipsis'
 import {useTranslation, Translation} from "react-i18next";
 
 
@@ -37,17 +37,17 @@ function BookLink(props){
 }
 
 function ResultCard(props){
-  let classes = useStyles(props);
+  const classes = useStyles(props);
   const [t,] = useTranslation();
   let book = props.book;
   return (
     <Card className={classes.ResultCard}>
       <CardHeader
         classes={{
-          content: classes.cardheader
+          content: classes.CardHeader
         }}
-        titleTypographyProps={{variant: 'body1'}}
-        subheaderTypographyProps={{variant: 'body2', className: ''}}
+        titleTypographyProps={{variant: 'body1', className: classes.CardTitle}}
+        subheaderTypographyProps={{variant: 'body2', className: classes.CardSubheader}}
         title={(<BookLink href={'/book/'+book.id}>{book.volumeInfo.title}</BookLink>)}
         subheader={(book.volumeInfo.authors || []).join(', ')}
       />
@@ -61,20 +61,15 @@ function ResultCard(props){
           />
         </BookLink>
         <div className={classes.MediaDescription}>
-          { book.volumeInfo.description ?
-            <LinesEllipsis
-              text={book.volumeInfo.description}
-              maxLine='5'
-              ellipsis='...'
-              trimRight
-              basedOn='words'
-            />
-            : t("search-no-summary")}
-          <br/><BookLink href={'/book/'+book.id}>
+          <Box className={classes.SummaryBox}>
+            <Typography variant="inherit" className={classes.MediaSummary}>
+              { book.volumeInfo.description ? book.volumeInfo.description : t("search-no-summary")}
+            </Typography>
+          </Box>
+          <BookLink href={'/book/'+book.id}>
             <Button
               variant="contained"
               color="primary"
-              className={classes.button}
               endIcon={<ChevronRight/>}
             >
               {t("search-details")}

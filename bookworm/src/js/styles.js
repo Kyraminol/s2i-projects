@@ -79,6 +79,24 @@ const useStyles = makeStyles((theme) => ({
     display: 'inline-block',
     paddingLeft: '20px'
   },
+  CardHeader: {
+    minWidth: 0,
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+  },
+  CardTitle: {
+    minWidth: 0,
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+  },
+  CardSubheader: {
+    minWidth: 0,
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+  },
   CardGrid: {
     paddingTop: theme.spacing(8),
     paddingBottom: theme.spacing(8),
@@ -98,6 +116,22 @@ const useStyles = makeStyles((theme) => ({
     flex: 'auto',
     paddingRight: theme.spacing(2),
     paddingLeft: theme.spacing(2),
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+  },
+  SummaryBox: {
+    flex: 'auto',
+  },
+  MediaSummary: {
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    display: '-webkit-box',
+    '-webkit-line-clamp': 8,
+    '-webkit-box-orient': 'vertical',
+  },
+  DetailsButton: {
+    marginTop: 'auto',
   },
   Link: {
     color: theme.palette.text.primary,

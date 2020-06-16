@@ -17,7 +17,6 @@
     "react-dom": "^16.13.1",
     "react-google-login": "^5.1.20",
     "react-i18next": "^11.5.1",
-    "react-lines-ellipsis": "^0.14.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1"
   },
