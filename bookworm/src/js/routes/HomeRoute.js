@@ -32,7 +32,7 @@ class HomeComponent extends React.Component {
     let classes = props.classes;
     return (
       <div>
-        <div className={classes.landing}>
+        <div className={classes.Landing}>
           <Container maxWidth="md">
             <Typography variant="h5" align="center" color="textSecondary" paragraph>
               {props.t("landing")}
@@ -46,7 +46,7 @@ class HomeComponent extends React.Component {
             />
           </Container>
         </div>
-        <Container className={classes.cardGrid} maxWidth="xl">
+        <Container className={classes.CardGrid} maxWidth="xl">
           <SearchResultsComponent
             classes={classes}
             searchResults={props.searchResults}

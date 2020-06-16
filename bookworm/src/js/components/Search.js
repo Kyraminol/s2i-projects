@@ -48,15 +48,15 @@ function SearchInput(props){
   const [t,] = useTranslation();
 
   return (
-    <div className={classes.searchRoot}>
-      <div className={classes.searchIcon}>
+    <div className={classes.SearchRoot}>
+      <div className={classes.SearchIcon}>
         <SearchIcon/>
       </div>
       <InputBase
         placeholder={t("search-placeholder")}
         classes={{
-          root: classes.searchInputRoot,
-          input: classes.searchInputInput,
+          root: classes.SearchInputRoot,
+          input: classes.SearchInputInput,
         }}
         id="search-input"
         inputProps={{'aria-label': 'search'}}

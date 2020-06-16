@@ -10,19 +10,18 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
-  navbar: {
+  Navbar: {
     flexWrap: 'wrap',
   },
-  navbarTitle: {
+  NavbarTitle: {
     flexGrow: 1,
   },
-
-  landing: {
+  Landing: {
     backgroundColor: theme.palette.background.paper,
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
   },
-  searchRoot: {
+  SearchRoot: {
     marginTop: theme.spacing(4),
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
@@ -37,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
       width: 'min-content',
     },
   },
-  searchIcon: {
+  SearchIcon: {
     padding: theme.spacing(0, 2),
     height: '100%',
     position: 'absolute',
@@ -46,10 +45,10 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  searchInputRoot: {
+  SearchInputRoot: {
     color: 'inherit',
   },
-  searchInputInput: {
+  SearchInputInput: {
     padding: theme.spacing(1, 1, 1, 0) + ' !important',
     paddingLeft: `calc(1em + ${theme.spacing(4)}px) !important`,
     transition: theme.transitions.create('width'),
@@ -63,63 +62,63 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
-  footer: {
+  Footer: {
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(6),
   },
 
-  root: {
+  ResultCard: {
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
   },
-  media: {
+  Media: {
     height: 'min-content',
     width: 'min-content !important',
     display: 'inline-block',
     paddingLeft: '20px'
   },
-  cardGrid: {
+  CardGrid: {
     paddingTop: theme.spacing(8),
     paddingBottom: theme.spacing(8),
   },
-  cardactions: {
+  CardActions: {
     justifyContent: 'end',
   },
-  bookcontainer: {
+  BookContainer: {
     paddingTop: theme.spacing(3),
     paddingBottom: theme.spacing(8),
   },
-  mediaroot: {
+  MediaRoot: {
     display: 'flex',
     flexDirection: 'row',
   },
-  mediadescription: {
+  MediaDescription: {
     flex: 'auto',
     paddingRight: theme.spacing(2),
     paddingLeft: theme.spacing(2),
   },
-  link: {
+  Link: {
     color: theme.palette.text.primary,
   },
-  roodt: {
+  PaperRoot: {
     display: 'flex',
   },
-  paper: {
+  Paper: {
     padding: theme.spacing(2),
     margin: 'auto',
   },
-  image: {
+  ImageRoot: {
     margin: 'auto',
   },
-  img: {
+  Image: {
     margin: 'auto',
     display: 'block',
     maxWidth: '100%',
     maxHeight: '100%',
   },
-  morebutton: {
+  MoreButton: {
     marginTop: theme.spacing(4),
     position: 'relative',
   },

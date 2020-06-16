@@ -7,7 +7,7 @@ import React from 'react';
 function Footer(props){
   let classes = useStyles(props);
   return (
-    <footer className={classes.footer}>
+    <footer className={classes.Footer}>
       <Typography variant="h6" align="center" gutterBottom>
         Credits
       </Typography>

@@ -74,14 +74,14 @@ class BookDetailsComponent extends React.Component {
       )
     } else {
       return (
-        <Container className={classes.bookcontainer}>
+        <Container className={classes.BookContainer}>
           <Back/>
-          <div className={classes.roodt}>
-            <Paper className={classes.paper}>
+          <div className={classes.PaperRoot}>
+            <Paper className={classes.Paper}>
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={2}>
-                  <Box className={classes.image} maxWidth={200}>
-                    <img className={classes.img} alt="" src={book.data ? book.data.volumeInfo.imageLinks.large || book.data.volumeInfo.imageLinks.medium || book.data.volumeInfo.imageLinks.small || book.data.volumeInfo.imageLinks.thumbnail || book.data.volumeInfo.smallThumbnail : 'img/placeholder.jpg'} />
+                  <Box className={classes.ImageRoot} maxWidth={200}>
+                    <img className={classes.Image} alt="" src={book.data ? book.data.volumeInfo.imageLinks.large || book.data.volumeInfo.imageLinks.medium || book.data.volumeInfo.imageLinks.small || book.data.volumeInfo.imageLinks.thumbnail || book.data.volumeInfo.smallThumbnail : 'img/placeholder.jpg'} />
                   </Box>
                 </Grid>
                 <Grid item xs={12} sm container>
@@ -103,7 +103,7 @@ class BookDetailsComponent extends React.Component {
                   </Grid>
                   <Grid item xs={12} sm={1}>
                     <Box alignContent="right">
-                      <CardActions disableSpacing className={classes.cardactions}>
+                      <CardActions disableSpacing className={classes.CardActions}>
                         <SaveBook user={user}/>
                       </CardActions>
                     </Box>

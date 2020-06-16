@@ -31,8 +31,8 @@ function Header(props){
 
   return (
     <AppBar position="static" color="primary" elevation={0}>
-      <Toolbar className={classes.navbar}>
-        <Typography variant="h6" color="inherit" noWrap className={classes.navbarTitle}>
+      <Toolbar className={classes.Navbar}>
+        <Typography variant="h6" color="inherit" noWrap className={classes.NavbarTitle}>
           Bookworm
         </Typography>
         <Button

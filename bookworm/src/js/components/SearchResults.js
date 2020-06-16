@@ -30,7 +30,7 @@ function BookLink(props){
   }
 
   return (
-    <Link className={classes.link} to={props.href} onClick={handleClick}>
+    <Link className={classes.Link} to={props.href} onClick={handleClick}>
       {props.children}
     </Link>
   )
@@ -41,7 +41,7 @@ function ResultCard(props){
   const [t,] = useTranslation();
   let book = props.book;
   return (
-    <Card className={classes.root}>
+    <Card className={classes.ResultCard}>
       <CardHeader
         classes={{
           content: classes.cardheader
@@ -51,16 +51,16 @@ function ResultCard(props){
         title={(<BookLink href={'/book/'+book.id}>{book.volumeInfo.title}</BookLink>)}
         subheader={(book.volumeInfo.authors || []).join(', ')}
       />
-      <div className={classes.mediaroot}>
+      <div className={classes.MediaRoot}>
         <BookLink href={'/book/'+book.id}>
           <CardMedia
-            className={classes.media}
+            className={classes.Media}
             component='img'
             image={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail || book.volumeInfo.smallThumbnail : 'img/placeholder.jpg'}
             title={book.volumeInfo.title}
           />
         </BookLink>
-        <div className={classes.mediadescription}>
+        <div className={classes.MediaDescription}>
           { book.volumeInfo.description ?
             <LinesEllipsis
               text={book.volumeInfo.description}
@@ -82,7 +82,7 @@ function ResultCard(props){
           </BookLink>
         </div>
       </div>
-      <CardActions disableSpacing className={classes.cardactions}>
+      <CardActions disableSpacing className={classes.CardActions}>
         <SaveBookButton bookshelves={props.bookshelves} book={book.id}/>
       </CardActions>
     </Card>
@@ -192,7 +192,7 @@ function MoreButton(props) {
   const [t,] = useTranslation();
 
   return (
-    <div align="center" className={classes.morebutton}>
+    <div align="center" className={classes.MoreButton}>
       <Button
         variant="contained"
         color="primary"
