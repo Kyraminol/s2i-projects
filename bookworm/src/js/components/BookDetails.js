@@ -157,7 +157,7 @@ class BookDetailsComponent extends React.Component {
                   <Grid item xs={12} sm={1}>
                     <Box alignContent="right">
                       <CardActions disableSpacing className={classes.CardActions}>
-                        <SaveBook user={user}/>
+                        <SaveBook user={user} book={book.data.id}/>
                       </CardActions>
                     </Box>
                   </Grid>
@@ -189,7 +189,7 @@ function SaveBook(props){
 
   if(Object.keys(bookshelves).length > 0){
     return (
-      <SaveBookButton bookshelves={bookshelves}/>
+      <SaveBookButton bookshelves={bookshelves} book={props.book}/>
     )
   } else {
     return ""
