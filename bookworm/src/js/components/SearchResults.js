@@ -70,6 +70,7 @@ function ResultCard(props){
             <Button
               variant="contained"
               color="primary"
+              size="small"
               endIcon={<ChevronRight/>}
             >
               {t("search-details")}

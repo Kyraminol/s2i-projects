@@ -110,7 +110,6 @@ function Bookshelf(props){
     ).then((r) => {
       setLoading(false);
       setDone(true);
-      console.log(r);
     });
   }
 

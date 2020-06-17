@@ -13,7 +13,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import GoogleContext from "./Google";
 import CardActions from '@material-ui/core/CardActions';
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import ChevronLeft from '@material-ui/icons/ChevronLeft';
 import { useHistory } from 'react-router-dom';
 import { Markup } from 'interweave';
 import { useTranslation } from 'react-i18next';
@@ -39,7 +39,7 @@ function Back(props){
       variant="contained"
       color="secondary"
       onClick={() => {history.goBack()}}
-      startIcon={<ArrowBackIosIcon/>}
+      startIcon={<ChevronLeft/>}
     >
       {t("details-back")}
     </Button>
@@ -47,10 +47,10 @@ function Back(props){
 }
 
 function Description(props){
-
+  const [t,] = useTranslation();
   return (
     <Box>
-      <Typography>Description</Typography>
+      <Typography>{t('details-description')}</Typography>
       <Markup content={props.children}/>
     </Box>
   )
@@ -65,6 +65,7 @@ class BookDetailsComponent extends React.Component {
     let classes = props.classes;
     let book = props.book;
     let t = props.t;
+    console.log(book);
 
     if(Object.keys(book).length === 0){
       return (
@@ -93,12 +94,68 @@ class BookDetailsComponent extends React.Component {
                       <Typography variant="body2" gutterBottom>
                         {(book.data.volumeInfo.authors || []).join(', ')}
                       </Typography>
-                      <Typography variant="body2" color="textSecondary">
-                        {book.data ? (book.data.volumeInfo.description ? <Description>{book.data.volumeInfo.description}</Description> : t("details-no-description")) : ""}
-                      </Typography>
+                      {book.data ? (book.data.volumeInfo.description ? <Description>{book.data.volumeInfo.description}</Description> : t("details-no-description")) : ""}
+                      <Grid container spacing={3}>
+                        <Grid item xs={6} sm={4} md={3}>
+                          <Typography>{t('details-publisher')}</Typography>
+                          <Typography>xy</Typography>
+                        </Grid>
+                        <Grid item xs={6} sm={4} md={3}>
+                          <Typography>{t('details-publish-year')}</Typography>
+                          <Typography>xy</Typography>
+                        </Grid>
+                        <Grid item xs={6} sm={4} md={3}>
+                          <Typography>{t('details-pages')}</Typography>
+                          <Typography>xy</Typography>
+                        </Grid>
+                        <Grid item xs={6} sm={4} md={3}>
+                          <Typography>{t('details-isbn')}</Typography>
+                          <Typography>xy</Typography>
+                        </Grid>
+                        <Grid item xs={6} sm={4} md={3}>
+                          <Typography>{t('details-lang')}</Typography>
+                          <Typography>xy</Typography>
+                        </Grid>
+                        <Grid item xs={6} sm={4} md={3}>
+                          <Typography>{t('details-')}</Typography>
+                          <Typography>xy</Typography>
+                        </Grid>
+                        <Grid item xs={6} sm={4} md={3}>
+                          <Typography>{t('details-')}</Typography>
+                          <Typography>xy</Typography>
+                        </Grid>
+                        <Grid item xs={6} sm={4} md={3}>
+                          <Typography>{t('details-')}</Typography>
+                          <Typography>xy</Typography>
+                        </Grid>
+                        <Grid item xs={6} sm={4} md={3}>
+                          <Typography>{t('details-')}</Typography>
+                          <Typography>xy</Typography>
+                        </Grid>
+                        <Grid item xs={6} sm={4} md={3}>
+                          <Typography>{t('details-')}</Typography>
+                          <Typography>xy</Typography>
+                        </Grid>
+
+                      </Grid>
                     </Grid>
                     <Grid item>
-
+                      <CardActions className={classes.CardActions}>
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          size="small"
+                        >
+                          {t("details-store")}
+                        </Button>
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          size="small"
+                        >
+                          {t("details-read")}
+                        </Button>
+                      </CardActions>
                     </Grid>
                   </Grid>
                   <Grid item xs={12} sm={1}>

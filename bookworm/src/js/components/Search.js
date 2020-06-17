@@ -17,7 +17,7 @@ function SearchInput(props){
   const [lastQuery, setLastQuery] = React.useState("");
   const [loading, setLoading] = React.useState(false);
 
-  if(query === "" && props.query){
+  if(query === "" && props.query && lastQuery === ""){
     setQuery(props.query);
   }
 
