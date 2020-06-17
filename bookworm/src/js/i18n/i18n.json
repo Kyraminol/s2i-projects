@@ -10,7 +10,15 @@
       "search-details": "Show details",
       "search-more": "More results",
       "details-back": "Back to results",
-      "details-no-description": "No description available"
+      "details-no-description": "No description available",
+      "details-description": "Description",
+      "details-more": "More details",
+      "details-publisher": "Publisher",
+      "details-published-date": "Published date",
+      "details-pages": "Pages",
+      "details-language": "Language",
+      "details-preview": "Preview",
+      "details-store": "Store"
     }
   },
 
@@ -25,7 +33,14 @@
       "search-details": "Mostra dettagli",
       "search-more": "Altri risultati",
       "details-back": "Torna ai risultati",
-      "details-no-description": "Descrizione non disponibile"
+      "details-no-description": "Descrizione non disponibile",
+      "details-description": "Descrizione",
+      "details-more": "Altri dettagli",
+      "details-publisher": "Editore",
+      "details-published-date": "Data pubblicazione",
+      "details-pages": "Pagine",
+      "details-preview": "Anteprima",
+      "details-store": "Negozio"
     }
   }
 }

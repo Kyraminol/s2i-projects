@@ -191,7 +191,22 @@ const useStyles = makeStyles((theme) => ({
   },
   SaveBookBox: {
     marginLeft: 'auto',
-  }
+  },
+  DetailsBoxMore: {
+    marginTop: theme.spacing(5),
+  },
+  DetailsHeader: {
+    paddingBottom: theme.spacing(3),
+  },
+  DetailsPaddingLeft: {
+    paddingLeft: theme.spacing(1),
+  },
+  DetailsBold: {
+    fontWeight: theme.typography.fontWeightBold + ' !important',
+  },
+  DetailsLight: {
+    fontWeight: '100 !important',
+  },
 }));
 
 export default useStyles;
