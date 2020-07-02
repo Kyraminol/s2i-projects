@@ -1,0 +1,384 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Maker's Space\n"
+"POT-Creation-Date: 2020-07-02 07:50+0200\n"
+"PO-Revision-Date: 2020-07-02 08:05+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: it_IT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.3.1\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: style.css\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: 404.php:10
+msgid "Oops! That page can't be found."
+msgstr "Oops! Quella pagina non può essere trovata."
+
+#: 404.php:14
+msgid ""
+"It looks like nothing was found at this location. Try one of the links below "
+"or a search."
+msgstr ""
+"Sembra che non ci sia niente qui. Prova uno dei link qui sotto oppure una "
+"ricerca diversa."
+
+#: comments.php:17
+#, php-format
+msgid "One comment on &ldquo;%1$s&rdquo;"
+msgstr "Un commento su &ldquo;%1$s&rdquo;"
+
+#: comments.php:22
+#, php-format
+msgctxt "comments title"
+msgid "%1$s comment on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s comments on &ldquo;%2$s&rdquo;"
+msgstr[0] "%1$s commento su &ldquo;%2$s&rdquo;"
+msgstr[1] "%1$s commenti su &ldquo;%2$s&rdquo;"
+
+#: comments.php:33 comments.php:51
+msgid "Comment navigation"
+msgstr "Naviga i commenti"
+
+#: comments.php:36 comments.php:54
+msgid "Older Comments"
+msgstr "Commenti più vecchi"
+
+#: comments.php:37 comments.php:55
+msgid "Newer Comments"
+msgstr "Commenti più nuovi"
+
+#: comments.php:67
+msgid "Comments are closed."
+msgstr "I commenti sono chiusi."
+
+#: comments.php:74
+msgid "Leave a Reply"
+msgstr "Rispondi"
+
+#: comments.php:75
+#, php-format
+msgid "Leave a Reply to %s"
+msgstr "Rispondi a %s"
+
+#: comments.php:76
+msgid "Cancel Reply"
+msgstr "Annulla risposta"
+
+#: comments.php:77
+msgid "Post Comment"
+msgstr "Invia Commento"
+
+#: comments.php:79
+msgid "Type something"
+msgstr "Scrivi qualcosa"
+
+#: comments.php:82
+msgid ""
+"You may use these <abbr title=\"HyperText Markup Language\">HTML</abbr> tags "
+"and attributes:"
+msgstr ""
+"Puoi usare questi tag e attributi <abbr title=\"HyperText Markup Language"
+"\">HTML</abbr>:"
+
+#: footer.php:14
+msgid "Maker's Space WordPress Theme"
+msgstr "Tema WordPress Maker's Space"
+
+#: functions.php:11
+msgid "Primary"
+msgstr "Primario"
+
+#: functions.php:39
+msgid "Sidebar"
+msgstr "Barra laterale"
+
+#: functions.php:41 functions.php:50
+msgid "Add widgets here."
+msgstr "Aggiungi widgets qui."
+
+#: functions.php:48
+msgid "Footer"
+msgstr "Footer"
+
+#: functions.php:115
+msgid "To view this protected post, enter the password below:"
+msgstr "Per vedere questo post protetto, inserisci la password qui sotto:"
+
+#: functions.php:116
+msgid "Password:"
+msgstr "Password:"
+
+#: functions.php:116
+msgid "Submit"
+msgstr "Invia"
+
+#: header.php:15
+msgid "Skip to content"
+msgstr "Vai al contenuto"
+
+#: header.php:69
+msgid "Our creativity empowering your ideas"
+msgstr "La nostra creatività a servizio delle vostre idee"
+
+#: inc/customizer.php:7
+msgid "Colors Customizations"
+msgstr "Personalizzazione dei colori"
+
+#: inc/customizer.php:8
+msgid "Colors"
+msgstr "Colori"
+
+#: inc/customizer.php:24
+msgid "Navbar Background"
+msgstr "Sfondo Barra di Navigazione"
+
+#: inc/customizer.php:42
+msgid "Navbar Text"
+msgstr "Testo Barra di Navigazione"
+
+#: inc/customizer.php:55
+msgid "Navbar Mobile Button"
+msgstr "Bottone Mobile Barra di Navigazione"
+
+#: inc/customizer.php:60 inc/customizer.php:260
+msgid "Light"
+msgstr "Chiaro"
+
+#: inc/customizer.php:61 inc/customizer.php:261
+msgid "Dark"
+msgstr "Scuro"
+
+#: inc/customizer.php:77
+msgid "Page Background"
+msgstr "Sfondo Pagina"
+
+#: inc/customizer.php:95
+msgid "Footer Background"
+msgstr "Sfondo Footer"
+
+#: inc/customizer.php:113
+msgid "Footer Text"
+msgstr "Testo Footer"
+
+#: inc/customizer.php:124
+msgid "Other Customizations"
+msgstr "Altre Personalizzazioni"
+
+#: inc/customizer.php:125
+msgid "Various stuff"
+msgstr "Altre cose"
+
+#: inc/customizer.php:137
+msgid "Font"
+msgstr "Font"
+
+#: inc/customizer.php:159
+msgid "Header Banner"
+msgstr "Banner Iniziale"
+
+#: inc/customizer.php:166
+msgid "Header Image"
+msgstr "Immagine Banner Iniziale"
+
+#: inc/customizer.php:184
+msgid "Header Banner Background Color"
+msgstr "Sfondo Banner Iniziale"
+
+#. Theme Name of the plugin/theme
+#: inc/customizer.php:191
+msgid "Maker's Space"
+msgstr "Maker's Space"
+
+#: inc/customizer.php:195
+msgid "Banner Title"
+msgstr "Titolo Banner"
+
+#: inc/customizer.php:203
+msgid ""
+"To customize the contents of this header banner and other elements of your "
+"site go to Dashboard - Appearance - Customize"
+msgstr ""
+"Per personalizzare i contenuti di questo banner iniziale e altri elementi "
+"del sito vai in Bacheca - Aspetto - Personalizza"
+
+#: inc/customizer.php:206
+msgid "Banner Tagline"
+msgstr "Motto Banner"
+
+#: inc/customizer.php:224
+msgid "Title Color"
+msgstr "Colore Titolo"
+
+#: inc/customizer.php:241
+msgid "Tagline Color"
+msgstr "Colore Motto"
+
+#: inc/customizer.php:254
+msgid "Text border"
+msgstr "Bordo del Testo"
+
+#: inc/customizer.php:259
+msgid "None"
+msgstr "Nessuno"
+
+#: inc/customizer.php:272
+msgid "Remove Header Banner"
+msgstr "Rimuovi Banner Iniziale"
+
+#: inc/customizer.php:290
+msgid "Upload Logo (replaces text)"
+msgstr "Carica Logo (rimpiazza il testo)"
+
+#: inc/template-tags.php:16
+#, php-format
+msgctxt "post date"
+msgid "Posted on %s"
+msgstr "Postato il %s"
+
+#: inc/template-tags.php:21
+#, php-format
+msgctxt "post author"
+msgid "by %s"
+msgstr "da %s"
+
+#: inc/template-tags.php:29
+#, php-format
+msgid "Leave a Comment<span class=\"screen-reader-text\"> on %s</span>"
+msgstr "Commenta <span class=\"screen-reader-text\"> riguardo %s</span>"
+
+#: inc/template-tags.php:39 inc/template-tags.php:43
+msgid ", "
+msgstr ", "
+
+#: inc/template-tags.php:41
+#, php-format
+msgid "Posted in %1$s"
+msgstr "Inviato in %1$s"
+
+#: inc/template-tags.php:45
+#, php-format
+msgid "Tagged %1$s"
+msgstr "Etichette %1$s"
+
+#: inc/template-tags.php:52 template-parts/content-page.php:27
+#, php-format
+msgid "Edit %s"
+msgstr "Modifica %s"
+
+#: inc/template-tags.php:97
+msgid "Pingback:"
+msgstr "Risposta:"
+
+#: inc/template-tags.php:97
+msgid "Edit"
+msgstr "Modifica"
+
+#: inc/template-tags.php:112
+#, php-format
+msgid "%s <span class=\"says\">says:</span>"
+msgstr "%s <span class=\"says\">dice:</span>"
+
+#: inc/template-tags.php:116
+#, php-format
+msgctxt "1: date, 2: time"
+msgid "%1$s at %2$s"
+msgstr "%1$s alle %2$s"
+
+#: inc/template-tags.php:119
+msgid ""
+"<span style=\"margin-left: 5px;\" class=\"glyphicon glyphicon-edit\"></span> "
+"Edit"
+msgstr ""
+"<span style=\"margin-left: 5px;\" class=\"glyphicon glyphicon-edit\"></span> "
+"Modifica"
+
+#: inc/template-tags.php:124
+msgid "Your comment is awaiting moderation."
+msgstr "Il tuo commento è in attesa di moderazione"
+
+#: inc/wp_bootstrap_navwalker.php:357
+msgid "Add a menu"
+msgstr "Aggiungi un menù"
+
+#: search.php:12
+#, php-format
+msgid "Search Results for: %s"
+msgstr "Risultati Ricerca per: %s"
+
+#: searchform.php:3
+msgctxt "placeholder"
+msgid "Search &hellip;"
+msgstr "Cerca &hellip;"
+
+#: searchform.php:3
+msgctxt "label"
+msgid "Search for:"
+msgstr "Cerca per:"
+
+#: searchform.php:5
+msgctxt "submit button"
+msgid "Search"
+msgstr "Cerca"
+
+#: template-parts/content-none.php:3
+msgid "Nothing Found"
+msgstr "Nessun Risultato"
+
+#: template-parts/content-none.php:10
+#, php-format
+msgid ""
+"Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr ""
+"Pronto a pubblicare il tuo primo contenuto? <a href=\"%1$s\">Inizia qui</a>."
+
+#: template-parts/content-none.php:14
+msgid ""
+"Sorry, but nothing matched your search terms. Please try again with some "
+"different keywords."
+msgstr ""
+"Siamo spiacenti, ma c'è nessun risultato riguardo la tua ricerca. Prova di "
+"nuovo con parole differenti."
+
+#: template-parts/content-none.php:20
+msgid ""
+"It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps "
+"searching can help."
+msgstr ""
+"Sembra che non è possibile trovare ciò che stai cercando. Forse una ricerca "
+"può aiutare."
+
+#: template-parts/content-notitle.php:7 template-parts/content-page.php:16
+#: template-parts/content.php:29
+msgid "Pages:"
+msgstr "Pagine:"
+
+#: template-parts/content.php:25
+msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Continua a leggere <span class=\"meta-nav\">&rarr;</span>"
+
+#. Theme URI of the plugin/theme
+msgid "https://github.com/Kyraminol/s2i-projects/tree/master/makerspace"
+msgstr "https://github.com/Kyraminol/s2i-projects/tree/master/makerspace"
+
+#. Description of the plugin/theme
+msgid "Theme for a 3D printing company"
+msgstr "Tema per una compagnia di stampa 3D"
+
+#. Author of the plugin/theme
+msgid "Gianmarco Randazzo"
+msgstr "Gianmarco Randazzo"
+
+#. Author URI of the plugin/theme
+msgid "https://gianmarcorandazzo.it"
+msgstr "https://gianmarcorandazzo.it"
