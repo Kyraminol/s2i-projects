@@ -1,10 +1,8 @@
-import Header from './components/Header';
-import Main from './components/Main';
-import Footer from './components/Footer';
+import Home from './routes/Home';
 
 import React from 'react';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import deepPurple from '@material-ui/core/colors/deepPurple';
+import red from '@material-ui/core/colors/red';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 
@@ -13,7 +11,7 @@ function App() {
     () =>
       createMuiTheme({
         palette: {
-          primary: deepPurple,
+          primary: red,
           type: 'dark',
         },
       }),
@@ -23,10 +21,11 @@ function App() {
   return (
     <React.Fragment>
       <ThemeProvider theme={theme}>
-        <CssBaseline/>
-        <Header/>
-        <Main/>
-        <Footer/>
+        <Router>
+          <Switch>
+            <Route exact path="/" component={Home}/>
+          </Switch>
+        </Router>
       </ThemeProvider>
     </React.Fragment>
   );
