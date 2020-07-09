@@ -1,4 +1,5 @@
 import Home from './routes/Home';
+import Room from './routes/Room';
 
 import React from 'react';
 import red from '@material-ui/core/colors/red';
@@ -24,6 +25,7 @@ function App() {
         <Router>
           <Switch>
             <Route exact path="/" component={Home}/>
+            <Route exact path="/room/:name" component={Room}/>
           </Switch>
         </Router>
       </ThemeProvider>

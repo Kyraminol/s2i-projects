@@ -20,7 +20,7 @@
     "start-client": "react-scripts start",
     "build": "react-scripts build",
     "start-dev": "npm-run-all -p start-server start-client",
-    "start-prod": "npm-run-all -s build start-client"
+    "start-prod": "npm-run-all -s build start-server"
   },
   "eslintConfig": {
     "extends": "react-app"
