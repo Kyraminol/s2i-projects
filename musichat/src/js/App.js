@@ -5,6 +5,7 @@ import React from 'react';
 import red from '@material-ui/core/colors/red';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { CssBaseline } from '@material-ui/core';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
   return (
     <React.Fragment>
       <ThemeProvider theme={theme}>
+        <CssBaseline/>
         <Router>
           <Switch>
             <Route exact path="/" component={Home}/>

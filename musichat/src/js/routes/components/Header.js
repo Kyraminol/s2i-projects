@@ -1,4 +1,4 @@
-import useStyles from '../../styles';
+import useStyles from '../../Styles';
 
 import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
