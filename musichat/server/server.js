@@ -28,17 +28,25 @@ function updateUser(user, key, value){
 
 io.on('connection', (socket) => {
   socket.on('room', (params) => {
-    socket.join(params.room);
+    let { username, room } = params;
+    socket.join(room);
     updateUser(socket.id, "room", params.room);
-    updateUser(socket.id, "username", params.username);
+    if(username === "") username = "Anon";
+    for(;true;){
+      let name = username;
+      let usernameExists = Object.keys(users).reduce(function (result, id) {
+        if(name === users[id].name)
+          result.push(users[id]);
+        return result;
+      }, []);
+      if(usernameExists.length === 0) break;
+      username += Math.floor(Math.random() * 10);
+    }
+    updateUser(socket.id, "name", username);
   });
 
   socket.on('message', (message) => {
     socket.to(users[socket.id].room).emit('message', message);
-  })
-
-  socket.on('username', (username) => {
-    updateUser(socket.id, "username", username);
   })
 
   socket.on('disconnect', () => {
