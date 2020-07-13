@@ -21,20 +21,31 @@ app.get('/api/v1/room/:name', function (req, res) {
 
 const users = {};
 
+function updateUser(user, key, value){
+  if(!Object.keys(users).includes(user)) users[user] = {};
+  if(key && value) users[user][key] = value;
+}
+
 io.on('connection', (socket) => {
-  socket.on('room', (room) => {
-    console.log(room)
-    socket.join(room);
-    users[socket.id] = {room: room};
+  socket.on('room', (params) => {
+    socket.join(params.room);
+    updateUser(socket.id, "room", params.room);
+    updateUser(socket.id, "username", params.username);
   });
 
-  socket.on('msg', (msg) => {
-    socket.to(users[socket.id].room).emit('msg', msg);
+  socket.on('message', (message) => {
+    socket.to(users[socket.id].room).emit('message', message);
+  })
+
+  socket.on('username', (username) => {
+    updateUser(socket.id, "username", username);
+  })
+
+  socket.on('disconnect', () => {
+    delete users[socket.id];
   })
 
 });
-
-
 
 
 http.listen(process.env.PORT || 8080, () => {

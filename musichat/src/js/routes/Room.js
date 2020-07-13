@@ -4,33 +4,34 @@ import Footer from './components/Footer';
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import socketIOClient from "socket.io-client";
+import UsernameDialog from "./components/UsernameDialog";
+
 
 const socket = socketIOClient();
 
 function Room() {
   const params = useParams();
-  console.log(params);
-  const [response, setResponse] = React.useState(null);
+  const [messages, setMessages] = React.useState([]);
+  const [username, setUsername] = React.useState(null);
+  const [usernameDialogOpen, setUsernameDialogOpen] = React.useState(true);
 
   React.useEffect(() => {
-    socket.on('connect', () => {
-      socket.emit('room', params.name);
-      setInterval(()=> {
-        socket.emit('msg', 'ok');
-      }, 1000)
-
-    });
-    socket.on('msg', (msg) => {
-      console.log(msg);
-    });
-  }, [params]);
+    if(username !== null && socket.connected){
+      socket.emit('room', {room: params.name, username: username});
+      socket.on('message', (message) => {
+        setMessages(messages.concat(message));
+      });
+    }
+  }, [username, params, setMessages, messages]);
 
 
 
   return(
     <>
       <Header/>
-      <main/>
+      <main>
+        <UsernameDialog setUsername={setUsername} open={[usernameDialogOpen, setUsernameDialogOpen]}/>
+      </main>
       <Footer/>
     </>
   )
