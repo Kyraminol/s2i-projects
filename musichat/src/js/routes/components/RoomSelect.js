@@ -23,7 +23,9 @@ function RoomSelect(props){
   const [open, setOpen] = React.useState(false);
   const [options, setOptions] = React.useState([]);
   const [room, setRoom] = React.useState('');
-  const loading = open && options.length === 0;
+  const [loading, setLoading] = React.useState(null);
+
+  if(open && options.length === 0 && loading === null) setLoading(true);
 
   React.useEffect(() => {
     let active = true;
@@ -37,6 +39,7 @@ function RoomSelect(props){
         .then((r) => {
           if(active){
             setOptions(r.data);
+            setLoading(false);
           }
         });
     })();
@@ -48,6 +51,7 @@ function RoomSelect(props){
 
   React.useEffect(() => {
     if (!open) {
+      setLoading(null);
       setOptions([]);
     }
   }, [open]);
