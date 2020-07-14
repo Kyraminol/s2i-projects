@@ -4,6 +4,8 @@ const http = require("http").createServer(app);
 const io = require("socket.io")(http);
 const path = require('path');
 
+const users = {};
+const rooms = {};
 
 app.use(express.static(path.join(__dirname, 'build')));
 
@@ -12,37 +14,54 @@ app.get('/', function (req, res) {
 });
 
 app.get('/api/v1/room', function (req, res) {
-  res.json([{name: "room1", users: 2}, {name: "room2", users: 10}]);
+  let results = [];
+  Object.keys(rooms).forEach((room) => {
+    results.push({name: room, users: getRoomUsers(room).length})
+  });
+  res.json(results);
 });
 
 app.get('/api/v1/room/:name', function (req, res) {
   console.log(req.params.name);
 })
 
-const users = {};
-
 function updateUser(user, key, value){
   if(!Object.keys(users).includes(user)) users[user] = {};
   if(key && value) users[user][key] = value;
 }
 
+function getRoomUsers(room){
+  return Object.keys(users).reduce(function (result, id) {
+    if (room === users[id].room)
+      result.push(users[id].name);
+    return result;
+  }, [])
+}
+
+function getRoomInfo(room){
+  return rooms[room];
+}
+
 io.on('connection', (socket) => {
   socket.on('room', (params) => {
     let { username, room } = params;
+    if(!Object.keys(rooms).includes(room)) rooms[room] = {syncTime: 0, syncURL: ''}
     socket.join(room);
-    updateUser(socket.id, "room", params.room);
-    if(username === "") username = "Anon";
+    updateUser(socket.id, 'room', params.room);
+    if(username === '') username = 'Anon';
     for(;true;){
       let name = username;
       let usernameExists = Object.keys(users).reduce(function (result, id) {
-        if(name === users[id].name)
+        if(users[id].room === room && users[id].name === name)
           result.push(users[id]);
         return result;
       }, []);
       if(usernameExists.length === 0) break;
       username += Math.floor(Math.random() * 10);
     }
-    updateUser(socket.id, "name", username);
+    updateUser(socket.id, 'name', username);
+    socket.emit('room', {users: getRoomUsers(room), room: getRoomInfo(room)});
+    socket.to(room).emit('room', {users: getRoomUsers(room), room: getRoomInfo(room)});
   });
 
   socket.on('message', (message) => {
@@ -50,12 +69,16 @@ io.on('connection', (socket) => {
   })
 
   socket.on('disconnect', () => {
+    if(!Object.keys(users).includes(socket.id)) return;
+    let room = users[socket.id].room;
     delete users[socket.id];
+    if(getRoomUsers(room).length === 0) delete rooms[room]
+    else io.sockets.in(room).emit('room', {users: getRoomUsers(room), room: getRoomInfo(room)})
   })
 
 });
 
-
-http.listen(process.env.PORT || 8080, () => {
-  console.log('listening on ' + process.env.PORT || 8080);
+const port = process.env.PORT || 8080;
+http.listen(port, () => {
+  console.log('Server listening on ' + port);
 });

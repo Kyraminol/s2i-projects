@@ -17,12 +17,15 @@ function Room() {
 
   React.useEffect(() => {
     if(username !== null && socket.connected){
-      socket.emit('room', {room: params.name, username: username});
       socket.on('message', (message) => {
         setMessages(messages.concat(message));
       });
+      socket.on('room', (room) => {
+        console.log(room);
+      })
+      socket.emit('room', {room: params.name, username: username});
     }
-  }, [username, params, setMessages, messages]);
+  }, [username, params, messages]);
 
 
 
