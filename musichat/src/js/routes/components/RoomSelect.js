@@ -62,14 +62,17 @@ function RoomSelect(props){
     }
   }
 
-  function join(){
-    history.push("/room/" + room);
+  function handleSubmit(e){
+    e.preventDefault();
+    if(room !== ''){
+      history.push("/room/" + room);
+    }
   }
 
   return(
     <Container component="main" className={classes.LandingMain}>
       <Container maxWidth="xs" className={classes.Landing}>
-        <Box>
+        <Box component="form" onSubmit={handleSubmit}>
           <Typography component="h1" variant="h4">
             Musichat
           </Typography>
@@ -129,7 +132,7 @@ function RoomSelect(props){
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={join}
+            onClick={handleSubmit}
           >
             Join Room
           </Button>

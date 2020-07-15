@@ -6,21 +6,22 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import {Box} from "@material-ui/core";
 
 
 function UsernameDialog(props) {
   const [open, setOpen] = props.open;
   const [username, setUsername] = React.useState("");
 
-  const handleClose = () => {
-    props.setUsername(username);
-    setOpen(false);
-  }
-
   function onChange(e){
     setUsername(e.currentTarget.value);
   }
 
+  function handleSubmit(e){
+    e.preventDefault();
+    props.setUsername(username);
+    setOpen(false);
+  }
 
   return (
     <Dialog
@@ -33,17 +34,19 @@ function UsernameDialog(props) {
         <DialogContentText>
           Choose an username or leave it blank to get a random one
         </DialogContentText>
-        <TextField
-          autoFocus
-          margin="dense"
-          id="username"
-          label="Username"
-          fullWidth
-          onChange={onChange}
-        />
+        <Box component="form" onSubmit={handleSubmit}>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="username"
+            label="Username"
+            fullWidth
+            onChange={onChange}
+          />
+        </Box>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose} color="primary">
+        <Button onClick={handleSubmit} color="primary">
           Confirm
         </Button>
       </DialogActions>
