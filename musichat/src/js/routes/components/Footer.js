@@ -8,12 +8,6 @@ function Footer(props){
   let classes = useStyles(props);
   return (
     <footer className={classes.Footer}>
-      <Typography variant="h6" align="center" gutterBottom>
-        Credits
-      </Typography>
-      <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-
-      </Typography>
       <Typography variant="body2" color="textSecondary" align="center">
         {'Copyright © Gianmarco Randazzo '}
         {new Date().getFullYear()}

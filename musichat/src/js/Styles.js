@@ -23,10 +23,31 @@ const useStyles = makeStyles((theme) => ({
   },
   Footer: {
     backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(4),
+    padding: theme.spacing(1),
   },
   submit: {
     margin: theme.spacing(2, 0, 0) + ' !important',
+  },
+  RoomMain: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'end',
+  },
+  RoomInputRoot: {
+    padding: '2px 4px',
+    display: 'flex',
+    alignItems: 'center',
+  },
+  RoomInputInput: {
+    marginLeft: theme.spacing(1),
+    flex: 1,
+  },
+  RoomInputIcon: {
+    padding: 10,
+  },
+  divider: {
+    height: 28,
+    margin: 4,
   },
 }));
 
