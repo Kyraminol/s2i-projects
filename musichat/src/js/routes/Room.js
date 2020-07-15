@@ -17,24 +17,30 @@ import UsernameDialog from "./components/UsernameDialog";
 
 const socket = socketIOClient();
 
+
+
 function Room(props) {
-  const classes = useStyles();
+  const classes = useStyles(props);
   const params = useParams();
+  const [socketReady, setSocketReady] = React.useState(false);
   const [messages, setMessages] = React.useState([]);
   const [username, setUsername] = React.useState(null);
   const [usernameDialogOpen, setUsernameDialogOpen] = React.useState(true);
 
+
+
   React.useEffect(() => {
-    if(username !== null && socket.connected){
+    if(username !== null && socket.connected && socketReady === false){
+      setSocketReady(true);
       socket.on('message', (message) => {
-        setMessages(messages.concat(message));
+        setMessages((messages) => messages.concat(message));
       });
       socket.on('room', (room) => {
         console.log(room);
       })
       socket.emit('room', {room: params.name, username: username});
     }
-  }, [username, params, messages]);
+  }, [username, params, messages, socketReady]);
 
 
   function handleSubmit(e){
