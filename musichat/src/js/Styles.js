@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   RoomMain: {
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'end',
+    justifyContent: 'flex-end',
   },
   RoomInputRoot: {
     padding: '2px 4px',
@@ -73,12 +73,11 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.hint,
   },
   MessagesContainer: {
+    flexGrow: 1,
     display: 'flex !important',
     flexDirection: 'column',
     overflowY: 'auto',
-    maxHeight: '90%',
-    height: '90%',
-    minHeight: '90%',
+    minHeight: 0,
     flexBasis: 0,
   }
 }));

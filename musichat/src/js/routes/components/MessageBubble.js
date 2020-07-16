@@ -9,7 +9,7 @@ function MessageBubble(props) {
   let classes = useStyles(props);
 
   let style = {};
-  if(props.self.name === props.message.from) style['justifyContent'] = 'end';
+  if(props.self.name === props.message.from) style['justifyContent'] = 'flex-end';
 
   let timestamp = new Date(props.message.timestamp);
 
