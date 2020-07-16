@@ -12,9 +12,10 @@ function Header(props){
   return (
     <AppBar position="static" color="primary" elevation={0}>
       <Toolbar className={classes.Navbar}>
-        <Typography variant="h6" color="inherit" noWrap>
+        <Typography variant="h6" color="inherit" noWrap className={classes.NavbarTitle}>
           Musichat
         </Typography>
+        {props.menu}
       </Toolbar>
     </AppBar>
   )

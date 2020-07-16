@@ -14,6 +14,10 @@ import socketIOClient from "socket.io-client";
 import useStyles from "../Styles";
 import UsernameDialog from "./components/UsernameDialog";
 import MessageBubble from "./components/MessageBubble";
+import GroupIcon from "@material-ui/icons/Group";
+import AccountCircle from "@material-ui/icons/AccountCircle";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
 
 
 const socket = socketIOClient();
@@ -72,7 +76,7 @@ function Room(props) {
 
   return(
     <>
-      <Header/>
+      <Header menu={<NavbarMenu/>}/>
       <main className={classes.RoomMain}>
         <UsernameDialog setUsername={setUsername} open={[usernameDialogOpen, setUsernameDialogOpen]}/>
         <Box className={classes.MessagesContainer}>
@@ -95,6 +99,52 @@ function Room(props) {
       </main>
       <Divider light/>
       <Footer/>
+    </>
+  )
+}
+
+function NavbarMenu(props){
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  return(
+    <>
+      <IconButton
+        color="inherit"
+      >
+        <GroupIcon />
+      </IconButton>
+      <IconButton
+        onClick={handleMenu}
+        color="inherit"
+      >
+        <AccountCircle />
+      </IconButton>
+      <Menu
+        id="menu-appbar"
+        anchorEl={anchorEl}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        keepMounted
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        open={open}
+        onClose={handleClose}
+      >
+        <MenuItem onClick={handleClose}>Edit Username</MenuItem>
+      </Menu>
     </>
   )
 }
