@@ -49,6 +49,10 @@ const useStyles = makeStyles((theme) => ({
     height: 28,
     margin: 4,
   },
+  MessageBubble: {
+    padding: theme.spacing(3),
+    margin: theme.spacing(3),
+  }
 }));
 
 export default useStyles;

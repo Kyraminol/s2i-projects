@@ -66,7 +66,13 @@ io.on('connection', (socket) => {
   });
 
   socket.on('message', (message) => {
-    socket.to(users[socket.id].room).emit('message', message);
+    let result = {
+      'text': message,
+      'from': users[socket.id].name,
+      'timestamp': Date.now(),
+    };
+    socket.emit('message', result);
+    socket.to(users[socket.id].room).emit('message', result);
   })
 
   socket.on('disconnect', () => {

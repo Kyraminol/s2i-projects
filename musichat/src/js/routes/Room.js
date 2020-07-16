@@ -13,6 +13,7 @@ import { useParams } from 'react-router-dom';
 import socketIOClient from "socket.io-client";
 import useStyles from "../Styles";
 import UsernameDialog from "./components/UsernameDialog";
+import MessageBubble from "./components/MessageBubble";
 
 
 const socket = socketIOClient();
@@ -26,7 +27,7 @@ function Room(props) {
   const [messages, setMessages] = React.useState([]);
   const [username, setUsername] = React.useState(null);
   const [usernameDialogOpen, setUsernameDialogOpen] = React.useState(true);
-
+  const [roomInfo, setRoomInfo] = React.useState(null);
 
 
   React.useEffect(() => {
@@ -36,7 +37,7 @@ function Room(props) {
         setMessages((messages) => messages.concat(message));
       });
       socket.on('room', (room) => {
-        console.log(room);
+        setRoomInfo(room);
       })
       socket.emit('room', {room: params.name, username: username});
     }
@@ -56,7 +57,7 @@ function Room(props) {
       <main className={classes.RoomMain}>
         <UsernameDialog setUsername={setUsername} open={[usernameDialogOpen, setUsernameDialogOpen]}/>
         <Container>
-
+          {messages.map((message) => <MessageBubble message={message}/>)}
         </Container>
         <Paper component="form" className={classes.RoomInputRoot} square elevation={2} onSubmit={handleSubmit}>
           <InputBase
