@@ -61,7 +61,7 @@ io.on('connection', (socket) => {
       username += Math.floor(Math.random() * 10);
     }
     updateUser(socket.id, 'name', username);
-    socket.emit('room', {users: getRoomUsers(room), room: getRoomInfo(room)});
+    socket.emit('room', {users: getRoomUsers(room), room: getRoomInfo(room), self: users[socket.id]});
     socket.to(room).emit('room', {users: getRoomUsers(room), room: getRoomInfo(room)});
   });
 

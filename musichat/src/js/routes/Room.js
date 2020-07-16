@@ -29,6 +29,7 @@ function Room(props) {
   const [username, setUsername] = React.useState(localStorage.getItem('username') || null);
   const [usernameDialogOpen, setUsernameDialogOpen] = React.useState(username === null);
   const [roomInfo, setRoomInfo] = React.useState(null);
+  const [selfInfo, setSelfInfo] = React.useState(null);
 
   const messagesEndRef = React.useRef(null)
 
@@ -44,6 +45,9 @@ function Room(props) {
       });
       socket.on('room', (room) => {
         setRoomInfo(room);
+        if(room.self){
+          setSelfInfo(room.self);
+        }
       })
       socket.emit('room', {room: params.name, username: username});
       setSocketReady(true);
@@ -54,6 +58,7 @@ function Room(props) {
   function handleSubmit(e){
     e.preventDefault();
     let input =  document.getElementById('message-input');
+    if(input.value === '') return;
     socket.emit('message', input.value);
     input.value = '';
   }
@@ -71,10 +76,10 @@ function Room(props) {
       <main className={classes.RoomMain}>
         <UsernameDialog setUsername={setUsername} open={[usernameDialogOpen, setUsernameDialogOpen]}/>
         <Box className={classes.MessagesContainer}>
-          {messages.concat().sort((a, b) => a.timestamp - b.timestamp).map((message) => <MessageBubble message={message}/>)}
+          {messages.concat().sort((a, b) => a.timestamp - b.timestamp).map((message) => <MessageBubble message={message} self={selfInfo}/>)}
           <div ref={messagesEndRef} />
         </Box>
-        <Paper component="form" className={classes.RoomInputRoot} square elevation={24} onSubmit={handleSubmit}>
+        <Paper component="form" className={classes.RoomInputRoot} square elevation={1} onSubmit={handleSubmit}>
           <InputBase
             autoFocus={true}
             autoComplete="off"

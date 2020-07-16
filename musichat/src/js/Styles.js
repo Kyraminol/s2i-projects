@@ -50,14 +50,27 @@ const useStyles = makeStyles((theme) => ({
     height: 28,
     margin: 4,
   },
-  MessageBubble: {
-    padding: theme.spacing(3),
-    margin: theme.spacing(1),
+  MessageBubbleRoot: {
+    margin: theme.spacing(0.5),
     flex: '0 0 auto',
-    width: '90vw',
+    display: 'flex !important',
+    flexDirection: 'row',
     '&:nth-of-type(1)': {
       marginTop: 'auto',
     }
+  },
+  Message: {
+    wordBreak: 'break-all',
+  },
+  MessageBubble: {
+    width: '90vw',
+  },
+  MessageBubbleContainer: {
+    padding: theme.spacing(2, 2, 0, 2),
+  },
+  MessageBubbleTimestamp: {
+    paddingRight: '5px',
+    color: theme.palette.text.hint,
   },
   MessagesContainer: {
     display: 'flex !important',
