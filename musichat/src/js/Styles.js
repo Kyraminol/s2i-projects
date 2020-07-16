@@ -37,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
     padding: '2px 4px',
     display: 'flex',
     alignItems: 'center',
+    marginTop: '1px',
   },
   RoomInputInput: {
     marginLeft: theme.spacing(1),
@@ -51,7 +52,21 @@ const useStyles = makeStyles((theme) => ({
   },
   MessageBubble: {
     padding: theme.spacing(3),
-    margin: theme.spacing(3),
+    margin: theme.spacing(1),
+    flex: '0 0 auto',
+    width: '90vw',
+    '&:nth-of-type(1)': {
+      marginTop: 'auto',
+    }
+  },
+  MessagesContainer: {
+    display: 'flex !important',
+    flexDirection: 'column',
+    overflowY: 'auto',
+    maxHeight: '90%',
+    height: '90%',
+    minHeight: '90%',
+    flexBasis: 0,
   }
 }));
 

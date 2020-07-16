@@ -23,16 +23,22 @@ const socket = socketIOClient();
 function Room(props) {
   const classes = useStyles(props);
   const params = useParams();
-  const [socketReady, setSocketReady] = React.useState(false);
+
+  const [socketReady, setSocketReady] = React.useState(null);
   const [messages, setMessages] = React.useState([]);
-  const [username, setUsername] = React.useState(null);
-  const [usernameDialogOpen, setUsernameDialogOpen] = React.useState(true);
+  const [username, setUsername] = React.useState(localStorage.getItem('username') || null);
+  const [usernameDialogOpen, setUsernameDialogOpen] = React.useState(username === null);
   const [roomInfo, setRoomInfo] = React.useState(null);
 
+  const messagesEndRef = React.useRef(null)
 
   React.useEffect(() => {
-    if(username !== null && socket.connected && socketReady === false){
-      setSocketReady(true);
+    localStorage.setItem('username', username);
+  }, [username]);
+
+  React.useEffect(() => {
+    if(username !== null && socketReady === null){
+      setSocketReady(false);
       socket.on('message', (message) => {
         setMessages((messages) => messages.concat(message));
       });
@@ -40,6 +46,7 @@ function Room(props) {
         setRoomInfo(room);
       })
       socket.emit('room', {room: params.name, username: username});
+      setSocketReady(true);
     }
   }, [username, params, messages, socketReady]);
 
@@ -51,15 +58,23 @@ function Room(props) {
     input.value = '';
   }
 
+
+  function scrollToBottom(){
+    messagesEndRef.current.scrollIntoView({ behavior: "smooth" })
+  }
+
+  React.useEffect(scrollToBottom, [messages]);
+
   return(
     <>
       <Header/>
       <main className={classes.RoomMain}>
         <UsernameDialog setUsername={setUsername} open={[usernameDialogOpen, setUsernameDialogOpen]}/>
-        <Container>
-          {messages.map((message) => <MessageBubble message={message}/>)}
-        </Container>
-        <Paper component="form" className={classes.RoomInputRoot} square elevation={2} onSubmit={handleSubmit}>
+        <Box className={classes.MessagesContainer}>
+          {messages.concat().sort((a, b) => a.timestamp - b.timestamp).map((message) => <MessageBubble message={message}/>)}
+          <div ref={messagesEndRef} />
+        </Box>
+        <Paper component="form" className={classes.RoomInputRoot} square elevation={24} onSubmit={handleSubmit}>
           <InputBase
             autoFocus={true}
             autoComplete="off"
