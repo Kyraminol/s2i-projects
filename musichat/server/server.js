@@ -83,6 +83,10 @@ io.on('connection', (socket) => {
     else io.sockets.in(room).emit('room', {users: getRoomUsers(room), room: getRoomInfo(room)})
   })
 
+  socket.on('typing', () => {
+    socket.to(users[socket.id].room).emit('typing', users[socket.id].name);
+  })
+
 });
 
 const port = process.env.PORT || 8080;

@@ -34,6 +34,7 @@ function Room(props) {
   const [usernameDialogOpen, setUsernameDialogOpen] = React.useState(username === null);
   const [roomInfo, setRoomInfo] = React.useState(null);
   const [selfInfo, setSelfInfo] = React.useState(null);
+  const [typing, setTyping] = React.useState([]);
 
   const messagesEndRef = React.useRef(null)
 
@@ -52,21 +53,35 @@ function Room(props) {
         if(room.self){
           setSelfInfo(room.self);
         }
-      })
+      });
+      socket.on('typing', (user) => {
+          setTyping((typing) => {
+            if(!typing.includes(user)){
+              setTimeout((user, setTyping) => {
+                setTyping((typing) => typing.filter(item => item !== user));
+              }, 2000, user, setTyping);
+              return typing.concat(user);
+            } else {
+              return typing;
+            }
+          });
+      });
       socket.emit('room', {room: params.name, username: username});
       setSocketReady(true);
     }
-  }, [username, params, messages, socketReady]);
+  }, [username, params, messages, socketReady, typing]);
 
+  function handleChange(){
+    if(document.getElementById('message-input').value !== '') socket.emit('typing');
+  }
 
   function handleSubmit(e){
     e.preventDefault();
-    let input =  document.getElementById('message-input');
+    let input = document.getElementById('message-input');
     if(input.value === '') return;
     socket.emit('message', input.value);
     input.value = '';
   }
-
 
   function scrollToBottom(){
     messagesEndRef.current.scrollIntoView({ behavior: "smooth" })
@@ -83,6 +98,7 @@ function Room(props) {
           {messages.concat().sort((a, b) => a.timestamp - b.timestamp).map((message) => <MessageBubble message={message} self={selfInfo}/>)}
           <div ref={messagesEndRef} />
         </Box>
+        { typing.join(', ') } { typing.length > 0 ? (typing.length === 1 ? ' is typing...' : ' are typing...') : undefined }
         <Paper component="form" className={classes.RoomInputRoot} square elevation={1} onSubmit={handleSubmit}>
           <InputBase
             autoFocus={true}
@@ -91,6 +107,7 @@ function Room(props) {
             fullWidth
             className={classes.RoomInputInput}
             placeholder="Write a message..."
+            onChange={handleChange}
           />
           <IconButton type="submit" className={classes.RoomInputIcon}>
             <SendIcon/>
