@@ -33,7 +33,7 @@ function updateUser(user, key, value){
 
 function getRoomUsers(room){
   return Object.keys(users).reduce(function (result, id) {
-    if (room === users[id].room)
+    if(room === users[id].room)
       result.push(users[id].name);
     return result;
   }, [])
@@ -64,6 +64,10 @@ io.on('connection', (socket) => {
     socket.emit('room', {users: getRoomUsers(room), room: getRoomInfo(room), self: users[socket.id]});
     socket.to(room).emit('room', {users: getRoomUsers(room), room: getRoomInfo(room)});
   });
+
+  socket.on('users', () => {
+    socket.emit('users', getRoomUsers(users[socket.id].room));
+  })
 
   socket.on('message', (message) => {
     let result = {

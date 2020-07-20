@@ -18,6 +18,11 @@ import GroupIcon from "@material-ui/icons/Group";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
+import Drawer from "@material-ui/core/Drawer";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
 
 
 const socket = socketIOClient();
@@ -33,6 +38,7 @@ function Room(props) {
   const [username, setUsername] = React.useState(localStorage.getItem('username') || null);
   const [usernameDialogOpen, setUsernameDialogOpen] = React.useState(username === null);
   const [roomInfo, setRoomInfo] = React.useState(null);
+  const [users, setUsers] = React.useState([]);
   const [selfInfo, setSelfInfo] = React.useState(null);
   const [typing, setTyping] = React.useState([]);
 
@@ -45,28 +51,44 @@ function Room(props) {
   React.useEffect(() => {
     if(username !== null && socketReady === null){
       setSocketReady(false);
+
       socket.on('message', (message) => {
         setMessages((messages) => messages.concat(message));
       });
+
       socket.on('room', (room) => {
         setRoomInfo(room);
         if(room.self){
           setSelfInfo(room.self);
         }
+        if(room.users){
+          setUsers(room.users);
+        }
       });
+
       socket.on('typing', (user) => {
-          setTyping((typing) => {
-            if(!typing.includes(user)){
-              setTimeout((user, setTyping) => {
-                setTyping((typing) => typing.filter(item => item !== user));
-              }, 2000, user, setTyping);
-              return typing.concat(user);
-            } else {
-              return typing;
-            }
-          });
+        setTyping((typing) => {
+          if(!typing.includes(user)){
+            setTimeout((user, setTyping) => {
+              setTyping((typing) => typing.filter(item => item !== user));
+            }, 2000, user, setTyping);
+            return typing.concat(user);
+          } else {
+            return typing;
+          }
+        });
       });
+
+      socket.on('users', (users) => {
+        setUsers(users);
+      });
+
+      socket.on('self', (self) => {
+        setSelfInfo(self);
+      });
+
       socket.emit('room', {room: params.name, username: username});
+
       setSocketReady(true);
     }
   }, [username, params, messages, socketReady, typing]);
@@ -91,7 +113,14 @@ function Room(props) {
 
   return(
     <>
-      <Header menu={<NavbarMenu/>}/>
+      <Header
+        menu={
+          <NavbarMenu
+            setUsernameDialogOpen={setUsernameDialogOpen}
+            users={users}
+            self={selfInfo}
+          />
+        }/>
       <main className={classes.RoomMain}>
         <UsernameDialog setUsername={setUsername} open={[usernameDialogOpen, setUsernameDialogOpen]}/>
         <Box className={classes.MessagesContainer}>
@@ -121,7 +150,9 @@ function Room(props) {
 }
 
 function NavbarMenu(props){
+  const classes = useStyles(props);
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [drawerOpen, setDrawerOpen] = React.useState(false);
   const open = Boolean(anchorEl);
 
   const handleMenu = (event) => {
@@ -132,10 +163,22 @@ function NavbarMenu(props){
     setAnchorEl(null);
   };
 
+  function handleUsername(){
+    props.setUsernameDialogOpen(true);
+    setAnchorEl(null);
+  }
+
+  const toggleDrawer = () => {
+    setDrawerOpen(!drawerOpen);
+  };
+
+  console.log(props.users);
+
   return(
     <>
       <IconButton
         color="inherit"
+        onClick={toggleDrawer}
       >
         <GroupIcon />
       </IconButton>
@@ -160,8 +203,43 @@ function NavbarMenu(props){
         open={open}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose}>Edit Username</MenuItem>
+        <MenuItem onClick={handleUsername}>Edit Username</MenuItem>
       </Menu>
+      <Drawer anchor="right" open={drawerOpen} onClose={toggleDrawer}>
+        <div
+          role="presentation"
+        >
+          <List>
+            {props.self !== null ? (
+              <List>
+                <ListItem disabled button className={classes.UsersListTitle}>
+                  <ListItemText primary="You"/>
+                </ListItem>
+                <ListItem divider button className={classes.UsersListUser}>
+                  <ListItemText primary={props.self.name}/>
+                </ListItem>
+              </List>
+              ) : undefined}
+          </List>
+          <List>
+            { props.users.length > 0 ? (
+              <>
+                <ListItem disabled button className={classes.UsersListTitle}>
+                  <ListItemText primary="Users online"/>
+                </ListItem>
+                { props.users.map((user, index) => {
+                  if(props.self !== null && props.self.name === user) return undefined;
+                  return (
+                    <ListItem button key={index} className={classes.UsersListUser}>
+                      <ListItemText primary={user}/>
+                    </ListItem>
+                  )
+                }) }
+              </>
+            ) : undefined }
+          </List>
+        </div>
+      </Drawer>
     </>
   )
 }

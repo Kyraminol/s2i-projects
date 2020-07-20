@@ -79,7 +79,13 @@ const useStyles = makeStyles((theme) => ({
     overflowY: 'auto',
     minHeight: 0,
     flexBasis: 0,
-  }
+  },
+  UsersListUser: {
+    padding: theme.spacing(1, 20, 1, 4) + ' !important',
+  },
+  UsersListTitle: {
+    padding: theme.spacing(1, 20, 1, 2) + ' !important',
+  },
 }));
 
 export default useStyles;
