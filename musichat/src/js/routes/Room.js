@@ -22,6 +22,7 @@ import Drawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
+import YouTubeIcon from '@material-ui/icons/YouTube';
 import ListItemText from "@material-ui/core/ListItemText";
 
 
@@ -172,21 +173,43 @@ function NavbarMenu(props){
     setDrawerOpen(!drawerOpen);
   };
 
+  const handlePlayerMenu = () => {
+
+  };
+
   console.log(props.users);
 
   return(
     <>
       <IconButton
         color="inherit"
+        onClick={handlePlayerMenu}
+        classes={{label: classes.IconButtonLabel, root: classes.IconButtonRoot}}
+      >
+        <YouTubeIcon/>
+        <div>
+          Player
+        </div>
+      </IconButton>
+      <IconButton
+        color="inherit"
         onClick={toggleDrawer}
+        classes={{label: classes.IconButtonLabel, root: classes.IconButtonRoot}}
       >
         <GroupIcon />
+        <div>
+          Users
+        </div>
       </IconButton>
       <IconButton
         onClick={handleMenu}
         color="inherit"
+        classes={{label: classes.IconButtonLabel, root: classes.IconButtonRoot}}
       >
         <AccountCircle />
+        <div>
+          You
+        </div>
       </IconButton>
       <Menu
         id="menu-appbar"

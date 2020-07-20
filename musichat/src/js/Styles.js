@@ -86,6 +86,14 @@ const useStyles = makeStyles((theme) => ({
   UsersListTitle: {
     padding: theme.spacing(1, 20, 1, 2) + ' !important',
   },
+  IconButtonRoot: {
+    borderRadius: '0 !important',
+  },
+  IconButtonLabel: {
+    display: 'flex',
+    flexDirection: 'column',
+    fontSize: '0.9rem',
+  },
 }));
 
 export default useStyles;
