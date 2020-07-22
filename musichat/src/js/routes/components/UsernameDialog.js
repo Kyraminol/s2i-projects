@@ -7,9 +7,11 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import {Box} from "@material-ui/core";
+import RoomContext from "./RoomContext";
 
 
 function UsernameDialog(props) {
+  const [room, setRoom] = React.useContext(RoomContext);
   const [open, setOpen] = props.open;
   const [username, setUsername] = React.useState("");
 
@@ -17,11 +19,23 @@ function UsernameDialog(props) {
     setUsername(e.currentTarget.value);
   }
 
+  React.useEffect(() => {
+    if(room.username === null && Boolean(localStorage.getItem('username')) === true){
+      setRoom({...room, 'username': localStorage.getItem('username')});
+    }
+  })
+
   function handleSubmit(e){
     e.preventDefault();
-    props.setUsername(username);
+    setRoom({...room, 'username': username});
     setOpen(false);
   }
+
+  React.useEffect(() => {
+    if(room.username !== null){
+      localStorage.setItem('username', room.username);
+    }
+  }, [room.username]);
 
   return (
     <Dialog

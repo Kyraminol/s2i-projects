@@ -56,13 +56,13 @@ function RoomSelect(props){
     }
   }, [open]);
 
-  function onInputChange(event, value, reason){
+  function inputChange(event, value, reason){
     if(reason !== "reset" || (reason === "reset" && value !== "")){
       setRoom(value);
     }
   }
 
-  function handleSubmit(e){
+  function formSubmit(e){
     e.preventDefault();
     if(room !== ''){
       history.push("/room/" + room);
@@ -70,9 +70,9 @@ function RoomSelect(props){
   }
 
   return(
-    <Container component="main" className={classes.LandingMain}>
-      <Container maxWidth="xs" className={classes.Landing}>
-        <Box component="form" onSubmit={handleSubmit}>
+    <Container component="main" className={classes.RoomSelectMain}>
+      <Container maxWidth="xs" className={classes.RoomSelect}>
+        <Box component="form" onSubmit={formSubmit}>
           <Typography component="h1" variant="h4">
             Musichat
           </Typography>
@@ -98,7 +98,7 @@ function RoomSelect(props){
             options={options}
             loading={loading}
             inputValue={room}
-            onInputChange={onInputChange}
+            onInputChange={inputChange}
             renderInput={(params) => (
               <TextField
                 {...params}
@@ -131,8 +131,8 @@ function RoomSelect(props){
             fullWidth
             variant="contained"
             color="primary"
-            className={classes.submit}
-            onClick={handleSubmit}
+            className={classes.RoomSelectSubmit}
+            onClick={formSubmit}
           >
             Join Room
           </Button>

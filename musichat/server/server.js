@@ -6,7 +6,7 @@ const path = require('path');
 
 
 const users = {};
-const rooms = {};
+const rooms = {"general": {url: '', status: 0}};
 
 app.use(express.static(path.join(__dirname, 'build')));
 
@@ -31,9 +31,9 @@ function updateUser(user, key, value){
   if(key && value) users[user][key] = value;
 }
 
-function getRoomUsers(room){
+function getRoomUsers(room, self){
   return Object.keys(users).reduce(function (result, id) {
-    if(room === users[id].room)
+    if(room === users[id].room && !(self && id === self))
       result.push(users[id].name);
     return result;
   }, [])
@@ -44,9 +44,9 @@ function getRoomInfo(room){
 }
 
 io.on('connection', (socket) => {
-  socket.on('room', (params) => {
+  socket.on('join', (params) => {
     let { username, room } = params;
-    if(!Object.keys(rooms).includes(room)) rooms[room] = {syncTime: 0, syncURL: ''}
+    if(!Object.keys(rooms).includes(room)) rooms[room] = {url: '', status: 0}
     socket.join(room);
     updateUser(socket.id, 'room', params.room);
     if(username === '') username = 'Anon';
@@ -61,7 +61,8 @@ io.on('connection', (socket) => {
       username += Math.floor(Math.random() * 10);
     }
     updateUser(socket.id, 'name', username);
-    socket.emit('room', {users: getRoomUsers(room), room: getRoomInfo(room), self: users[socket.id]});
+    socket.emit('username', username);
+    socket.emit('room', {users: getRoomUsers(room, socket.id), room: getRoomInfo(room), self: users[socket.id]});
     socket.to(room).emit('room', {users: getRoomUsers(room), room: getRoomInfo(room)});
   });
 
@@ -83,14 +84,20 @@ io.on('connection', (socket) => {
     if(!Object.keys(users).includes(socket.id)) return;
     let room = users[socket.id].room;
     delete users[socket.id];
-    if(getRoomUsers(room).length === 0) delete rooms[room]
-    else io.sockets.in(room).emit('room', {users: getRoomUsers(room), room: getRoomInfo(room)})
+    if(room !== "general" && getRoomUsers(room).length === 0) delete rooms[room]
+    else io.sockets.in(room).emit('users', getRoomUsers(room))
   })
 
   socket.on('typing', () => {
     socket.to(users[socket.id].room).emit('typing', users[socket.id].name);
   })
 
+  socket.on('url', (url) => {
+    let room = users[socket.id].room;
+    rooms[room].url = url;
+    socket.emit('url', url);
+    socket.to(room).emit('url', url);
+  })
 });
 
 const port = process.env.PORT || 8080;
