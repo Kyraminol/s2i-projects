@@ -36,6 +36,20 @@ function Room(props) {
         setRoom((room) => {return {...room, 'username': username}});
       });
 
+      socket.on('typing', (user) => {
+        setRoom((room) => {
+          if(!room.typing.includes(user)){
+            setTimeout((user, setRoom) => {
+              setRoom((room) => {return {...room, 'typing': room.typing.filter(item => item !== user)}});
+            }, 2000, user, setRoom);
+            return {...room, 'typing': room.typing.concat(user)};
+          } else {
+            return room;
+          }
+        });
+
+      });
+
       socket.emit('join', {room: params.name, username: room.username});
 
       room.socket = socket;
