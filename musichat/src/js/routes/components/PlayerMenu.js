@@ -5,9 +5,11 @@ import MenuItem from "@material-ui/core/MenuItem";
 import useStyles from "../../Styles";
 import Menu from "@material-ui/core/Menu";
 import LinkDialog from "./LinkDialog";
+import RoomContext from "./RoomContext";
 
 
 function PlayerMenu(props){
+  const [room, setRoom] = React.useContext(RoomContext);
   const classes = useStyles(props);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [linkDialogOpen, setLinkDialogOpen] = React.useState(false);
@@ -19,6 +21,12 @@ function PlayerMenu(props){
 
   const menuClose = () => {
     setAnchorEl(null);
+  };
+
+  const togglePlayer = () => {
+    setRoom((room) => {
+      return {...room, 'player': !room.player}
+    });
   };
 
   return (
@@ -52,7 +60,7 @@ function PlayerMenu(props){
         onClose={menuClose}
       >
         <MenuItem onClick={() => {setLinkDialogOpen(true)}}>Add URL</MenuItem>
-        <MenuItem onClick={() => {}}>Show Player</MenuItem>
+        <MenuItem onClick={togglePlayer} disabled={room.url !== null || room.url !== ''}>{room.player ? 'Hide Player' : 'Show Player'}</MenuItem>
       </Menu>
       <LinkDialog open={[linkDialogOpen, setLinkDialogOpen]}/>
     </div>

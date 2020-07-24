@@ -1,16 +1,17 @@
-import Box from "@material-ui/core/Box";
-import MessageBubble from "./MessageBubble";
-import Paper from "@material-ui/core/Paper";
-import InputBase from "@material-ui/core/InputBase";
-import IconButton from "@material-ui/core/IconButton";
-import SendIcon from "@material-ui/icons/Send";
-import React from "react";
-import useStyles from "../../Styles";
-import RoomContext from "./RoomContext";
+import MessageBubble from './MessageBubble';
+import RoomContext from './RoomContext';
+import useStyles from '../../Styles';
+
+import React from 'react';
+import Box from '@material-ui/core/Box';
+import Paper from '@material-ui/core/Paper';
+import InputBase from '@material-ui/core/InputBase';
+import IconButton from '@material-ui/core/IconButton';
+import SendIcon from '@material-ui/icons/Send';
 
 
 const Chat = (props) => {
-  const [room, setRoom] = React.useContext(RoomContext);
+  const [room,] = React.useContext(RoomContext);
   const classes = useStyles(props);
   const messagesEndRef = React.useRef(null)
 

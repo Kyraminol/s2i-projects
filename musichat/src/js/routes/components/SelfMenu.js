@@ -1,11 +1,11 @@
-import IconButton from "@material-ui/core/IconButton";
-import AccountCircle from "@material-ui/icons/AccountCircle";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
-import React from "react";
-import useStyles from "../../Styles";
-import UsernameDialog from "./UsernameDialog";
-import RoomContext from "./RoomContext";
+import UsernameDialog from './UsernameDialog';
+import useStyles from '../../Styles';
+
+import IconButton from '@material-ui/core/IconButton';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import React from 'react';
 
 
 const SelfMenu = (props) => {

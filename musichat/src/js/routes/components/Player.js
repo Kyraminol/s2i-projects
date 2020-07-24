@@ -1,16 +1,17 @@
 import React from "react";
+import RoomContext from "./RoomContext";
 
 
 const Player = (props) => {
-  props.show = true;
+  const [room,] = React.useContext(RoomContext);
 
   return(
     <>
       <iframe
         title="player"
         id="ytplayer"
-        height={props.show ? 200 : 0}
-        src={props.url || ""}
+        height={room.player ? 200 : 0}
+        src={room.url || ""}
         frameBorder="0"
         allowFullScreen/>
     </>

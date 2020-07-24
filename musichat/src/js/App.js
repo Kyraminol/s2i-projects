@@ -2,10 +2,10 @@ import Home from './routes/Home';
 import Room from './routes/Room';
 
 import React from 'react';
-import red from '@material-ui/core/colors/red';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import { CssBaseline } from '@material-ui/core';
+import red from '@material-ui/core/colors/red';
 
 
 function App() {

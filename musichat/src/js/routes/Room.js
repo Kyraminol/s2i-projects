@@ -2,13 +2,14 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import RoomNavbar from './components/RoomNavbar';
 import RoomContext from './components/RoomContext';
+import Chat from './components/Chat';
 import useStyles from '../Styles';
 
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import socketIOClient from 'socket.io-client';
 import Divider from '@material-ui/core/Divider';
-import Chat from "./components/Chat";
+import Player from "./components/Player";
 
 
 function Room(props) {
@@ -19,6 +20,7 @@ function Room(props) {
     users: [],
     typing: [],
     messages: [],
+    player: false,
   });
 
   const classes = useStyles(props);
@@ -61,6 +63,7 @@ function Room(props) {
     <RoomContext.Provider value={[room, setRoom]}>
       <Header menu={ <RoomNavbar/> }/>
       <main className={classes.RoomMain}>
+        <Player/>
         <Chat/>
       </main>
       <Divider light/>
