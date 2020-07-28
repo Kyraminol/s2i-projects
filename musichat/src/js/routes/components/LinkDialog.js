@@ -5,24 +5,37 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import RoomContext from './RoomContext';
 
 
 function LinkDialog(props) {
+  const [room,] = React.useContext(RoomContext);
   const [open, setOpen] = props.open;
-  const [link, setLink] = React.useState("");
+  const [url, setUrl] = React.useState("");
 
   function onChange(e){
-    setLink(e.currentTarget.value);
+    setUrl(e.currentTarget.value);
   }
 
-  const linkQueue = () => {};
-  const linkPlay = () => {};
+  const getUrlId = (url) => {
+    let regex = /http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w\-_]*)(&(amp;)?‌​[\w?‌​=]*)?/.exec(url);
+    if(regex && regex[1] !== '' && regex[1].length > 3) return regex[1];
+    return false;
+  };
+
+  const handleUrl = (emit) => {
+    const id = getUrlId(url);
+    if(id){
+      room.socket.emit(emit, id);
+    }
+  };
 
   return (
     <Dialog
       open={open}
       fullWidth
       maxWidth="md"
+      onClose={() => {setOpen(false)}}
     >
       <DialogTitle>Add URL</DialogTitle>
       <DialogContent>
@@ -36,10 +49,7 @@ function LinkDialog(props) {
         />
       </DialogContent>
       <DialogActions>
-        <Button onClick={linkQueue} color="primary">
-          Add to Queue
-        </Button>
-        <Button onClick={linkPlay} color="primary">
+        <Button onClick={() => {handleUrl('url')}} color="primary">
           Play Now
         </Button>
       </DialogActions>

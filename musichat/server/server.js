@@ -27,14 +27,14 @@ app.get('/api/v1/room/:name', function (req, res) {
 })
 
 function updateUser(user, key, value){
-  if(!Object.keys(users).includes(user)) users[user] = {};
+  if(!Object.keys(users).includes(user)) users[user] = {sync: 0};
   if(key && value) users[user][key] = value;
 }
 
 function getRoomUsers(room, self){
   return Object.keys(users).reduce(function (result, id) {
     if(room === users[id].room && !(self && id === self))
-      result.push(users[id].name);
+      result.push({name: users[id].name, sync: users[id].sync});
     return result;
   }, [])
 }
@@ -62,7 +62,7 @@ io.on('connection', (socket) => {
     }
     updateUser(socket.id, 'name', username);
     socket.emit('username', username);
-    socket.emit('room', {users: getRoomUsers(room, socket.id), room: getRoomInfo(room), self: users[socket.id]});
+    socket.emit('room', {users: getRoomUsers(room, socket.id), room: getRoomInfo(room)});
     socket.to(room).emit('room', {users: getRoomUsers(room), room: getRoomInfo(room)});
   });
 
@@ -98,6 +98,12 @@ io.on('connection', (socket) => {
     socket.emit('url', url);
     socket.to(room).emit('url', url);
   })
+
+  socket.on('sync', (sync) => {
+    let room = users[socket.id].room;
+    socket.emit('sync', sync);
+    socket.to(room).emit('sync', sync);
+  });
 });
 
 const port = process.env.PORT || 8080;

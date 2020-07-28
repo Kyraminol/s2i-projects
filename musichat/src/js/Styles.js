@@ -99,6 +99,22 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     fontSize: '0.9rem',
   },
+  Player: {
+    width: '100%',
+    height: '100%',
+    padding: '0 5px 5px',
+  },
+  PlayerHidden: {
+    display: 'none',
+  },
+  PlayerPaper: {
+    padding: theme.spacing(1, 3, 1, 1) + ' !important',
+  },
+  PlayerSliderGrid: {
+    marginTop: 'auto !important',
+    marginBottom: 'auto !important',
+    paddingTop: '13px !important',
+  },
 }));
 
 export default useStyles;

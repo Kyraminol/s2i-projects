@@ -29,6 +29,11 @@ function PlayerMenu(props){
     });
   };
 
+  const openLinkDialog = () => {
+    menuClose();
+    setLinkDialogOpen(true);
+  };
+
   return (
     <div>
       <IconButton
@@ -59,8 +64,8 @@ function PlayerMenu(props){
         open={open}
         onClose={menuClose}
       >
-        <MenuItem onClick={() => {setLinkDialogOpen(true)}}>Add URL</MenuItem>
-        <MenuItem onClick={togglePlayer} disabled={room.url !== null || room.url !== ''}>{room.player ? 'Hide Player' : 'Show Player'}</MenuItem>
+        <MenuItem onClick={openLinkDialog}>Add URL</MenuItem>
+        <MenuItem onClick={togglePlayer} disabled={!(room.url !== null && room.url !== '')}>{room.player ? 'Hide Player' : 'Show Player'}</MenuItem>
       </Menu>
       <LinkDialog open={[linkDialogOpen, setLinkDialogOpen]}/>
     </div>

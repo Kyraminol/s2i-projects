@@ -52,6 +52,23 @@ function Room(props) {
 
       });
 
+      socket.on('url', (url) => {
+        setRoom((room) => {return {...room, 'url': url}});
+      });
+
+      socket.on('room', (values) => {
+        if(values.room){
+          setRoom((room) => {return {...room, 'url': values['room']['url']}});
+        }
+        if(values.users){
+          setRoom((room) => {return {...room, 'users': values['users']}});
+        }
+      });
+
+      socket.on('sync', (sync) => {
+        setRoom((room) => {return {...room, 'sync': sync}});
+      });
+
       socket.emit('join', {room: params.name, username: room.username});
 
       room.socket = socket;
