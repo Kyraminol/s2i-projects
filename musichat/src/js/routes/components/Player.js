@@ -91,23 +91,17 @@ const Player = (props) => {
     if(state === 2 || state === 5 || state === -1) room.socket.emit('sync', {state: 1, time: time});
   };
 
-  const onPlay = (e) => {
-    console.log('play', e);
-  };
+  const onPlay = () => {};
 
-  const onPause = (e) => {
-    console.log('pause', e);
-  };
+  const onPause = () => {};
 
-  const onError = (e) => {};
+  const onError = () => {};
 
-  const onStateChange = (e) => {
-    console.log('state', e);
-  };
+  const onStateChange = () => {};
 
-  const onPlaybackQualityChange = (e) => {};
+  const onPlaybackQualityChange = () => {};
 
-  const onPlaybackRateChange = (e) => {};
+  const onPlaybackRateChange = () => {};
 
   return(
     <Container>

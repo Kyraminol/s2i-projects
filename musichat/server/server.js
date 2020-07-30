@@ -64,10 +64,12 @@ io.on('connection', (socket) => {
     if(!Object.keys(rooms).includes(room)) rooms[room] = {url: '', status: 0}
     socket.join(room);
     updateUser(socket.id, 'room', params.room);
-    updateUser(socket.id, 'name', checkUsername(username, room));
+    let checkedUsername = checkUsername(username, room);
+    updateUser(socket.id, 'name', checkedUsername);
     socket.emit('username', username);
     socket.emit('room', {users: getRoomUsers(room, socket.id), room: getRoomInfo(room)});
     socket.to(room).emit('room', {users: getRoomUsers(room), room: getRoomInfo(room)});
+    socket.to(room).emit('message', {type: 'join', extra: checkedUsername, timestamp: Date.now(), from: null})
   });
 
   socket.on('users', () => {
@@ -87,9 +89,13 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => {
     if(!Object.keys(users).includes(socket.id)) return;
     let room = users[socket.id].room;
+    let username = users[socket.id].name;
     delete users[socket.id];
     if(room !== "general" && getRoomUsers(room).length === 0) delete rooms[room]
-    else io.sockets.in(room).emit('users', getRoomUsers(room))
+    else {
+      io.sockets.in(room).emit('users', getRoomUsers(room));
+      io.sockets.in(room).emit('message', {type: 'left', extra: username, timestamp: Date.now(), from: null})
+    }
   })
 
   socket.on('typing', () => {
@@ -106,6 +112,7 @@ io.on('connection', (socket) => {
     socket.to(room).emit('url', url);
     socket.emit('users', getRoomUsers(room));
     socket.to(room).emit('users', getRoomUsers(room));
+    socket.to(room).emit('message', {type: 'url', extra: users[socket.id].name, timestamp: Date.now(), from: null});
   })
 
   socket.on('sync', (sync) => {
@@ -119,9 +126,12 @@ io.on('connection', (socket) => {
 
   socket.on('username', (username) => {
     let room = users[socket.id].room;
-    updateUser(socket.id, 'name', checkUsername(username));
+    let oldName = users[socket.id].name;
+    let newName = checkUsername(username)
+    updateUser(socket.id, 'name', newName);
     socket.emit('username', username);
     socket.to(room).emit('room', {users: getRoomUsers(room), room: getRoomInfo(room)});
+    socket.to(room).emit('message', {type: 'username', extra: [oldName, newName], timestamp: Date.now(), from: null});
   });
 });
 

@@ -32,29 +32,29 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(2, 0, 0) + ' !important',
   },
 
-  // Styles for
+  // Styles for Room.js
   RoomMain: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-end',
   },
-  RoomInputRoot: {
+
+  // Styles for Chat.js
+  ChatInputRoot: {
     padding: '2px 4px',
     display: 'flex',
     alignItems: 'center',
     marginTop: '1px',
   },
-  RoomInputInput: {
+  ChatInputInput: {
     marginLeft: theme.spacing(1),
     flex: 1,
   },
-  RoomInputIcon: {
+  ChatInputIcon: {
     padding: 10,
   },
-  divider: {
-    height: 28,
-    margin: 4,
-  },
+
+  // Styles for MessageBubble.js
   MessageBubbleRoot: {
     margin: theme.spacing(0.5),
     flex: '0 0 auto',

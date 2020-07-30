@@ -37,21 +37,21 @@ const Chat = (props) => {
   return(
     <>
       <Box className={classes.MessagesContainer}>
-        {room.messages.concat().sort((a, b) => a.timestamp - b.timestamp).map((message) => <MessageBubble message={message}/>)}
+        {room.messages.concat().sort((a, b) => a.timestamp - b.timestamp).map((message, index) => <MessageBubble message={message} key={index}/>)}
         <div ref={messagesEndRef} />
       </Box>
       { room.typing.join(', ') } { room.typing.length > 0 ? (room.typing.length === 1 ? ' is typing...' : ' are typing...') : undefined }
-      <Paper component="form" className={classes.RoomInputRoot} square elevation={1} onSubmit={handleSubmit}>
+      <Paper component="form" className={classes.ChatInputRoot} square elevation={1} onSubmit={handleSubmit}>
         <InputBase
           autoFocus={true}
           autoComplete="off"
           id="message-input"
           fullWidth
-          className={classes.RoomInputInput}
+          className={classes.ChatInputInput}
           placeholder="Write a message..."
           onChange={handleChange}
         />
-        <IconButton type="submit" className={classes.RoomInputIcon}>
+        <IconButton type="submit" className={classes.ChatInputIcon}>
           <SendIcon/>
         </IconButton>
       </Paper>

@@ -10,7 +10,7 @@ import RoomContext from "./RoomContext";
 
 
 const UsersDrawer = (props) => {
-  const [room, setRoom] = React.useContext(RoomContext);
+  const [room,] = React.useContext(RoomContext);
   const classes = useStyles(props);
   const [open, setOpen] = React.useState(false);
 
