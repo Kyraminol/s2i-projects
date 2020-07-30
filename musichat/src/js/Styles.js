@@ -115,6 +115,14 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: 'auto !important',
     paddingTop: '13px !important',
   },
+  VolumeMenuItem: {
+    backgroundColor: 'inherit !important',
+    paddingTop: '20px !important',
+    paddingBottom: '20px !important',
+  },
+  VolumeMenuList: {
+    padding: '0 !important',
+  }
 }));
 
 export default useStyles;

@@ -9,8 +9,8 @@ import Grid from "@material-ui/core/Grid";
 import IconButton from "@material-ui/core/IconButton";
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import PauseIcon from '@material-ui/icons/Pause';
-import VolumeUpIcon from '@material-ui/icons/VolumeUp';
 import moment from 'moment';
+import VolumeButton from "./VolumeButton";
 
 
 const Player = (props) => {
@@ -19,8 +19,8 @@ const Player = (props) => {
   const [sliderValue, setSliderValue] = React.useState(0);
   const [player, setPlayer] = React.useState(null);
   const [timeMark, setTimeMark] = React.useState("");
+  const [volume, setVolume] = React.useState(70);
 
-  console.log("re");
   React.useEffect(() => {
     if(room.status && player){
       switch(room.status){
@@ -44,6 +44,12 @@ const Player = (props) => {
       if(seekTo > 0) player.seekTo(seekTo);
     }
   }, [player, room.status, room.username, room.users]);
+
+  React.useEffect(() => {
+    if(player !== null){
+      player.setVolume(volume);
+    }
+  }, [volume, player]);
 
   const opts = {
     height: '100%',
@@ -126,9 +132,7 @@ const Player = (props) => {
             <IconButton onClick={togglePlay}>
               {player !== null && player.getPlayerState() === 1 ? <PauseIcon/> : <PlayArrowIcon/>}
             </IconButton>
-            <IconButton>
-              <VolumeUpIcon/>
-            </IconButton>
+            <VolumeButton volume={[volume, setVolume]}/>
           </Grid>
           <Grid item xs className={classes.PlayerSliderGrid}>
             <Slider
