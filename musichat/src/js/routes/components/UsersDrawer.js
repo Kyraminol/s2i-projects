@@ -45,15 +45,19 @@ const UsersDrawer = (props) => {
                 <ListItemText primary="Users online"/>
               </ListItem>
               { room.users.map((user, index) => {
-                if(room.self !== null && room.self === user) return undefined;
+                if(room.username === user.name) return undefined;
                 return (
                   <ListItem button key={index} className={classes.UsersListUser}>
-                    <ListItemText primary={user}/>
+                    <ListItemText primary={user.name}/>
                   </ListItem>
                 )
               }) }
             </>
-          ) : undefined }
+          ) : (
+            <ListItem disabled button className={classes.UsersListTitle}>
+              <ListItemText primary="No other users online"/>
+            </ListItem>
+          ) }
         </List>
       </Drawer>
     </>

@@ -21,6 +21,7 @@ function Room(props) {
     typing: [],
     messages: [],
     player: false,
+    status: null,
   });
 
   const classes = useStyles(props);
@@ -66,7 +67,7 @@ function Room(props) {
       });
 
       socket.on('sync', (sync) => {
-        setRoom((room) => {return {...room, 'sync': sync}});
+        setRoom((room) => {return {...room, 'status': sync.room.status, 'users': sync.users}});
       });
 
       socket.emit('join', {room: params.name, username: room.username});

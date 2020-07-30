@@ -43,24 +43,28 @@ function getRoomInfo(room){
   return rooms[room];
 }
 
+const checkUsername = (username, room) => {
+  if(username === '') username = 'Anon';
+  for(;true;){
+    let name = username;
+    let usernameExists = Object.keys(users).reduce(function (result, id) {
+      if(users[id].room === room && users[id].name === name)
+        result.push(users[id]);
+      return result;
+    }, []);
+    if(usernameExists.length === 0) break;
+    username += Math.floor(Math.random() * 10);
+  }
+  return username;
+};
+
 io.on('connection', (socket) => {
   socket.on('join', (params) => {
     let { username, room } = params;
     if(!Object.keys(rooms).includes(room)) rooms[room] = {url: '', status: 0}
     socket.join(room);
     updateUser(socket.id, 'room', params.room);
-    if(username === '') username = 'Anon';
-    for(;true;){
-      let name = username;
-      let usernameExists = Object.keys(users).reduce(function (result, id) {
-        if(users[id].room === room && users[id].name === name)
-          result.push(users[id]);
-        return result;
-      }, []);
-      if(usernameExists.length === 0) break;
-      username += Math.floor(Math.random() * 10);
-    }
-    updateUser(socket.id, 'name', username);
+    updateUser(socket.id, 'name', checkUsername(username, room));
     socket.emit('username', username);
     socket.emit('room', {users: getRoomUsers(room, socket.id), room: getRoomInfo(room)});
     socket.to(room).emit('room', {users: getRoomUsers(room), room: getRoomInfo(room)});
@@ -95,14 +99,29 @@ io.on('connection', (socket) => {
   socket.on('url', (url) => {
     let room = users[socket.id].room;
     rooms[room].url = url;
+    Object.keys(users).forEach((user) => {
+      users[user].sync = 0;
+    });
     socket.emit('url', url);
     socket.to(room).emit('url', url);
+    socket.emit('users', getRoomUsers(room));
+    socket.to(room).emit('users', getRoomUsers(room));
   })
 
   socket.on('sync', (sync) => {
     let room = users[socket.id].room;
-    socket.emit('sync', sync);
-    socket.to(room).emit('sync', sync);
+    if(sync.state) rooms[room].status = sync.state;
+    if(sync.time) users[socket.id].sync = sync.time;
+    let result = {users: getRoomUsers(room), room: getRoomInfo(room)};
+    socket.emit('sync', result);
+    socket.to(room).emit('sync', result);
+  });
+
+  socket.on('username', (username) => {
+    let room = users[socket.id].room;
+    updateUser(socket.id, 'name', checkUsername(username));
+    socket.emit('username', username);
+    socket.to(room).emit('room', {users: getRoomUsers(room), room: getRoomInfo(room)});
   });
 });
 

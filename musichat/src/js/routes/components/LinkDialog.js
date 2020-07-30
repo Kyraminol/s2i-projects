@@ -12,6 +12,7 @@ function LinkDialog(props) {
   const [room,] = React.useContext(RoomContext);
   const [open, setOpen] = props.open;
   const [url, setUrl] = React.useState("");
+  const [error, setError] = React.useState("");
 
   function onChange(e){
     setUrl(e.currentTarget.value);
@@ -26,7 +27,11 @@ function LinkDialog(props) {
   const handleUrl = (emit) => {
     const id = getUrlId(url);
     if(id){
+      setError('');
       room.socket.emit(emit, id);
+      setOpen(false);
+    } else {
+      setError('Invalid YouTube URL');
     }
   };
 
@@ -46,6 +51,8 @@ function LinkDialog(props) {
           label="Youtube URL"
           fullWidth
           onChange={onChange}
+          error={Boolean(error)}
+          helperText={error}
         />
       </DialogContent>
       <DialogActions>

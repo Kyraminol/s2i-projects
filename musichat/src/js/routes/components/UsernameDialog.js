@@ -27,7 +27,11 @@ function UsernameDialog(props) {
 
   function handleSubmit(e){
     e.preventDefault();
-    setRoom({...room, 'username': username});
+    if(room.socket === null){
+      setRoom({...room, 'username': username});
+    } else {
+      room.socket.emit('username', username);
+    }
     setOpen(false);
   }
 
