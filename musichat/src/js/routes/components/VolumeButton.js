@@ -1,27 +1,34 @@
-import React from "react";
-import IconButton from "@material-ui/core/IconButton";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
-import Slider from "@material-ui/core/Slider";
-import useStyles from "../../Styles";
-import VolumeUpIcon from "@material-ui/icons/VolumeUp";
+// Relative imports
+import useStyles from '../../Styles';
+// Module imports
+import React from 'react';
+import IconButton from '@material-ui/core/IconButton';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import Slider from '@material-ui/core/Slider';
+import VolumeUpIcon from '@material-ui/icons/VolumeUp';
 
 const VolumeButton = (props) => {
+  // Create classes names
   const classes = useStyles(props);
+  // Unpack useState from props
   const [volume, setVolume] = props.volume;
+  // Anchor element for Volume Menu
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-
+  // Function to open the Volume Menu
   const menuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
+  // Function to close the Volume Menu
   const menuClose = () => {
     setAnchorEl(null);
   };
 
   return(
     <>
+      
       <IconButton
         onClick={menuOpen}
         color="inherit"

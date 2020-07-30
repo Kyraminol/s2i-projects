@@ -85,6 +85,8 @@ const useStyles = makeStyles((theme) => ({
     minHeight: 0,
     flexBasis: 0,
   },
+
+  // Styles for UsersDrawer.js
   UsersListUser: {
     padding: theme.spacing(1, 20, 1, 4) + ' !important',
   },
@@ -99,6 +101,8 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     fontSize: '0.9rem',
   },
+
+  // Styles for Player.js
   Player: {
     width: '100%',
     height: '100%',
@@ -115,6 +119,8 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: 'auto !important',
     paddingTop: '13px !important',
   },
+
+  // Styles for VolumeButton.js
   VolumeMenuItem: {
     backgroundColor: 'inherit !important',
     paddingTop: '20px !important',
