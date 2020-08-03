@@ -1,3 +1,5 @@
+// Styles for every component
+
 import { makeStyles } from '@material-ui/core/styles';
 
 

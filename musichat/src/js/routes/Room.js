@@ -1,3 +1,5 @@
+// Route component for /room/
+
 // Relative imports
 import Header from './components/Header';
 import Footer from './components/Footer';

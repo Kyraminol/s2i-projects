@@ -1,3 +1,5 @@
+// Component for a button that pops up a volume slider
+
 // Relative imports
 import useStyles from '../../Styles';
 // Module imports
@@ -13,29 +15,31 @@ const VolumeButton = (props) => {
   const classes = useStyles(props);
   // Unpack useState from props
   const [volume, setVolume] = props.volume;
-  // Anchor element for Volume Menu
+  // Anchor element for Volume menu
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  // Function to open the Volume Menu
+  // Function to open the Volume menu
   const menuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
-  // Function to close the Volume Menu
+  // Function to close the Volume menu
   const menuClose = () => {
     setAnchorEl(null);
   };
 
   return(
     <>
-      
+      {/* Button to trigger volume slider popout */}
       <IconButton
         onClick={menuOpen}
         color="inherit"
         classes={{label: classes.IconButtonLabel, root: classes.IconButtonRoot}}
       >
+        {/* Button icon */}
         <VolumeUpIcon/>
       </IconButton>
+      {/* Volume slider popout */}
       <Menu
         anchorEl={anchorEl}
         getContentAnchorEl={null}
@@ -54,17 +58,17 @@ const VolumeButton = (props) => {
         MenuListProps={{className: classes.VolumeMenuList}}
       >
         <MenuItem disableRipple focusVisibleClassName={classes.VolumeMenuItem}>
+          {/* Volume slider */}
           <Slider
             orientation="vertical"
             value={volume}
             onChange={(e, newValue) => {setVolume(newValue)}}
-            style={{height: "100px"}}
+            style={{height: '100px'}}
           />
         </MenuItem>
       </Menu>
     </>
   )
 };
-
 
 export default VolumeButton;
