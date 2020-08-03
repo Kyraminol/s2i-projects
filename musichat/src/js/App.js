@@ -11,7 +11,7 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import red from '@material-ui/core/colors/red';
 
 
-function App() {
+const App = () => {
   const theme = React.useMemo(
     () =>
       createMuiTheme({

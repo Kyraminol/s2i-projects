@@ -1,11 +1,15 @@
-import PlayerMenu from "./PlayerMenu";
-import UsersDrawer from "./UsersDrawer";
-import SelfMenu from "./SelfMenu";
-import React from "react";
+// Component that holds navbar buttons and menus for the room
+
+// Relative imports
+import PlayerMenu from './PlayerMenu';
+import UsersDrawer from './UsersDrawer';
+import SelfMenu from './SelfMenu';
+// Module imports
+import React from 'react';
 
 
-function RoomNavbar(){
-  return(
+const RoomNavbar = () => {
+  return (
     <>
       <PlayerMenu/>
       <UsersDrawer/>

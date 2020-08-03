@@ -14,7 +14,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Box from '@material-ui/core/Box';
 
 
-function UsernameDialog(props) {
+const UsernameDialog = (props) => {
   // Import room variables from context
   const [room, setRoom] = React.useContext(RoomContext);
   // Unpack open dialog state from props
@@ -23,8 +23,8 @@ function UsernameDialog(props) {
   const [username, setUsername] = React.useState("");
 
   // Function called every time dialog input is changed
-  function onChange(e){
-    setUsername(e.currentTarget.value);
+  const onChange = (event) => {
+    setUsername(event.currentTarget.value);
   }
 
   // If room username is not set and there is an username saved in local storage, load that
@@ -37,8 +37,8 @@ function UsernameDialog(props) {
   // Function called when username form is submitted
   // If room socket is already set, send new username to the server
   // If room socket is not set, set room username
-  function handleSubmit(e){
-    e.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
     if(room.socket === null){
       setRoom({...room, 'username': username});
     } else {

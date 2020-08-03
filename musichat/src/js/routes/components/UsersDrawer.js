@@ -31,7 +31,7 @@ const UsersDrawer = (props) => {
     setOpen(false);
   };
 
-  return(
+  return (
     <>
       {/* Button to trigger drawer opening */}
       <IconButton
@@ -53,7 +53,7 @@ const UsersDrawer = (props) => {
       <Drawer anchor="right" open={open} onClose={closeDrawer}>
         <List>
           {/* Check if there are users on the list */}
-          { room.users.length > 0 ? (
+          { room.users.length > 1 ? (
             <>
               <ListItem disabled button className={classes.UsersListTitle}>
                 <ListItemText primary="Users online"/>

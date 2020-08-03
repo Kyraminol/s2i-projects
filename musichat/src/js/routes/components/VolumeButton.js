@@ -28,7 +28,7 @@ const VolumeButton = (props) => {
     setAnchorEl(null);
   };
 
-  return(
+  return (
     <>
       {/* Button to trigger volume slider popout */}
       <IconButton

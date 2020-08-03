@@ -15,7 +15,7 @@ import socketIOClient from 'socket.io-client';
 import Divider from '@material-ui/core/Divider';
 
 
-function Room(props) {
+const Room = (props) => {
   // Create classes names
   const classes = useStyles(props);
   // Get react-router URL params
@@ -39,17 +39,17 @@ function Room(props) {
     if(room.username !== null && room.socket === null){
       let socket = socketIOClient();
 
-      // When a 'message' event is received, add the message to the room messages
+      // Callback for "message" event, adds the message to the room messages
       socket.on('message', (message) => {
         setRoom((room) => {return {...room, 'messages': room.messages.concat(message)}});
       });
 
-      // When a 'username' event is received, update the room username
+      // Callback for "username" event, updates the room username
       socket.on('username', (username) => {
         setRoom((room) => {return {...room, 'username': username}});
       });
 
-      // When a 'typing' event is received, add the typing user to the room list and set a timeout of 2 seconds
+      // Callback for "typing" event, adds the typing user to the room list and set a timeout of 2 seconds
       // that clears that user from the list
       socket.on('typing', (user) => {
         setRoom((room) => {
@@ -65,13 +65,14 @@ function Room(props) {
 
       });
 
-      // When a 'url' event is received, set the YouTube URL variable of the room
+      // Callback for "url" event, sets the YouTube URL variable of the room
       socket.on('url', (url) => {
         setRoom((room) => {return {...room, 'url': url}});
       });
 
-      // When a 'room' event is received, check what params are present and set the corresponding variables on the room
+      // Callback for "room" event, checks what params are present and set the corresponding variables on the room
       socket.on('room', (values) => {
+        console.log(values);
         if(values.room){
           setRoom((room) => {return {...room, 'url': values['room']['url']}});
         }
@@ -80,9 +81,14 @@ function Room(props) {
         }
       });
 
-      // When a 'sync' event is received, set sync status of users
+      // Callback for "sync" event, set sync status of users
       socket.on('sync', (sync) => {
         setRoom((room) => {return {...room, 'status': sync.room.status, 'users': sync.users}});
+      });
+
+      // Callback for "users" event, sets room users to received list
+      socket.on('users', (users) => {
+        setRoom((room) => {return {...room, 'users': users}});
       });
 
       // Send username and room name to the server
@@ -93,7 +99,7 @@ function Room(props) {
   }, [params.name, room.username, room]);
 
 
-  return(
+  return (
     // Setup the room provider, this allows to avoid passing room and setRoom to all props
     <RoomContext.Provider value={[room, setRoom]}>
       {/* Set header with the Room buttons */}

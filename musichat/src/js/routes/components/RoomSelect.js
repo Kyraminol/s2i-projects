@@ -1,5 +1,8 @@
-import useStyles from '../../Styles';
+// Component for selecting and joining a room
 
+// Relative imports
+import useStyles from '../../Styles';
+// Module imports
 import React from 'react';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
@@ -16,24 +19,33 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 
-function RoomSelect(props){
+const RoomSelect = (props) => {
+  // Create classes names
   const classes = useStyles(props);
+  // Import history state from react-router
   const history = useHistory();
 
+  // Open state of the autocomplete
   const [open, setOpen] = React.useState(false);
+  // Options array for the autocomplete
   const [options, setOptions] = React.useState([]);
-  const [room, setRoom] = React.useState('');
+  // Selected room name
+  const [roomName, setRoomName] = React.useState('');
+  // Loading state for the autocomplete
   const [loading, setLoading] = React.useState(null);
 
+  // If autocomplete is open, options are empty and is not already loading then set loading state to true
   if(open && options.length === 0 && loading === null) setLoading(true);
 
   React.useEffect(() => {
     let active = true;
 
+    // If is not loading, exit function
     if (!loading) {
       return undefined;
     }
 
+    // Load room list from the server
     (async () => {
       axios.get('/api/v1/room')
         .then((r) => {
@@ -50,32 +62,37 @@ function RoomSelect(props){
   }, [loading]);
 
   React.useEffect(() => {
+    // Function called when autocomplete is closed, resets loading state and options
     if (!open) {
       setLoading(null);
       setOptions([]);
     }
   }, [open]);
 
-  function inputChange(event, value, reason){
-    if(reason !== "reset" || (reason === "reset" && value !== "")){
-      setRoom(value);
+  // Function called when autocomplete is changed, updates room name state
+  const inputChange = (event, value, reason) => {
+    if(reason !== 'reset' || (reason === 'reset' && value !== '')){
+      setRoomName(value);
     }
   }
 
-  function formSubmit(e){
-    e.preventDefault();
-    if(room !== ''){
-      history.push("/room/" + room);
+  // Function called when form is submitted, pushes room to history
+  const formSubmit = (event) => {
+    event.preventDefault();
+    if(roomName !== ''){
+      history.push('/room/' + roomName);
     }
   }
 
-  return(
+  return (
     <Container component="main" className={classes.RoomSelectMain}>
       <Container maxWidth="xs" className={classes.RoomSelect}>
         <Box component="form" onSubmit={formSubmit}>
+          {/* Form title */}
           <Typography component="h1" variant="h4">
             Musichat
           </Typography>
+          {/* Form subtitle  */}
           <Typography component="h1" variant="subtitle2" gutterBottom>
             Select an existing room or create a new one
           </Typography>
@@ -93,11 +110,13 @@ function RoomSelect(props){
               setOpen(false);
             }}
             getOptionSelected={(option, value) => option.name === value.name}
-            renderOption={(option,) => option.name + " (" + option.users + " online)"}
-            getOptionLabel={(option) => option.name || ""}
+            // Render formatting: "RoomName (x online)"
+            renderOption={(option,) => option.name + ' (' + option.users + ' online)'}
+            // If option has no name then hide option
+            getOptionLabel={(option) => option.name || ''}
             options={options}
             loading={loading}
-            inputValue={room}
+            inputValue={roomName}
             onInputChange={inputChange}
             renderInput={(params) => (
               <TextField
@@ -111,7 +130,10 @@ function RoomSelect(props){
                   ...params.InputProps, type: 'search',
                   endAdornment: (
                     <>
+                      {/* If loading then show a circular spinner */}
                       {loading ? <CircularProgress color="inherit" size={35} /> : null}
+                      {/* If autocomplete is open shows an upward (closing) arrow */}
+                      {/* if autocomplete is closed shows a downward (opening) arrow */}
                       <InputAdornment position="end">
                         <IconButton
                           onClick={() => {open ? setOpen(false) : setOpen(true)}}
@@ -126,6 +148,7 @@ function RoomSelect(props){
               />
             )}
           />
+          {/* Submitting button */}
           <Button
             type="submit"
             fullWidth

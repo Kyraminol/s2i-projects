@@ -8,8 +8,8 @@ import Footer from './components/Footer';
 import React from 'react';
 
 
-function Home() {
-  return(
+const Home = () => {
+  return (
     <>
       <Header/>
       <RoomSelect/>

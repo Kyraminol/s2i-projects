@@ -1,21 +1,31 @@
-import React from "react";
-import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
-import useStyles from "../../Styles";
-import RoomContext from "./RoomContext";
+// Component for a single message bubble
+
+// Relative imports
+import RoomContext from './RoomContext';
+import useStyles from '../../Styles';
+// Module imports
+import React from 'react';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
 
-function MessageBubble(props) {
+const MessageBubble = (props) => {
+  // Create classes names
+  let classes = useStyles(props);
+  // Import room variables from context
   const [room,] = React.useContext(RoomContext);
+
   let systemMessage = null;
 
-  let classes = useStyles(props);
-
+  // If message is from another user bubble is left aligned
+  // If message is from self bubble is right aligned right
+  // If message is a system message bubble is center aligned
   let style = {};
   if(room.username === props.message.from) style['justifyContent'] = 'flex-end';
   if(props.message.from === null){
     style['justifyContent'] = 'space-around';
+    // Set system message based on message type
     if(props.message.type === 'join'){
       systemMessage = `${props.message.extra} joined`;
     } else if (props.message.type === 'username'){
@@ -27,16 +37,20 @@ function MessageBubble(props) {
     }
   }
 
+  // Parse message timestamp to Date object
   let timestamp = new Date(props.message.timestamp);
 
-  return(
+  return (
     <Box className={classes.MessageBubbleRoot} style={style}>
       <Paper className={classes.MessageBubble}>
+        {/* If message is not a system message print message text along with sender name and timestamp */}
+        {/* If message is a system message print only system message text */}
         {systemMessage === null ? (
           <>
             <Box className={classes.MessageBubbleContainer}>
               {props.message.from && (
                 <Box fontWeight="fontWeightBold">
+                  {/* Print sender username only when is from other users */}
                   {room.username !== props.message.from ? props.message.from : undefined}
                 </Box>
               )}
@@ -47,11 +61,13 @@ function MessageBubble(props) {
               )}
             </Box>
             <Typography variant="body2" align="right" className={classes.MessageBubbleTimestamp}>
+              {/* Format timestamp with local timezone */}
               {timestamp.toLocaleTimeString()}
             </Typography>
           </>
         ) : (
           <Typography variant="body2" align="center" className={classes.MessageBubbleTimestamp}>
+            {/* If message is from system then print system message */}
             {systemMessage}
           </Typography>
         )}

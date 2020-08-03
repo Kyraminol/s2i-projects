@@ -29,7 +29,7 @@ const SelfMenu = (props) => {
     setAnchorEl(null);
   };
 
-  return(
+  return (
     <>
       {/* Button to open the menu */}
       <IconButton
