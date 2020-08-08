@@ -31,7 +31,7 @@ const Chat = (props) => {
   // Sends message to server socket if message is not empty, then clears the input
   const handleSubmit = (event) => {
     event.preventDefault();
-    let input = event.currentTarget;
+    let input = event.currentTarget.querySelector('#message-input');
     if(input.value === '') return;
     room.socket.emit('message', input.value);
     input.value = '';
