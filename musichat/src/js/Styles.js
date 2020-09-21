@@ -78,6 +78,7 @@ const useStyles = makeStyles((theme) => ({
   MessageBubbleTimestamp: {
     paddingRight: '5px',
     color: theme.palette.text.hint,
+    wordBreak: 'break-all',
   },
   MessagesContainer: {
     flexGrow: 1,

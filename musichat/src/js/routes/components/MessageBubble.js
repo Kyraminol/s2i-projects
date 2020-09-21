@@ -49,7 +49,7 @@ const MessageBubble = (props) => {
           <>
             <Box className={classes.MessageBubbleContainer}>
               {props.message.from && (
-                <Box fontWeight="fontWeightBold">
+                <Box fontWeight="fontWeightBold" className={classes.Message}>
                   {/* Print sender username only when is from other users */}
                   {room.username !== props.message.from ? props.message.from : undefined}
                 </Box>
