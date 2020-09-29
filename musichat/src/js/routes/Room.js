@@ -72,7 +72,6 @@ const Room = (props) => {
 
       // Callback for "room" event, checks what params are present and set the corresponding variables on the room
       socket.on('room', (values) => {
-        console.log(values);
         if(values.room){
           setRoom((room) => {return {...room, 'url': values['room']['url']}});
         }

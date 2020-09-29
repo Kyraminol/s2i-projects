@@ -12,7 +12,7 @@ const users = {};
 const rooms = {'general': {url: '', status: 0}};
 
 // Serve static from React build directory
-app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static(path.join(__dirname, '..', 'build')));
 
 // Main route, serve index.html from React build directory
 app.get('/', function (req, res) {
@@ -185,6 +185,6 @@ io.on('connection', (socket) => {
 // Get port from env settings or use 8080 as fallback
 const port = process.env.PORT || 8080;
 // Run server
-http.listen(port, () => {
+http.listen(parseInt(port, 10), () => {
   console.log('Server listening on ' + port);
 });

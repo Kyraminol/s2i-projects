@@ -15,7 +15,7 @@ const Footer = (props) => {
     <footer className={classes.Footer}>
       {/* Footer copyright */}
       <Typography variant="body2" color="textSecondary" align="center">
-        Copyright © Gianmarco Randazzo
+        Copyright © Gianmarco Randazzo{" "}
         {/* Print current year */}
         {new Date().getFullYear()}
       </Typography>
